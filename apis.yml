@@ -22,16 +22,12 @@ access: 3rd-Party
 created: '2025-01-07'
 modified: '2025-01-13'
 position: Consuming
-description: >-
-  AIMLAPI is a powerful tool that allows developers to easily integrate
-  Artificial Intelligence Markup Language (AIML) into their applications. With
-  AIMLAPI, users can create chatbots, virtual assistants, and other AI-powered
-  systems that can understand and respond to natural language input. This
-  versatile API provides a wide range of functions, including text processing,
-  pattern matching, and response generation. By using AIMLAPI, developers can
-  quickly bring their AI projects to life without having to worry about the
-  complexities of building the underlying infrastructure from scratch.
+description: 'Integrate AI features via our secure API '
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
+common:
+  - name: GitHub Organization
+    url: https://github.com/aimlapi
+    type: GitHubOrganization
