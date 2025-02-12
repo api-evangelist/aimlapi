@@ -37,6 +37,9 @@ Integrate AI features via our secure API
 ## Common Properties
 
 - [GitHubOrganization](https://github.com/aimlapi)
+- [Blog](https://aimlapi.com/blog)
+- [Pricing](https://aimlapi.com/ai-ml-api-pricing)
+- [Documentation](https://docs.aimlapi.com/)
 
 ## Maintainers
 
