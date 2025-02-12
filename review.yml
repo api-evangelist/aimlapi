@@ -1,4 +1,4 @@
-executed: '2025-02-12T23:11:24.258Z'
+executed: '2025-02-12T23:23:26.625Z'
 results:
   - code: apis-json-specification-aid-info
     message: There is an aid.
@@ -260,8 +260,8 @@ results:
         line: 21
         character: 7
       end:
-        line: 36
-        character: 23
+        line: 63
+        character: 24
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -360,6 +360,174 @@ results:
       end:
         line: 35
         character: 23
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '4'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 38
+        character: 9
+      end:
+        line: 38
+        character: 35
+  - code: apis-json-apis-properties-github-organization-info
+    message: Has a GitHub Organization
+    path:
+      - common
+      - '4'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 39
+        character: 10
+      end:
+        line: 39
+        character: 28
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '5'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 42
+        character: 9
+      end:
+        line: 42
+        character: 61
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '6'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 46
+        character: 9
+      end:
+        line: 46
+        character: 38
+  - code: apis-json-apis-properties-change-log-info
+    message: Has Change Log
+    path:
+      - common
+      - '6'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 47
+        character: 10
+      end:
+        line: 47
+        character: 19
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '7'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 50
+        character: 9
+      end:
+        line: 50
+        character: 41
+  - code: apis-json-apis-properties-signup-info
+    message: Has a Sign Up
+    path:
+      - common
+      - '7'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 51
+        character: 10
+      end:
+        line: 51
+        character: 16
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '8'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 54
+        character: 9
+      end:
+        line: 54
+        character: 38
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '9'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 58
+        character: 9
+      end:
+        line: 58
+        character: 43
+  - code: apis-json-apis-properties-privacy-policy-info
+    message: Has an API Privacy Policy
+    path:
+      - common
+      - '9'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 59
+        character: 10
+      end:
+        line: 59
+        character: 23
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '10'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 62
+        character: 9
+      end:
+        line: 62
+        character: 49
+  - code: apis-json-apis-properties-terms-of-service-info
+    message: Has an API Terms of Service
+    path:
+      - common
+      - '10'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 63
+        character: 10
+      end:
+        line: 63
+        character: 24
   - code: apis-json-created-info
     message: There is a created date.
     path:
@@ -367,10 +535,10 @@ results:
     severity: 2
     range:
       start:
-        line: 37
+        line: 64
         character: 9
       end:
-        line: 37
+        line: 64
         character: 21
   - code: apis-json-modified-info
     message: There is a modified date.
@@ -379,10 +547,10 @@ results:
     severity: 2
     range:
       start:
-        line: 38
+        line: 65
         character: 10
       end:
-        line: 38
+        line: 65
         character: 22
   - code: apis-json-description-info
     message: There is a description.
@@ -391,11 +559,11 @@ results:
     severity: 2
     range:
       start:
-        line: 40
+        line: 67
         character: 13
       end:
-        line: 40
-        character: 56
+        line: 79
+        character: 59
   - code: apis-json-maintainers-info
     message: There is a maintainer object.
     path:
@@ -403,10 +571,10 @@ results:
     severity: 2
     range:
       start:
-        line: 41
+        line: 80
         character: 12
       end:
-        line: 43
+        line: 82
         character: 33
   - code: apis-json-maintainers-fn-info
     message: There is a FN property for maintainers.
@@ -417,10 +585,10 @@ results:
     severity: 2
     range:
       start:
-        line: 42
+        line: 81
         character: 8
       end:
-        line: 42
+        line: 81
         character: 16
   - code: apis-json-maintainers-email-info
     message: There is a email property for maintainers.
@@ -431,10 +599,10 @@ results:
     severity: 2
     range:
       start:
-        line: 43
+        line: 82
         character: 11
       end:
-        line: 43
+        line: 82
         character: 33
   - code: apis-json-specification-version-info
     message: There is a specification version.
@@ -443,8 +611,8 @@ results:
     severity: 2
     range:
       start:
-        line: 44
+        line: 83
         character: 22
       end:
-        line: 44
+        line: 83
         character: 28
