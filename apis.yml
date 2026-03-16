@@ -63,7 +63,7 @@ common:
     url: https://aimlapi.com/terms-and-conditions
     type: TermsOfService
 created: '2025-01-07'
-modified: '2025-02-12'
+modified: '2026-03-16'
 position: Consuming
 description: >-
   AIMLAPI is a powerful tool that allows developers to easily integrate
@@ -80,5 +80,5 @@ description: >-
   provide a more engaging and personalized user experience.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
