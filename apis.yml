@@ -4,8 +4,7 @@ url: >-
 apis:
   - aid: aimlapi:aimlapi
     name: AIMLAPI
-    tags:
-      - API
+    tags: []
     humanURL: ' https://aimlapi.com/'
     properties:
       - url: ' https://aimlapi.com/'
@@ -14,9 +13,9 @@ apis:
       Integrate AI features via our secure API.
 name: AIMLAPI
 tags:
+  - AI
   - Artificial Intelligence
   - Models
-  - AI
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -25,8 +24,7 @@ common:
     name: GitHub Organization
     type: GitHubOrganization
   - url: https://aimlapi.com/blog
-    name: Explore AI with AIMLAPI Blog - Insights, Innovations, and Success 
-      Stories
+    name: Explore AI with AIMLAPI Blog - Insights, Innovations, and Success Stories
     type: Blog
     description: 'null'
   - url: https://aimlapi.com/ai-ml-api-pricing

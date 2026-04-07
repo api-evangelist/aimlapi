@@ -32,6 +32,7 @@ components:
 security:
   - bearerAuth: []
 tags:
+  - name: '[WIP] Completions'
   - name: API Key Management
     description: >-
       ## **Creating an API Key**
@@ -83,6 +84,10 @@ tags:
 
       By effectively managing your API keys, you maintain control over who can
       access your AI/ML API services and safeguard your resources.
+  - name: Assistants
+  - name: Chat
+  - name: Images
+    description: Given a prompt and/or an input image, the model will generate a new image.
   - name: Models
     description: >-
       List and describe the various models available in the API. You can refer
@@ -294,13 +299,8 @@ tags:
       For a complete list of models and their identifiers, refer to the table
       provided in the API documentation.
   - name: Threads
-  - name: Threads > Runs
   - name: Threads > Messages
-  - name: Assistants
-  - name: Chat
-  - name: Images
-    description: Given a prompt and/or an input image, the model will generate a new image.
-  - name: '[WIP] Completions'
+  - name: Threads > Runs
   - name: Voice
 paths:
   /api-keys/{id}/disable:
