@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: AI/ML API Documentation
+  title: AIMLAPI AI/ML API Documentation
   description: >-
     =K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes
     integrating state-of-the-art AI models into your applications effortless,
@@ -307,7 +307,7 @@ paths:
     put:
       tags:
         - API Key Management
-      summary: Disable API Key
+      summary: AIMLAPI Disable API Key
       requestBody:
         content: {}
       parameters:
@@ -330,7 +330,7 @@ paths:
     put:
       tags:
         - API Key Management
-      summary: Enable API Key
+      summary: AIMLAPI Enable API Key
       requestBody:
         content: {}
       parameters:
@@ -353,7 +353,7 @@ paths:
     get:
       tags:
         - Models
-      summary: List models
+      summary: AIMLAPI List models
       description: >-
         Lists the currently available engines, and provides basic information
         about each one such as the owner and availability.
@@ -556,7 +556,7 @@ paths:
     get:
       tags:
         - Threads > Runs
-      summary: Get runs
+      summary: AIMLAPI Get runs
       parameters:
         - name: threadId
           in: path
@@ -571,7 +571,7 @@ paths:
     post:
       tags:
         - Threads > Runs
-      summary: Create run
+      summary: AIMLAPI Create run
       requestBody:
         content:
           application/json:
@@ -596,7 +596,7 @@ paths:
     post:
       tags:
         - Threads > Runs
-      summary: Update run
+      summary: AIMLAPI Update run
       requestBody:
         content:
           application/json:
@@ -623,7 +623,7 @@ paths:
     get:
       tags:
         - Threads > Runs
-      summary: Get run
+      summary: AIMLAPI Get run
       parameters:
         - name: threadId
           in: path
@@ -644,7 +644,7 @@ paths:
     get:
       tags:
         - Threads > Messages
-      summary: Get messages
+      summary: AIMLAPI Get messages
       parameters:
         - name: limit
           in: query
@@ -675,7 +675,7 @@ paths:
     post:
       tags:
         - Threads > Messages
-      summary: Create message
+      summary: AIMLAPI Create message
       requestBody:
         content:
           application/json:
@@ -700,7 +700,7 @@ paths:
     get:
       tags:
         - Threads > Messages
-      summary: Get message
+      summary: AIMLAPI Get message
       parameters:
         - name: threadId
           in: path
@@ -720,7 +720,7 @@ paths:
     post:
       tags:
         - Threads > Messages
-      summary: Update message
+      summary: AIMLAPI Update message
       requestBody:
         content:
           application/json:
@@ -748,7 +748,7 @@ paths:
     post:
       tags:
         - Threads
-      summary: Create thread
+      summary: AIMLAPI Create thread
       requestBody:
         content:
           application/json:
@@ -800,7 +800,7 @@ paths:
     get:
       tags:
         - Assistants
-      summary: List your assistants
+      summary: AIMLAPI List your assistants
       responses:
         '200':
           description: OK
@@ -851,7 +851,7 @@ paths:
     post:
       tags:
         - Assistants
-      summary: Create assistant
+      summary: AIMLAPI Create assistant
       requestBody:
         content:
           application/json:
@@ -910,7 +910,7 @@ paths:
     get:
       tags:
         - Assistants
-      summary: Get assistant
+      summary: AIMLAPI Get assistant
       parameters:
         - name: assistantId
           in: path
@@ -965,7 +965,7 @@ paths:
     post:
       tags:
         - Assistants
-      summary: Update assistant
+      summary: AIMLAPI Update assistant
       requestBody:
         content:
           application/json:
@@ -1030,7 +1030,7 @@ paths:
     post:
       tags:
         - Chat
-      summary: Create chat message completion
+      summary: AIMLAPI Create chat message completion
       description: You can read about parameters here.
       requestBody:
         content:
@@ -1104,7 +1104,7 @@ paths:
                 prompt: []
                 choices:
                   - finish_reason: eos
-                    logprobs: null
+                    logprobs:
                     index: 0
                     message:
                       role: assistant
@@ -1117,7 +1117,7 @@ paths:
     post:
       tags:
         - Images
-      summary: Create image
+      summary: AIMLAPI Create image
       description: Creates an image given a prompt.
       requestBody:
         content:
@@ -1188,7 +1188,7 @@ paths:
     post:
       tags:
         - '[WIP] Completions'
-      summary: Create completion
+      summary: AIMLAPI Create completion
       description: Creates a completion for the provided prompt and parameters.
       requestBody:
         content:
@@ -1209,7 +1209,7 @@ paths:
     post:
       tags:
         - Voice
-      summary: Speech To Text
+      summary: AIMLAPI Speech To Text
       requestBody:
         content:
           application/json:
@@ -1408,7 +1408,7 @@ paths:
     post:
       tags:
         - Voice
-      summary: Text To Speech
+      summary: AIMLAPI Text To Speech
       description: This request returns an audio file.
       requestBody:
         content:
