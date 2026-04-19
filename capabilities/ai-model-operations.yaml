@@ -1,0 +1,120 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "AIMLAPI AI Model Operations"
+  description: "Unified workflow for accessing 400+ AI models via AIMLAPI gateway including chat completions, image generation, embeddings, and model discovery. Used by developers building AI-powered applications."
+  tags:
+    - Artificial Intelligence
+    - LLM
+    - Image Generation
+    - Embeddings
+    - Developer Tools
+    - API Gateway
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AIMLAPI_API_KEY: AIMLAPI_API_KEY
+
+capability:
+  consumes:
+    - import: aimlapi
+      location: ./shared/aimlapi-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: aimlapi-ai-ops-api
+      description: "Unified REST API for AIMLAPI AI model operations."
+      resources:
+        - path: /v1/chat/completions
+          name: chat-completions
+          description: "Chat completions via 400+ LLMs"
+          operations:
+            - method: POST
+              name: create-chat-completion
+              description: "Create a chat completion"
+              call: "aimlapi.create-chat-completion"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/images/generations
+          name: image-generations
+          description: "Image generation"
+          operations:
+            - method: POST
+              name: create-image
+              description: "Generate an image"
+              call: "aimlapi.create-image"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/embeddings
+          name: embeddings
+          description: "Generate embeddings"
+          operations:
+            - method: POST
+              name: create-embedding
+              description: "Create embeddings"
+              call: "aimlapi.create-embedding"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/models
+          name: models
+          description: "List available models"
+          operations:
+            - method: GET
+              name: list-models
+              description: "List all models"
+              call: "aimlapi.list-models"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: aimlapi-ai-ops-mcp
+      transport: http
+      description: "MCP server for AI-assisted access to AIMLAPI model gateway."
+      tools:
+        - name: create-chat-completion
+          description: "Generate a chat response from any of 400+ AI language models via AIMLAPI"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "aimlapi.create-chat-completion"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: generate-image
+          description: "Generate an image from a text prompt using AIMLAPI image generation models"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "aimlapi.create-image"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-embedding
+          description: "Generate vector embeddings for semantic search and RAG applications"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aimlapi.create-embedding"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-models
+          description: "Discover all 400+ available AI models on AIMLAPI platform"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aimlapi.list-models"
+          outputParameters:
+            - type: object
+              mapping: "$."

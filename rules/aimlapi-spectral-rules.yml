@@ -1,0 +1,128 @@
+extends: "spectral:oas"
+
+rules:
+  info-title-aimlapi:
+    description: Title should start with AIMLAPI
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^AIMLAPI"
+
+  operation-summary-prefix:
+    description: Operation summaries must start with "AIMLAPI"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^AIMLAPI"
+
+  operation-id-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-description-required:
+    description: Every operation should have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  operation-tags-required:
+    description: Every operation should have tags
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  servers-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  response-success-required:
+    description: Operations must define at least one 2xx response
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  parameter-description:
+    description: Parameters should have descriptions
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-property-type:
+    description: Schema properties should have types defined
+    severity: warn
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: type
+      function: truthy
+
+  security-bearer-defined:
+    description: Bearer auth security scheme should be defined
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  info-description-required:
+    description: API must have a description
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: API must have a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  no-empty-descriptions:
+    description: Descriptions must not be empty
+    severity: warn
+    given: "$..description"
+    then:
+      function: truthy
+
+  openai-compatible-model-param:
+    description: Chat completion operations should have a model parameter
+    severity: info
+    given: "$.paths['/chat/completions'].post"
+    then:
+      field: requestBody
+      function: truthy

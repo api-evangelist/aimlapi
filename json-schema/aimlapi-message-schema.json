@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-schema/aimlapi-message-schema.json",
+  "title": "Message",
+  "description": "A single message in a chat conversation",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "Message role: system, user, assistant, tool",
+      "example": "user"
+    },
+    "content": {
+      "type": "string",
+      "description": "Message content text",
+      "example": "Hello, how can I help you?"
+    },
+    "name": {
+      "type": "string",
+      "description": "Optional name for the participant",
+      "example": "Alice"
+    }
+  }
+}

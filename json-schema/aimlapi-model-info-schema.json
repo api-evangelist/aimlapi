@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-schema/aimlapi-model-info-schema.json",
+  "title": "ModelInfo",
+  "description": "Information about an available AI model",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Model identifier",
+      "example": "gpt-4o"
+    },
+    "object": {
+      "type": "string",
+      "description": "Object type",
+      "example": "model"
+    },
+    "created": {
+      "type": "integer",
+      "description": "Unix timestamp of model creation",
+      "example": 1718153645
+    },
+    "owned_by": {
+      "type": "string",
+      "description": "Organization that owns/created the model",
+      "example": "openai"
+    }
+  }
+}

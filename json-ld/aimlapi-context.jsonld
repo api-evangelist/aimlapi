@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aimlapi": "https://aimlapi.com/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ChatCompletionRequest": "aimlapi:ChatCompletionRequest",
+    "ChatCompletionResponse": "aimlapi:ChatCompletionResponse",
+    "ImageGenerationRequest": "aimlapi:ImageGenerationRequest",
+    "EmbeddingRequest": "aimlapi:EmbeddingRequest",
+    "ModelInfo": "aimlapi:ModelInfo",
+    "model": {
+      "@id": "aimlapi:model",
+      "@type": "xsd:string"
+    },
+    "messages": {
+      "@id": "aimlapi:messages",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "temperature": {
+      "@id": "aimlapi:temperature",
+      "@type": "xsd:decimal"
+    },
+    "maxTokens": {
+      "@id": "aimlapi:max_tokens",
+      "@type": "xsd:integer"
+    },
+    "stream": {
+      "@id": "aimlapi:stream",
+      "@type": "xsd:boolean"
+    },
+    "prompt": {
+      "@id": "aimlapi:prompt",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "aimlapi:role",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "aimlapi:content",
+      "@type": "xsd:string"
+    },
+    "ownedBy": {
+      "@id": "aimlapi:owned_by",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

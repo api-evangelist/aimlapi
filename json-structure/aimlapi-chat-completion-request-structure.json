@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-structure/aimlapi-chat-completion-request-structure.json",
+  "name": "ChatCompletionRequest",
+  "description": "Request body for creating a chat completion via AIMLAPI",
+  "type": "object",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Model ID to use for completion",
+      "example": "gpt-4o"
+    },
+    "messages": {
+      "type": "array",
+      "description": "List of messages in the conversation",
+      "items": {
+        "type": "object"
+      }
+    },
+    "temperature": {
+      "type": "double",
+      "description": "Sampling temperature 0-2",
+      "example": 0.7
+    },
+    "max_tokens": {
+      "type": "int32",
+      "description": "Maximum tokens to generate",
+      "example": 1024
+    },
+    "stream": {
+      "type": "boolean",
+      "description": "Stream response tokens",
+      "example": false
+    },
+    "top_p": {
+      "type": "double",
+      "description": "Nucleus sampling parameter",
+      "example": 1.0
+    },
+    "frequency_penalty": {
+      "type": "double",
+      "description": "Frequency penalty -2 to 2",
+      "example": 0
+    },
+    "presence_penalty": {
+      "type": "double",
+      "description": "Presence penalty -2 to 2",
+      "example": 0
+    }
+  }
+}

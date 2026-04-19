@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-structure/aimlapi-api-key-structure.json",
+  "name": "ApiKey",
+  "description": "An AIMLAPI API key for authentication",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "API key identifier",
+      "example": "key-abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable key name",
+      "example": "Production Key"
+    },
+    "key": {
+      "type": "string",
+      "description": "The API key value (only shown on creation)",
+      "example": "aiml-sk-examplekey123"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "Creation timestamp",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "status": {
+      "type": "string",
+      "description": "Key status: active, disabled",
+      "example": "active"
+    }
+  }
+}

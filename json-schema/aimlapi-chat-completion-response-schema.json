@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-schema/aimlapi-chat-completion-response-schema.json",
+  "title": "ChatCompletionResponse",
+  "description": "Response from a chat completion request",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique completion ID",
+      "example": "chatcmpl-abc123"
+    },
+    "object": {
+      "type": "string",
+      "description": "Object type",
+      "example": "chat.completion"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model used for completion",
+      "example": "gpt-4o"
+    },
+    "choices": {
+      "type": "array",
+      "description": "List of completion choices",
+      "items": {
+        "type": "object"
+      }
+    },
+    "usage": {
+      "type": "object",
+      "description": "Token usage statistics"
+    },
+    "created": {
+      "type": "integer",
+      "description": "Unix timestamp of creation",
+      "example": 1718153645
+    }
+  }
+}

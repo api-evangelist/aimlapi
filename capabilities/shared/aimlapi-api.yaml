@@ -1,0 +1,167 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "AIMLAPI AI Gateway"
+  description: "AIMLAPI unified AI model gateway providing access to 400+ models via OpenAI-compatible REST API. Supports chat completions, image generation, speech, and embeddings."
+  tags:
+    - Artificial Intelligence
+    - LLM
+    - Image Generation
+    - Speech
+    - Embeddings
+    - API Gateway
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AIMLAPI_API_KEY: AIMLAPI_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: aimlapi
+      baseUri: https://api.aimlapi.com/v1
+      description: "AIMLAPI unified AI model gateway (OpenAI-compatible)"
+      authentication:
+        type: bearer
+        token: "{{AIMLAPI_API_KEY}}"
+      resources:
+        - name: chat-completions
+          path: /chat/completions
+          description: "Chat completion with 400+ LLMs"
+          operations:
+            - name: create-chat-completion
+              method: POST
+              description: "Create a chat completion response from a language model"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  model: "{{tools.model}}"
+                  messages: "{{tools.messages}}"
+        - name: images-generations
+          path: /images/generations
+          description: "Generate images using AI image generation models"
+          operations:
+            - name: create-image
+              method: POST
+              description: "Generate an image from a text prompt"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  model: "{{tools.model}}"
+                  prompt: "{{tools.prompt}}"
+        - name: embeddings
+          path: /embeddings
+          description: "Generate text embeddings for semantic search and RAG"
+          operations:
+            - name: create-embedding
+              method: POST
+              description: "Generate vector embeddings for input text"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  model: "{{tools.model}}"
+                  input: "{{tools.input}}"
+        - name: models
+          path: /models
+          description: "List available AI models"
+          operations:
+            - name: list-models
+              method: GET
+              description: "List all available AI models"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: aimlapi-rest
+      resources:
+        - path: /v1/chat/completions
+          name: chat-completions
+          description: "Chat completion endpoint"
+          operations:
+            - method: POST
+              name: create-chat-completion
+              description: "Create a chat completion"
+              call: "aimlapi.create-chat-completion"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/models
+          name: models
+          description: "List models endpoint"
+          operations:
+            - method: GET
+              name: list-models
+              description: "List available models"
+              call: "aimlapi.list-models"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: aimlapi-mcp
+      transport: http
+      tools:
+        - name: create-chat-completion
+          description: "Generate a chat completion from any of 400+ AI language models"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "aimlapi.create-chat-completion"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: generate-image
+          description: "Generate an image from a text prompt using AI image generation models"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "aimlapi.create-image"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-embedding
+          description: "Generate vector embeddings for text input"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aimlapi.create-embedding"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-models
+          description: "List all available AI models on AIMLAPI"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aimlapi.list-models"
+          outputParameters:
+            - type: object
+              mapping: "$."

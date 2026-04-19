@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-schema/aimlapi-embedding-request-schema.json",
+  "title": "EmbeddingRequest",
+  "description": "Request body for creating text embeddings via AIMLAPI",
+  "type": "object",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Embedding model ID",
+      "example": "text-embedding-3-small"
+    },
+    "input": {
+      "type": "string",
+      "description": "Text to embed",
+      "example": "The quick brown fox jumps over the lazy dog"
+    },
+    "encoding_format": {
+      "type": "string",
+      "description": "Encoding format (float, base64)",
+      "example": "float"
+    },
+    "dimensions": {
+      "type": "integer",
+      "description": "Output embedding dimensions",
+      "example": 1536
+    }
+  }
+}

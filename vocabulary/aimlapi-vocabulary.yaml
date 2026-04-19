@@ -1,0 +1,145 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "AIMLAPI"
+  description: "Complete taxonomy of AIMLAPI AI model gateway covering API resources, model types, modalities, and capability workflows."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: aimlapi-v1
+      version: "1.0"
+      baseUrl: https://api.aimlapi.com/v1
+      status: active
+
+  resources:
+    - name: chat-completions
+      actions: [create]
+      description: "Chat completion endpoint supporting 400+ LLMs"
+    - name: images-generations
+      actions: [create]
+      description: "Image generation endpoint"
+    - name: embeddings
+      actions: [create]
+      description: "Text embedding generation"
+    - name: models
+      actions: [list, get]
+      description: "AI model discovery and metadata"
+    - name: api-keys
+      actions: [list, create, delete]
+      description: "API key management"
+
+  actions:
+    - name: create
+      pattern: write
+      description: "Generate AI output (completion, image, embedding)"
+    - name: list
+      pattern: read
+      description: "List available resources"
+    - name: get
+      pattern: read
+      description: "Get a single resource"
+
+  schemas:
+    completions:
+      - name: ChatCompletionRequest
+        keyFields: [model, messages, temperature, max_tokens, stream]
+      - name: ChatCompletionResponse
+        keyFields: [id, model, choices, usage]
+    images:
+      - name: ImageGenerationRequest
+        keyFields: [model, prompt, n, size, quality]
+      - name: ImageGenerationResponse
+        keyFields: [created, data]
+    embeddings:
+      - name: EmbeddingRequest
+        keyFields: [model, input]
+      - name: EmbeddingResponse
+        keyFields: [data, model, usage]
+
+  enums:
+    modalities:
+      - Text/Chat LLM
+      - Image Generation
+      - Video Generation
+      - Speech-to-Text
+      - Text-to-Speech
+      - Embeddings
+      - Vision/OCR
+      - Music Generation
+      - 3D Generation
+    providers:
+      - OpenAI
+      - Anthropic
+      - Google
+      - Meta
+      - DeepSeek
+      - Mistral
+      - Stability AI
+      - Runway
+      - ElevenLabs
+
+  authentication:
+    schemes:
+      - type: bearer
+        description: "AIMLAPI API key as Bearer token"
+
+capability:
+  workflows:
+    - name: "AI Model Operations"
+      file: capabilities/ai-model-operations.yaml
+      description: "Access 400+ AI models for chat, image generation, embeddings, and model discovery"
+      apisCombined: [aimlapi-v1]
+      toolCount: 4
+      personas: [Developer, AI Engineer]
+      domains: [Artificial Intelligence, Developer Tools]
+
+  personas:
+    - id: developer
+      name: "Developer"
+      description: "Developer integrating AI capabilities into applications via AIMLAPI"
+    - id: ai-engineer
+      name: "AI Engineer"
+      description: "AI engineer evaluating and comparing models for ML pipelines"
+
+  domains:
+    - name: "Artificial Intelligence"
+      description: "AI model inference across modalities"
+      resources: [chat-completions, images-generations, embeddings]
+    - name: "Developer Tools"
+      description: "API key management and model discovery"
+      resources: [models, api-keys]
+
+  namespaces:
+    - name: aimlapi
+      type: consumed
+      baseUri: https://api.aimlapi.com/v1
+    - name: aimlapi-ai-ops-api
+      type: rest-exposed
+      port: 8080
+    - name: aimlapi-ai-ops-mcp
+      type: mcp-exposed
+      port: 9080
+
+  binds:
+    - name: AIMLAPI_API_KEY
+      description: "Bearer token for AIMLAPI authentication"
+
+crossReference:
+  - resource: chat-completions
+    operations: [create-chat-completion]
+    workflows: ["AI Model Operations"]
+    personas: [Developer, AI Engineer]
+  - resource: images-generations
+    operations: [create-image]
+    workflows: ["AI Model Operations"]
+    personas: [Developer]
+  - resource: embeddings
+    operations: [create-embedding]
+    workflows: ["AI Model Operations"]
+    personas: [AI Engineer]
+  - resource: models
+    operations: [list-models]
+    workflows: ["AI Model Operations"]
+    personas: [Developer, AI Engineer]

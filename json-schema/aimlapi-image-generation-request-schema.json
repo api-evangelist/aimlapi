@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/json-schema/aimlapi-image-generation-request-schema.json",
+  "title": "ImageGenerationRequest",
+  "description": "Request body for generating an image via AIMLAPI",
+  "type": "object",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Image generation model ID",
+      "example": "dall-e-3"
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Text description of desired image",
+      "example": "A futuristic cityscape at sunset"
+    },
+    "n": {
+      "type": "integer",
+      "description": "Number of images to generate",
+      "example": 1
+    },
+    "size": {
+      "type": "string",
+      "description": "Image dimensions",
+      "example": "1024x1024"
+    },
+    "quality": {
+      "type": "string",
+      "description": "Image quality (standard, hd)",
+      "example": "standard"
+    },
+    "style": {
+      "type": "string",
+      "description": "Image style (vivid, natural)",
+      "example": "vivid"
+    }
+  }
+}
