@@ -1,0 +1,90 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AIMLAPI AI/ML API Documentation — Chat
+  description: 'AIMLAPI AI/ML API Documentation — Chat. 1 operations. Lead operation: AIMLAPI Create Chat Message Completion.
+    Self-contained Naftiko capability covering one Aimlapi business surface.'
+  tags:
+  - Aimlapi
+  - Chat
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIMLAPI_API_KEY: AIMLAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aimlapi-chat
+    baseUri: http://{{baseurl}}
+    description: AIMLAPI AI/ML API Documentation — Chat business capability. Self-contained, no shared references.
+    resources:
+    - name: chat-completions
+      path: /chat/completions
+      operations:
+      - name: post
+        method: POST
+        description: AIMLAPI Create Chat Message Completion
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.AIMLAPI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aimlapi-chat-rest
+    port: 8080
+    description: REST adapter for AIMLAPI AI/ML API Documentation — Chat. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/chat/completions
+      name: chat-completions
+      description: REST surface for chat-completions.
+      operations:
+      - method: POST
+        name: post
+        description: AIMLAPI Create Chat Message Completion
+        call: aimlapi-chat.post
+        with:
+          Content-Type: rest.Content-Type
+          Accept: rest.Accept
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aimlapi-chat-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AIMLAPI AI/ML API Documentation — Chat. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: aimlapi-create-chat-message-completion
+      description: AIMLAPI Create Chat Message Completion
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aimlapi-chat.post
+      with:
+        Content-Type: tools.Content-Type
+        Accept: tools.Accept
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

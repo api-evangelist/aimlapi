@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AIMLAPI AI/ML API Documentation — API Key Management
+  description: 'AIMLAPI AI/ML API Documentation — API Key Management. 2 operations. Lead operation: AIMLAPI Disable API Key.
+    Self-contained Naftiko capability covering one Aimlapi business surface.'
+  tags:
+  - Aimlapi
+  - API Key Management
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIMLAPI_API_KEY: AIMLAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aimlapi-api-key-management
+    baseUri: http://{{baseurl}}
+    description: AIMLAPI AI/ML API Documentation — API Key Management business capability. Self-contained, no shared references.
+    resources:
+    - name: api-keys-id-disable
+      path: /api-keys/{id}/disable
+      operations:
+      - name: put
+        method: PUT
+        description: AIMLAPI Disable API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: (Required)
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-keys-id-enable
+      path: /api-keys/{id}/enable
+      operations:
+      - name: put
+        method: PUT
+        description: AIMLAPI Enable API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: (Required)
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.AIMLAPI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aimlapi-api-key-management-rest
+    port: 8080
+    description: REST adapter for AIMLAPI AI/ML API Documentation — API Key Management. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api-keys/{id}/disable
+      name: api-keys-id-disable
+      description: REST surface for api-keys-id-disable.
+      operations:
+      - method: PUT
+        name: put
+        description: AIMLAPI Disable API Key
+        call: aimlapi-api-key-management.put
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api-keys/{id}/enable
+      name: api-keys-id-enable
+      description: REST surface for api-keys-id-enable.
+      operations:
+      - method: PUT
+        name: put
+        description: AIMLAPI Enable API Key
+        call: aimlapi-api-key-management.put
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aimlapi-api-key-management-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AIMLAPI AI/ML API Documentation — API Key Management. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: aimlapi-disable-api-key
+      description: AIMLAPI Disable API Key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: aimlapi-api-key-management.put
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aimlapi-enable-api-key
+      description: AIMLAPI Enable API Key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: aimlapi-api-key-management.put
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

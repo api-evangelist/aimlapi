@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AIMLAPI AI/ML API Documentation — Threads
+  description: 'AIMLAPI AI/ML API Documentation — Threads. 1 operations. Lead operation: AIMLAPI Create Thread. Self-contained
+    Naftiko capability covering one Aimlapi business surface.'
+  tags:
+  - Aimlapi
+  - Threads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIMLAPI_API_KEY: AIMLAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aimlapi-threads
+    baseUri: http://{{baseurl}}
+    description: AIMLAPI AI/ML API Documentation — Threads business capability. Self-contained, no shared references.
+    resources:
+    - name: threads
+      path: /threads
+      operations:
+      - name: post
+        method: POST
+        description: AIMLAPI Create Thread
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.AIMLAPI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aimlapi-threads-rest
+    port: 8080
+    description: REST adapter for AIMLAPI AI/ML API Documentation — Threads. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/threads
+      name: threads
+      description: REST surface for threads.
+      operations:
+      - method: POST
+        name: post
+        description: AIMLAPI Create Thread
+        call: aimlapi-threads.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aimlapi-threads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AIMLAPI AI/ML API Documentation — Threads. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: aimlapi-create-thread
+      description: AIMLAPI Create Thread
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aimlapi-threads.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

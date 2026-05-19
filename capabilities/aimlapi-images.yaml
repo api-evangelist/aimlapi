@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AIMLAPI AI/ML API Documentation — Images
+  description: 'AIMLAPI AI/ML API Documentation — Images. 1 operations. Lead operation: AIMLAPI Create Image. Self-contained
+    Naftiko capability covering one Aimlapi business surface.'
+  tags:
+  - Aimlapi
+  - Images
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIMLAPI_API_KEY: AIMLAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aimlapi-images
+    baseUri: http://{{baseurl}}
+    description: AIMLAPI AI/ML API Documentation — Images business capability. Self-contained, no shared references.
+    resources:
+    - name: images-generations
+      path: /images/generations
+      operations:
+      - name: post
+        method: POST
+        description: AIMLAPI Create Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.AIMLAPI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aimlapi-images-rest
+    port: 8080
+    description: REST adapter for AIMLAPI AI/ML API Documentation — Images. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/images/generations
+      name: images-generations
+      description: REST surface for images-generations.
+      operations:
+      - method: POST
+        name: post
+        description: AIMLAPI Create Image
+        call: aimlapi-images.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aimlapi-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AIMLAPI AI/ML API Documentation — Images. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: aimlapi-create-image
+      description: AIMLAPI Create Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aimlapi-images.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

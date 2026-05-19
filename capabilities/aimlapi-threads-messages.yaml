@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AIMLAPI AI/ML API Documentation — Threads > Messages
+  description: 'AIMLAPI AI/ML API Documentation — Threads > Messages. 4 operations. Lead operation: AIMLAPI Get Messages.
+    Self-contained Naftiko capability covering one Aimlapi business surface.'
+  tags:
+  - Aimlapi
+  - Threads > Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIMLAPI_API_KEY: AIMLAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aimlapi-threads-messages
+    baseUri: http://{{baseurl}}
+    description: AIMLAPI AI/ML API Documentation — Threads > Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: threads-threadId-messages
+      path: /threads/{threadId}/messages
+      operations:
+      - name: get
+        method: GET
+        description: AIMLAPI Get Messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+        - name: order
+          in: query
+          type: string
+        - name: before
+          in: query
+          type: string
+        - name: after
+          in: query
+          type: string
+        - name: threadId
+          in: path
+          type: string
+          required: true
+      - name: post
+        method: POST
+        description: AIMLAPI Create Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: threadId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: threads-threadId-messages-messageId
+      path: /threads/{threadId}/messages/{messageId}
+      operations:
+      - name: get
+        method: GET
+        description: AIMLAPI Get Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: threadId
+          in: path
+          type: string
+          required: true
+        - name: messageId
+          in: path
+          type: string
+          required: true
+      - name: post
+        method: POST
+        description: AIMLAPI Update Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: threadId
+          in: path
+          type: string
+          required: true
+        - name: messageId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.AIMLAPI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aimlapi-threads-messages-rest
+    port: 8080
+    description: REST adapter for AIMLAPI AI/ML API Documentation — Threads > Messages. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/threads/{threadid}/messages
+      name: threads-threadid-messages
+      description: REST surface for threads-threadId-messages.
+      operations:
+      - method: GET
+        name: get
+        description: AIMLAPI Get Messages
+        call: aimlapi-threads-messages.get
+        with:
+          limit: rest.limit
+          order: rest.order
+          before: rest.before
+          after: rest.after
+          threadId: rest.threadId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: AIMLAPI Create Message
+        call: aimlapi-threads-messages.post
+        with:
+          threadId: rest.threadId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/threads/{threadid}/messages/{messageid}
+      name: threads-threadid-messages-messageid
+      description: REST surface for threads-threadId-messages-messageId.
+      operations:
+      - method: GET
+        name: get
+        description: AIMLAPI Get Message
+        call: aimlapi-threads-messages.get
+        with:
+          threadId: rest.threadId
+          messageId: rest.messageId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: AIMLAPI Update Message
+        call: aimlapi-threads-messages.post
+        with:
+          threadId: rest.threadId
+          messageId: rest.messageId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aimlapi-threads-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AIMLAPI AI/ML API Documentation — Threads > Messages. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: aimlapi-get-messages
+      description: AIMLAPI Get Messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aimlapi-threads-messages.get
+      with:
+        limit: tools.limit
+        order: tools.order
+        before: tools.before
+        after: tools.after
+        threadId: tools.threadId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aimlapi-create-message
+      description: AIMLAPI Create Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aimlapi-threads-messages.post
+      with:
+        threadId: tools.threadId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aimlapi-get-message
+      description: AIMLAPI Get Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aimlapi-threads-messages.get
+      with:
+        threadId: tools.threadId
+        messageId: tools.messageId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aimlapi-update-message
+      description: AIMLAPI Update Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aimlapi-threads-messages.post
+      with:
+        threadId: tools.threadId
+        messageId: tools.messageId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
