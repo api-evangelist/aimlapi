@@ -155,6 +155,8 @@ common:
     url: vocabulary/aimlapi-vocabulary.yaml
     type: Vocabulary
     description: Taxonomy vocabulary for AIMLAPI APIs.
+  - type: LLMsTxt
+    url: https://aimlapi.com/llms.txt
 created: '2025-01-07'
 modified: '2026-04-19'
 position: Consuming
