@@ -1,0 +1,1286 @@
+"""
+AIMLAPI GraphQL Schema
+Conceptual GraphQL SDL derived from the AIMLAPI REST API.
+AIMLAPI provides access to 400+ AI models from 40+ providers through a single
+OpenAI-compatible endpoint supporting chat, image generation, video, speech,
+embeddings, music, and vision tasks.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar Upload
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+"""Status of an API key."""
+enum ApiKeyStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  REVOKED
+}
+
+"""Modality category of a model."""
+enum ModelModality {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  EMBEDDINGS
+  MUSIC
+  VISION
+  CODE
+  MULTIMODAL
+}
+
+"""Provider organization supplying the underlying model."""
+enum ModelProvider {
+  OPENAI
+  ANTHROPIC
+  GOOGLE
+  META
+  MISTRAL
+  DEEPSEEK
+  STABILITY_AI
+  RUNWAY
+  COHERE
+  TOGETHER_AI
+  QWEN
+  NOUS_RESEARCH
+  WIZARD_LM
+  OTHER
+}
+
+"""Finish reason returned by a completion."""
+enum FinishReason {
+  STOP
+  LENGTH
+  CONTENT_FILTER
+  TOOL_CALLS
+  NULL
+}
+
+"""Role of a message in a chat conversation."""
+enum MessageRole {
+  SYSTEM
+  USER
+  ASSISTANT
+  TOOL
+  FUNCTION
+}
+
+"""Image output format."""
+enum ImageOutputFormat {
+  PNG
+  JPEG
+  WEBP
+  GIF
+}
+
+"""Image size/resolution."""
+enum ImageSize {
+  SIZE_256x256
+  SIZE_512x512
+  SIZE_1024x1024
+  SIZE_1024x1792
+  SIZE_1792x1024
+  SIZE_HD
+}
+
+"""Quality setting for image generation."""
+enum ImageQuality {
+  STANDARD
+  HD
+}
+
+"""Image generation style."""
+enum ImageStyle {
+  VIVID
+  NATURAL
+}
+
+"""Audio format for speech synthesis or transcription."""
+enum AudioFormat {
+  MP3
+  OPUS
+  AAC
+  FLAC
+  WAV
+  PCM
+}
+
+"""Voice option for text-to-speech."""
+enum VoiceOption {
+  ALLOY
+  ECHO
+  FABLE
+  ONYX
+  NOVA
+  SHIMMER
+}
+
+"""Encoding format for embedding vectors."""
+enum EmbeddingEncodingFormat {
+  FLOAT
+  BASE64
+}
+
+"""Status of an async generation job."""
+enum JobStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+"""Type of tool available to assistant."""
+enum AssistantToolType {
+  CODE_INTERPRETER
+  FILE_SEARCH
+  FUNCTION
+}
+
+"""Order direction for list queries."""
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+"""Object type discriminator used in OpenAI-compatible responses."""
+enum ObjectType {
+  CHAT_COMPLETION
+  CHAT_COMPLETION_CHUNK
+  TEXT_COMPLETION
+  IMAGE
+  EMBEDDING
+  MODEL
+  LIST
+  ASSISTANT
+  THREAD
+  MESSAGE
+  RUN
+  RUN_STEP
+  FILE
+  FINE_TUNE
+  MODERATION
+  AUDIO_TRANSCRIPTION
+  AUDIO_TRANSLATION
+}
+
+# ─────────────────────────────────────────────
+# Core Entity Types
+# ─────────────────────────────────────────────
+
+"""An API key used to authenticate with AIMLAPI."""
+type ApiKey {
+  id: ID!
+  name: String
+  key: String
+  status: ApiKeyStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastUsedAt: DateTime
+  expiresAt: DateTime
+  permissions: [String!]
+  rateLimit: RateLimit
+  usage: ApiKeyUsageSummary
+}
+
+"""Rate limit configuration for an API key or account."""
+type RateLimit {
+  requestsPerMinute: Int
+  tokensPerMinute: Int
+  requestsPerDay: Int
+  tokensPerDay: Int
+}
+
+"""Aggregated usage statistics for an API key."""
+type ApiKeyUsageSummary {
+  totalRequests: Int!
+  totalTokens: Int!
+  totalCost: Float!
+  period: String
+}
+
+"""An AI model available through AIMLAPI."""
+type Model {
+  id: ID!
+  object: ObjectType!
+  created: Int
+  ownedBy: String
+  name: String
+  description: String
+  modality: ModelModality!
+  provider: ModelProvider
+  contextLength: Int
+  maxOutputTokens: Int
+  inputPricePerMillionTokens: Float
+  outputPricePerMillionTokens: Float
+  supportsStreaming: Boolean!
+  supportsFunctionCalling: Boolean!
+  supportsVision: Boolean!
+  supportsSystemPrompt: Boolean!
+  tags: [String!]
+  deprecated: Boolean!
+  deprecatedAt: DateTime
+  replacedBy: Model
+}
+
+"""A paginated list of models."""
+type ModelConnection {
+  object: ObjectType!
+  data: [Model!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""A single message in a chat conversation."""
+type ChatMessage {
+  role: MessageRole!
+  content: String
+  contentParts: [ContentPart!]
+  name: String
+  toolCalls: [ToolCall!]
+  toolCallId: String
+  functionCall: FunctionCall
+}
+
+"""A part of a multi-modal message content."""
+type ContentPart {
+  type: String!
+  text: String
+  imageUrl: ImageUrl
+}
+
+"""An image URL reference inside a content part."""
+type ImageUrl {
+  url: String!
+  detail: String
+}
+
+"""A tool call issued by the model."""
+type ToolCall {
+  id: ID!
+  type: String!
+  function: FunctionCall!
+}
+
+"""A function call with name and arguments."""
+type FunctionCall {
+  name: String!
+  arguments: String!
+}
+
+"""A chat completion response."""
+type ChatCompletion {
+  id: ID!
+  object: ObjectType!
+  created: Int!
+  model: String!
+  choices: [ChatCompletionChoice!]!
+  usage: TokenUsage
+  systemFingerprint: String
+}
+
+"""A single choice in a chat completion response."""
+type ChatCompletionChoice {
+  index: Int!
+  message: ChatMessage!
+  finishReason: FinishReason
+  logprobs: LogProbsResult
+}
+
+"""Log probability results."""
+type LogProbsResult {
+  content: [TokenLogProb!]
+}
+
+"""Log probability for a single token."""
+type TokenLogProb {
+  token: String!
+  logprob: Float!
+  bytes: [Int!]
+  topLogprobs: [TopLogProb!]
+}
+
+"""Top-k log probability entry."""
+type TopLogProb {
+  token: String!
+  logprob: Float!
+  bytes: [Int!]
+}
+
+"""Token usage statistics for a completion."""
+type TokenUsage {
+  promptTokens: Int!
+  completionTokens: Int!
+  totalTokens: Int!
+  promptTokensDetails: TokenUsageDetails
+  completionTokensDetails: TokenUsageDetails
+}
+
+"""Detailed token usage breakdown."""
+type TokenUsageDetails {
+  cachedTokens: Int
+  audioTokens: Int
+  reasoningTokens: Int
+  acceptedPredictionTokens: Int
+  rejectedPredictionTokens: Int
+}
+
+"""A streaming delta chunk for chat completions."""
+type ChatCompletionChunk {
+  id: ID!
+  object: ObjectType!
+  created: Int!
+  model: String!
+  choices: [ChatCompletionChunkChoice!]!
+  usage: TokenUsage
+}
+
+"""A single streaming choice delta."""
+type ChatCompletionChunkChoice {
+  index: Int!
+  delta: ChatMessageDelta!
+  finishReason: FinishReason
+  logprobs: LogProbsResult
+}
+
+"""Incremental content delta in a streaming response."""
+type ChatMessageDelta {
+  role: MessageRole
+  content: String
+  toolCalls: [ToolCallDelta!]
+  functionCall: FunctionCallDelta
+}
+
+"""Incremental tool call delta."""
+type ToolCallDelta {
+  index: Int!
+  id: String
+  type: String
+  function: FunctionCallDelta
+}
+
+"""Incremental function call delta."""
+type FunctionCallDelta {
+  name: String
+  arguments: String
+}
+
+"""A generated image response."""
+type ImageGenerationResponse {
+  created: Int!
+  data: [ImageData!]!
+}
+
+"""Data for a single generated image."""
+type ImageData {
+  url: String
+  b64Json: String
+  revisedPrompt: String
+}
+
+"""A text embedding vector."""
+type Embedding {
+  object: ObjectType!
+  embedding: [Float!]!
+  index: Int!
+}
+
+"""An embedding response containing one or more embedding vectors."""
+type EmbeddingResponse {
+  object: ObjectType!
+  data: [Embedding!]!
+  model: String!
+  usage: EmbeddingUsage!
+}
+
+"""Token usage for embedding generation."""
+type EmbeddingUsage {
+  promptTokens: Int!
+  totalTokens: Int!
+}
+
+"""A speech audio response (text-to-speech)."""
+type SpeechResponse {
+  audioContent: String!
+  format: AudioFormat!
+  duration: Float
+}
+
+"""A transcription result from audio-to-text."""
+type TranscriptionResponse {
+  text: String!
+  language: String
+  duration: Float
+  words: [TranscriptionWord!]
+  segments: [TranscriptionSegment!]
+}
+
+"""A single word with timing in a transcription."""
+type TranscriptionWord {
+  word: String!
+  start: Float!
+  end: Float!
+}
+
+"""A segment of transcribed audio."""
+type TranscriptionSegment {
+  id: Int!
+  seek: Int!
+  start: Float!
+  end: Float!
+  text: String!
+  tokens: [Int!]!
+  temperature: Float!
+  avgLogprob: Float!
+  compressionRatio: Float!
+  noSpeechProb: Float!
+}
+
+"""An OpenAI-compatible Assistant object."""
+type Assistant {
+  id: ID!
+  object: ObjectType!
+  createdAt: Int!
+  name: String
+  description: String
+  model: String!
+  instructions: String
+  tools: [AssistantTool!]!
+  metadata: JSON
+  temperature: Float
+  topP: Float
+  responseFormat: ResponseFormat
+}
+
+"""A tool attached to an assistant."""
+type AssistantTool {
+  type: AssistantToolType!
+  function: FunctionDefinition
+}
+
+"""Definition of a callable function/tool."""
+type FunctionDefinition {
+  name: String!
+  description: String
+  parameters: JSON
+  strict: Boolean
+}
+
+"""Response format configuration."""
+type ResponseFormat {
+  type: String!
+  jsonSchema: JSON
+}
+
+"""A conversation thread."""
+type Thread {
+  id: ID!
+  object: ObjectType!
+  createdAt: Int!
+  toolResources: JSON
+  metadata: JSON
+}
+
+"""A message in a thread."""
+type ThreadMessage {
+  id: ID!
+  object: ObjectType!
+  createdAt: Int!
+  threadId: String!
+  role: MessageRole!
+  content: [MessageContent!]!
+  assistantId: String
+  runId: String
+  attachments: [MessageAttachment!]
+  metadata: JSON
+}
+
+"""Content block in a thread message."""
+type MessageContent {
+  type: String!
+  text: TextContent
+  imageFile: ImageFileContent
+  imageUrl: ImageUrl
+}
+
+"""Text content block."""
+type TextContent {
+  value: String!
+  annotations: [TextAnnotation!]
+}
+
+"""An annotation on text content."""
+type TextAnnotation {
+  type: String!
+  text: String!
+  startIndex: Int!
+  endIndex: Int!
+  filePath: FilePath
+  fileReference: FileReference
+}
+
+"""A file path annotation target."""
+type FilePath {
+  fileId: String!
+}
+
+"""A file citation annotation target."""
+type FileReference {
+  fileId: String!
+  quote: String
+}
+
+"""Image file content block."""
+type ImageFileContent {
+  fileId: String!
+  detail: String
+}
+
+"""An attachment on a thread message."""
+type MessageAttachment {
+  fileId: String!
+  tools: [AssistantTool!]!
+}
+
+"""A run executing an assistant on a thread."""
+type Run {
+  id: ID!
+  object: ObjectType!
+  createdAt: Int!
+  threadId: String!
+  assistantId: String!
+  status: JobStatus!
+  requiredAction: RequiredAction
+  lastError: RunError
+  expiresAt: Int
+  startedAt: Int
+  cancelledAt: Int
+  failedAt: Int
+  completedAt: Int
+  model: String!
+  instructions: String
+  tools: [AssistantTool!]!
+  metadata: JSON
+  usage: TokenUsage
+  temperature: Float
+  topP: Float
+  maxPromptTokens: Int
+  maxCompletionTokens: Int
+  truncationStrategy: TruncationStrategy
+  responseFormat: ResponseFormat
+}
+
+"""Action required from the user before a run can proceed."""
+type RequiredAction {
+  type: String!
+  submitToolOutputs: SubmitToolOutputs
+}
+
+"""Tool outputs to be submitted."""
+type SubmitToolOutputs {
+  toolCalls: [ToolCall!]!
+}
+
+"""Error that caused a run to fail."""
+type RunError {
+  code: String!
+  message: String!
+}
+
+"""Truncation strategy for threads."""
+type TruncationStrategy {
+  type: String!
+  lastMessages: Int
+}
+
+"""A step within a run."""
+type RunStep {
+  id: ID!
+  object: ObjectType!
+  createdAt: Int!
+  assistantId: String!
+  threadId: String!
+  runId: String!
+  type: String!
+  status: JobStatus!
+  stepDetails: RunStepDetails!
+  lastError: RunError
+  expiredAt: Int
+  cancelledAt: Int
+  failedAt: Int
+  completedAt: Int
+  metadata: JSON
+  usage: TokenUsage
+}
+
+"""Details of a run step."""
+type RunStepDetails {
+  type: String!
+  messageCreation: MessageCreationDetails
+  toolCalls: [ToolCall!]
+}
+
+"""Details for a message creation step."""
+type MessageCreationDetails {
+  messageId: String!
+}
+
+"""An uploaded file object."""
+type AIMLFile {
+  id: ID!
+  object: ObjectType!
+  bytes: Int!
+  createdAt: Int!
+  filename: String!
+  purpose: String!
+  status: String
+  statusDetails: String
+}
+
+"""A moderation result for content safety."""
+type ModerationResult {
+  id: ID!
+  model: String!
+  results: [ModerationResultItem!]!
+}
+
+"""A single moderation check result."""
+type ModerationResultItem {
+  flagged: Boolean!
+  categories: ModerationCategories!
+  categoryScores: ModerationCategoryScores!
+}
+
+"""Boolean flags for each moderation category."""
+type ModerationCategories {
+  hate: Boolean!
+  hateThreatening: Boolean!
+  harassment: Boolean!
+  harassmentThreatening: Boolean!
+  illicit: Boolean!
+  illicitViolent: Boolean!
+  selfHarm: Boolean!
+  selfHarmIntent: Boolean!
+  selfHarmInstructions: Boolean!
+  sexual: Boolean!
+  sexualMinors: Boolean!
+  violence: Boolean!
+  violenceGraphic: Boolean!
+}
+
+"""Probability scores for each moderation category."""
+type ModerationCategoryScores {
+  hate: Float!
+  hateThreatening: Float!
+  harassment: Float!
+  harassmentThreatening: Float!
+  illicit: Float!
+  illicitViolent: Float!
+  selfHarm: Float!
+  selfHarmIntent: Float!
+  selfHarmInstructions: Float!
+  sexual: Float!
+  sexualMinors: Float!
+  violence: Float!
+  violenceGraphic: Float!
+}
+
+"""Account-level usage and billing information."""
+type AccountUsage {
+  totalTokensUsed: Int!
+  totalRequests: Int!
+  totalCostUsd: Float!
+  currentPeriodStart: DateTime!
+  currentPeriodEnd: DateTime!
+  breakdown: [UsageBreakdownItem!]!
+}
+
+"""Usage breakdown by model."""
+type UsageBreakdownItem {
+  model: String!
+  modality: ModelModality!
+  requests: Int!
+  inputTokens: Int!
+  outputTokens: Int!
+  costUsd: Float!
+}
+
+"""Pagination metadata."""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+"""A paginated list of assistants."""
+type AssistantConnection {
+  object: ObjectType!
+  data: [Assistant!]!
+  firstId: String
+  lastId: String
+  hasMore: Boolean!
+}
+
+"""A paginated list of thread messages."""
+type ThreadMessageConnection {
+  object: ObjectType!
+  data: [ThreadMessage!]!
+  firstId: String
+  lastId: String
+  hasMore: Boolean!
+}
+
+"""A paginated list of run steps."""
+type RunStepConnection {
+  object: ObjectType!
+  data: [RunStep!]!
+  firstId: String
+  lastId: String
+  hasMore: Boolean!
+}
+
+"""A paginated list of files."""
+type FileConnection {
+  object: ObjectType!
+  data: [AIMLFile!]!
+}
+
+"""A video generation job."""
+type VideoGenerationJob {
+  id: ID!
+  status: JobStatus!
+  model: String!
+  prompt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  completedAt: DateTime
+  videoUrl: String
+  thumbnailUrl: String
+  duration: Float
+  width: Int
+  height: Int
+  fps: Float
+  error: String
+}
+
+"""A music generation job."""
+type MusicGenerationJob {
+  id: ID!
+  status: JobStatus!
+  model: String!
+  prompt: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  completedAt: DateTime
+  audioUrl: String
+  duration: Float
+  genre: String
+  mood: String
+  error: String
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+"""Input for creating a new API key."""
+input CreateApiKeyInput {
+  name: String!
+  expiresAt: DateTime
+  permissions: [String!]
+}
+
+"""Input for updating an existing API key."""
+input UpdateApiKeyInput {
+  name: String
+  expiresAt: DateTime
+  permissions: [String!]
+}
+
+"""Input message for chat completion."""
+input ChatMessageInput {
+  role: MessageRole!
+  content: String
+  contentParts: [ContentPartInput!]
+  name: String
+  toolCalls: [ToolCallInput!]
+  toolCallId: String
+  functionCall: FunctionCallInput
+}
+
+"""Input for a content part in a multi-modal message."""
+input ContentPartInput {
+  type: String!
+  text: String
+  imageUrl: ImageUrlInput
+}
+
+"""Input for an image URL in a content part."""
+input ImageUrlInput {
+  url: String!
+  detail: String
+}
+
+"""Input for a tool call."""
+input ToolCallInput {
+  id: ID!
+  type: String!
+  function: FunctionCallInput!
+}
+
+"""Input for a function call."""
+input FunctionCallInput {
+  name: String!
+  arguments: String!
+}
+
+"""Input for creating a chat completion."""
+input CreateChatCompletionInput {
+  model: String!
+  messages: [ChatMessageInput!]!
+  maxTokens: Int
+  temperature: Float
+  topP: Float
+  n: Int
+  stream: Boolean
+  stop: [String!]
+  presencePenalty: Float
+  frequencyPenalty: Float
+  logitBias: JSON
+  logprobs: Boolean
+  topLogprobs: Int
+  user: String
+  tools: [ToolDefinitionInput!]
+  toolChoice: JSON
+  parallelToolCalls: Boolean
+  responseFormat: ResponseFormatInput
+  seed: Int
+  systemFingerprint: String
+}
+
+"""Input for a tool definition."""
+input ToolDefinitionInput {
+  type: String!
+  function: FunctionDefinitionInput!
+}
+
+"""Input for a function definition."""
+input FunctionDefinitionInput {
+  name: String!
+  description: String
+  parameters: JSON
+  strict: Boolean
+}
+
+"""Input for response format configuration."""
+input ResponseFormatInput {
+  type: String!
+  jsonSchema: JSON
+}
+
+"""Input for generating an image."""
+input CreateImageInput {
+  model: String
+  prompt: String!
+  n: Int
+  size: ImageSize
+  quality: ImageQuality
+  style: ImageStyle
+  responseFormat: String
+  user: String
+}
+
+"""Input for editing an existing image."""
+input EditImageInput {
+  model: String
+  image: Upload!
+  mask: Upload
+  prompt: String!
+  n: Int
+  size: ImageSize
+  responseFormat: String
+  user: String
+}
+
+"""Input for creating image variations."""
+input ImageVariationInput {
+  model: String
+  image: Upload!
+  n: Int
+  size: ImageSize
+  responseFormat: String
+  user: String
+}
+
+"""Input for generating embeddings."""
+input CreateEmbeddingInput {
+  model: String!
+  input: JSON!
+  encodingFormat: EmbeddingEncodingFormat
+  dimensions: Int
+  user: String
+}
+
+"""Input for text-to-speech synthesis."""
+input CreateSpeechInput {
+  model: String!
+  input: String!
+  voice: VoiceOption!
+  responseFormat: AudioFormat
+  speed: Float
+}
+
+"""Input for audio transcription."""
+input TranscribeAudioInput {
+  model: String!
+  file: Upload!
+  language: String
+  prompt: String
+  responseFormat: String
+  temperature: Float
+  timestampGranularities: [String!]
+}
+
+"""Input for creating an assistant."""
+input CreateAssistantInput {
+  model: String!
+  name: String
+  description: String
+  instructions: String
+  tools: [AssistantToolInput!]
+  toolResources: JSON
+  metadata: JSON
+  temperature: Float
+  topP: Float
+  responseFormat: ResponseFormatInput
+}
+
+"""Input for updating an assistant."""
+input UpdateAssistantInput {
+  model: String
+  name: String
+  description: String
+  instructions: String
+  tools: [AssistantToolInput!]
+  toolResources: JSON
+  metadata: JSON
+  temperature: Float
+  topP: Float
+  responseFormat: ResponseFormatInput
+}
+
+"""Input for an assistant tool."""
+input AssistantToolInput {
+  type: AssistantToolType!
+  function: FunctionDefinitionInput
+}
+
+"""Input for creating a thread."""
+input CreateThreadInput {
+  messages: [ChatMessageInput!]
+  toolResources: JSON
+  metadata: JSON
+}
+
+"""Input for adding a message to a thread."""
+input CreateThreadMessageInput {
+  role: MessageRole!
+  content: String!
+  attachments: [MessageAttachmentInput!]
+  metadata: JSON
+}
+
+"""Input for a message attachment."""
+input MessageAttachmentInput {
+  fileId: String!
+  tools: [AssistantToolInput!]!
+}
+
+"""Input for creating a run on a thread."""
+input CreateRunInput {
+  assistantId: ID!
+  model: String
+  instructions: String
+  additionalInstructions: String
+  additionalMessages: [ChatMessageInput!]
+  tools: [AssistantToolInput!]
+  metadata: JSON
+  temperature: Float
+  topP: Float
+  stream: Boolean
+  maxPromptTokens: Int
+  maxCompletionTokens: Int
+  truncationStrategy: TruncationStrategyInput
+  toolChoice: JSON
+  parallelToolCalls: Boolean
+  responseFormat: ResponseFormatInput
+}
+
+"""Input for truncation strategy."""
+input TruncationStrategyInput {
+  type: String!
+  lastMessages: Int
+}
+
+"""Input for submitting tool outputs to a run."""
+input SubmitToolOutputsInput {
+  toolOutputs: [ToolOutputInput!]!
+  stream: Boolean
+}
+
+"""A tool output for a specific tool call."""
+input ToolOutputInput {
+  toolCallId: String!
+  output: String!
+}
+
+"""Input for content moderation."""
+input CreateModerationInput {
+  model: String
+  input: JSON!
+}
+
+"""Input for generating a video."""
+input CreateVideoGenerationInput {
+  model: String!
+  prompt: String!
+  negativePrompt: String
+  width: Int
+  height: Int
+  duration: Float
+  fps: Float
+  seed: Int
+  numInferenceSteps: Int
+}
+
+"""Input for generating music."""
+input CreateMusicGenerationInput {
+  model: String!
+  prompt: String
+  duration: Float
+  genre: String
+  mood: String
+  seed: Int
+}
+
+"""Input for listing resources with pagination and filtering."""
+input ListInput {
+  limit: Int
+  after: String
+  before: String
+  order: OrderDirection
+}
+
+"""Input for filtering models."""
+input ModelFilterInput {
+  modality: ModelModality
+  provider: ModelProvider
+  supportsStreaming: Boolean
+  supportsFunctionCalling: Boolean
+  supportsVision: Boolean
+  deprecated: Boolean
+  search: String
+}
+
+# ─────────────────────────────────────────────
+# Query Root
+# ─────────────────────────────────────────────
+
+type Query {
+  """List all available models, optionally filtered."""
+  models(filter: ModelFilterInput, pagination: ListInput): ModelConnection!
+
+  """Retrieve a specific model by ID."""
+  model(id: ID!): Model
+
+  """List API keys for the authenticated account."""
+  apiKeys(pagination: ListInput): [ApiKey!]!
+
+  """Retrieve a specific API key by ID."""
+  apiKey(id: ID!): ApiKey
+
+  """List assistants for the authenticated account."""
+  assistants(pagination: ListInput): AssistantConnection!
+
+  """Retrieve a specific assistant by ID."""
+  assistant(id: ID!): Assistant
+
+  """Retrieve a specific thread by ID."""
+  thread(id: ID!): Thread
+
+  """List messages in a thread."""
+  threadMessages(threadId: ID!, pagination: ListInput): ThreadMessageConnection!
+
+  """Retrieve a specific message in a thread."""
+  threadMessage(threadId: ID!, messageId: ID!): ThreadMessage
+
+  """List runs for a thread."""
+  runs(threadId: ID!, pagination: ListInput): [Run!]!
+
+  """Retrieve a specific run."""
+  run(threadId: ID!, runId: ID!): Run
+
+  """List steps for a run."""
+  runSteps(threadId: ID!, runId: ID!, pagination: ListInput): RunStepConnection!
+
+  """Retrieve a specific run step."""
+  runStep(threadId: ID!, runId: ID!, stepId: ID!): RunStep
+
+  """List uploaded files."""
+  files(purpose: String, pagination: ListInput): FileConnection!
+
+  """Retrieve a specific file by ID."""
+  file(id: ID!): AIMLFile
+
+  """Retrieve the content of a file by ID."""
+  fileContent(id: ID!): String
+
+  """Get account usage statistics."""
+  accountUsage(startDate: DateTime, endDate: DateTime): AccountUsage!
+
+  """Get the status of a video generation job."""
+  videoGenerationJob(id: ID!): VideoGenerationJob
+
+  """List video generation jobs."""
+  videoGenerationJobs(pagination: ListInput): [VideoGenerationJob!]!
+
+  """Get the status of a music generation job."""
+  musicGenerationJob(id: ID!): MusicGenerationJob
+
+  """List music generation jobs."""
+  musicGenerationJobs(pagination: ListInput): [MusicGenerationJob!]!
+}
+
+# ─────────────────────────────────────────────
+# Mutation Root
+# ─────────────────────────────────────────────
+
+type Mutation {
+  """Create a new API key."""
+  createApiKey(input: CreateApiKeyInput!): ApiKey!
+
+  """Update an existing API key."""
+  updateApiKey(id: ID!, input: UpdateApiKeyInput!): ApiKey!
+
+  """Enable a previously disabled API key."""
+  enableApiKey(id: ID!): ApiKey!
+
+  """Disable an active API key."""
+  disableApiKey(id: ID!): ApiKey!
+
+  """Delete an API key permanently."""
+  deleteApiKey(id: ID!): Boolean!
+
+  """Create a chat completion (non-streaming)."""
+  createChatCompletion(input: CreateChatCompletionInput!): ChatCompletion!
+
+  """Generate one or more images from a text prompt."""
+  createImage(input: CreateImageInput!): ImageGenerationResponse!
+
+  """Edit an existing image using a prompt and optional mask."""
+  editImage(input: EditImageInput!): ImageGenerationResponse!
+
+  """Create variations of an existing image."""
+  createImageVariation(input: ImageVariationInput!): ImageGenerationResponse!
+
+  """Generate embedding vectors for input text."""
+  createEmbedding(input: CreateEmbeddingInput!): EmbeddingResponse!
+
+  """Synthesize speech audio from text."""
+  createSpeech(input: CreateSpeechInput!): SpeechResponse!
+
+  """Transcribe an audio file to text."""
+  transcribeAudio(input: TranscribeAudioInput!): TranscriptionResponse!
+
+  """Translate an audio file to English text."""
+  translateAudio(input: TranscribeAudioInput!): TranscriptionResponse!
+
+  """Create a new assistant."""
+  createAssistant(input: CreateAssistantInput!): Assistant!
+
+  """Update an existing assistant."""
+  updateAssistant(id: ID!, input: UpdateAssistantInput!): Assistant!
+
+  """Delete an assistant."""
+  deleteAssistant(id: ID!): Boolean!
+
+  """Create a new thread."""
+  createThread(input: CreateThreadInput): Thread!
+
+  """Delete a thread."""
+  deleteThread(id: ID!): Boolean!
+
+  """Add a message to a thread."""
+  createThreadMessage(threadId: ID!, input: CreateThreadMessageInput!): ThreadMessage!
+
+  """Update a message in a thread."""
+  updateThreadMessage(threadId: ID!, messageId: ID!, metadata: JSON): ThreadMessage!
+
+  """Delete a message from a thread."""
+  deleteThreadMessage(threadId: ID!, messageId: ID!): Boolean!
+
+  """Create and start a run on a thread."""
+  createRun(threadId: ID!, input: CreateRunInput!): Run!
+
+  """Create a thread and run it in a single request."""
+  createThreadAndRun(thread: CreateThreadInput!, run: CreateRunInput!): Run!
+
+  """Cancel an in-progress run."""
+  cancelRun(threadId: ID!, runId: ID!): Run!
+
+  """Submit tool outputs to continue a run."""
+  submitToolOutputs(threadId: ID!, runId: ID!, input: SubmitToolOutputsInput!): Run!
+
+  """Run content moderation on text or images."""
+  createModeration(input: CreateModerationInput!): ModerationResult!
+
+  """Upload a file for use with assistants or fine-tuning."""
+  uploadFile(file: Upload!, purpose: String!): AIMLFile!
+
+  """Delete an uploaded file."""
+  deleteFile(id: ID!): Boolean!
+
+  """Start an async video generation job."""
+  createVideoGeneration(input: CreateVideoGenerationInput!): VideoGenerationJob!
+
+  """Cancel an in-progress video generation job."""
+  cancelVideoGeneration(id: ID!): VideoGenerationJob!
+
+  """Start an async music generation job."""
+  createMusicGeneration(input: CreateMusicGenerationInput!): MusicGenerationJob!
+
+  """Cancel an in-progress music generation job."""
+  cancelMusicGeneration(id: ID!): MusicGenerationJob!
+}
+
+# ─────────────────────────────────────────────
+# Subscription Root
+# ─────────────────────────────────────────────
+
+type Subscription {
+  """Stream chat completion chunks in real time."""
+  chatCompletionStream(input: CreateChatCompletionInput!): ChatCompletionChunk!
+
+  """Receive status updates for a video generation job."""
+  videoGenerationStatus(id: ID!): VideoGenerationJob!
+
+  """Receive status updates for a music generation job."""
+  musicGenerationStatus(id: ID!): MusicGenerationJob!
+
+  """Receive status updates for an assistant run."""
+  runStatus(threadId: ID!, runId: ID!): Run!
+
+  """Stream run step events for an assistant run."""
+  runStepStream(threadId: ID!, runId: ID!): RunStep!
+}
