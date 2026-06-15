@@ -1,0 +1,511 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIMLAPI AI/ML API Documentation",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Key Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Disable API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api-keys/:id/disable",
+            "params": [
+              {
+                "name": "id",
+                "value": "<number>",
+                "type": "path",
+                "description": "(Required) "
+              }
+            ]
+          },
+          "docs": "AIMLAPI Disable API Key"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Enable API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api-keys/:id/enable",
+            "params": [
+              {
+                "name": "id",
+                "value": "<number>",
+                "type": "path",
+                "description": "(Required) "
+              }
+            ]
+          },
+          "docs": "AIMLAPI Enable API Key"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI List Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/models"
+          },
+          "docs": "Lists the currently available engines, and provides basic information about each one such as the owner and availability."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Threads > Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Get Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/runs",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Runs"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Create Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/runs",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Run"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Get Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/runs/:runId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "runId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Run"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Update Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/runs/:runId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "runId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Update Run"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Threads > Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Get Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/messages",
+            "params": [
+              {
+                "name": "limit",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Messages"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Create Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/messages",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Message"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Get Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/messages/:messageId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "messageId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Message"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Update Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/messages/:messageId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "messageId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Update Message"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Threads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Create Thread",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Thread"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assistants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI List Your Assistants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/assistants"
+          },
+          "docs": "AIMLAPI List Your Assistants"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Create Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/assistants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Assistant"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Get Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/assistants/:assistantId",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Assistant"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Update Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/assistants/:assistantId",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Update Assistant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Create Chat Message Completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/chat/completions",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can read about parameters here."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Create Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/images/generations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an image given a prompt."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "[WIP] Completions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Create Completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a completion for the provided prompt and parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Speech to Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/stt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Speech to Text"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Text to Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/tts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This request returns an audio file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
