@@ -4,11 +4,11 @@
     {
       "source": "https://aimlapi.com/blog",
       "feed_url": "https://aimlapi.com/blog",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "title": "Explore AI with AIMLAPI Blog",
+      "saved": 7,
+      "method": "html-scrape"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 0
+  "fetched": "2026-06-21T17:00:00Z",
+  "post_count": 7
 }
