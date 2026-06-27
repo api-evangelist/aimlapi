@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://aimlapi.com/blog",
-      "feed_url": "https://aimlapi.com/blog",
-      "title": "Explore AI with AIMLAPI Blog",
-      "saved": 7,
-      "method": "html-scrape"
+      "feed_url": "",
+      "saved": 3,
+      "method": "agent-scrape"
     }
   ],
-  "fetched": "2026-06-21T17:00:00Z",
-  "post_count": 7
+  "fetched": "2026-06-27T12:21:40Z",
+  "post_count": 10,
+  "agent_pulled": "2026-06-27"
 }
