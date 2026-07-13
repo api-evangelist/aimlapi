@@ -1,128 +1,146 @@
-extends: "spectral:oas"
-
+# aimlapi — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - path-params-casing: camel @ 88% (n=16)
+#   - query-params-casing: snake @ 100% (n=4)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - pagination params observed: ['limit']
+#   - merge: kept 15 existing, added 2 measured, upgraded 0
+#   - added: path-params-casing, query-params-casing
+extends:
+  - spectral:oas
 rules:
   info-title-aimlapi:
     description: Title should start with AIMLAPI
     severity: warn
-    given: "$.info.title"
+    given: $.info.title
     then:
       function: pattern
       functionOptions:
-        match: "^AIMLAPI"
-
+        match: ^AIMLAPI
   operation-summary-prefix:
     description: Operation summaries must start with "AIMLAPI"
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].summary"
+    given: $.paths[*][get,post,put,patch,delete].summary
     then:
       function: pattern
       functionOptions:
-        match: "^AIMLAPI"
-
+        match: ^AIMLAPI
   operation-id-required:
     description: Every operation must have an operationId
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete,head,options]"
+    given: $.paths[*][get,post,put,patch,delete,head,options]
     then:
       field: operationId
       function: truthy
-
   operation-summary-required:
     description: Every operation must have a summary
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: summary
       function: truthy
-
   operation-description-required:
     description: Every operation should have a description
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: description
       function: truthy
-
   operation-tags-required:
     description: Every operation should have tags
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: tags
       function: truthy
-
   servers-https:
     description: Server URLs must use HTTPS
     severity: error
-    given: "$.servers[*].url"
+    given: $.servers[*].url
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
+        match: ^https://
   response-success-required:
     description: Operations must define at least one 2xx response
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete].responses"
+    given: $.paths[*][get,post,put,patch,delete].responses
     then:
       function: schema
       functionOptions:
         schema:
           oneOf:
-            - required: ["200"]
-            - required: ["201"]
-            - required: ["204"]
-
+          - required:
+            - '200'
+          - required:
+            - '201'
+          - required:
+            - '204'
   parameter-description:
     description: Parameters should have descriptions
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
     then:
       field: description
       function: truthy
-
   schema-property-type:
     description: Schema properties should have types defined
     severity: warn
-    given: "$.components.schemas[*].properties[*]"
+    given: $.components.schemas[*].properties[*]
     then:
       field: type
       function: truthy
-
   security-bearer-defined:
     description: Bearer auth security scheme should be defined
     severity: warn
-    given: "$.components.securitySchemes"
+    given: $.components.securitySchemes
     then:
       function: truthy
-
   info-description-required:
     description: API must have a description
     severity: error
-    given: "$.info"
+    given: $.info
     then:
       field: description
       function: truthy
-
   info-version-required:
     description: API must have a version
     severity: error
-    given: "$.info"
+    given: $.info
     then:
       field: version
       function: truthy
-
   no-empty-descriptions:
     description: Descriptions must not be empty
     severity: warn
-    given: "$..description"
+    given: $..description
     then:
       function: truthy
-
   openai-compatible-model-param:
     description: Chat completion operations should have a model parameter
     severity: info
-    given: "$.paths['/chat/completions'].post"
+    given: $.paths['/chat/completions'].post
     then:
       field: requestBody
       function: truthy
+  path-params-casing:
+    description: Path parameters should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
