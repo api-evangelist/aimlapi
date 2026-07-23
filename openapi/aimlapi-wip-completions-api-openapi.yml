@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management [WIP] Completions API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: '[WIP] Completions'
+paths:
+  /completions:
+    post:
+      tags:
+      - '[WIP] Completions'
+      summary: AIMLAPI Create Completion
+      description: Creates a completion for the provided prompt and parameters.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                model: '{{llmModel}}'
+                prompt: Write a limmerick about APIs
+                max_tokens: 250
+                temperature: 0.7
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

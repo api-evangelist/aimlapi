@@ -1,0 +1,222 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management Models API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: Models
+  description: "List and describe the various models available in the API. You can refer to the [Models](https://aimlapi.com/models) documentation to understand what models are available and the differences between them.\n\nAI/ML API provides a suite of powerful, serverless models for seamless integration into your applications.\n\n**Chat Models**  \nLeverage our sophisticated Chat Models for real-time conversation interfaces.\n\n| Organization | Model Name | Model String for API | Context length |\n| --- | --- | --- | --- |\n| 01.AI | 01-ai Yi Chat (34B) | zero-one-ai/Yi-34B-Chat | 4096 |\n| Austism | Chronos Hermes (13B) | Austism/chronos-hermes-13b | 2048 |\n| DeepSeek | Deepseek Coder Instruct (33B) | deepseek-ai/deepseek-coder-33b-instruct | 16384 |\n| garage-bAInd | Platypus2 Instruct (70B) | garage-bAInd/Platypus2-70B-instruct | 4096 |\n| Google | Gemma Instruct (2B) | google/gemma-2b-it | 8192 |\n| Google | Gemma Instruct (7B) | google/gemma-7b-it | 8192 |\n| Gryphe | MythoMax-L2 (13B) | Gryphe/MythoMax-L2-13b | 4096 |\n| LM Sys | Vicuna v1.5 (13B) | lmsys/vicuna-13b-v1.5 | 4096 |\n| LM Sys | Vicuna v1.5 (7B) | lmsys/vicuna-7b-v1.5 | 4096 |\n| Meta | Code Llama Instruct (13B) | codellama/CodeLlama-13b-Instruct-hf | 16384 |\n| Meta | Code Llama Instruct (34B) | codellama/CodeLlama-34b-Instruct-hf | 16384 |\n| Meta | Code Llama Instruct (70B) | codellama/CodeLlama-70b-Instruct-hf | 4096 |\n| Meta | Code Llama Instruct (7B) | codellama/CodeLlama-7b-Instruct-hf | 16384 |\n| Meta | LLaMA-2 Chat (70B) | meta-llama/Llama-2-70b-chat-hf | 4096 |\n| Meta | LLaMA-2 Chat (13B) | meta-llama/Llama-2-13b-chat-hf | 4096 |\n| Meta | LLaMA-2 Chat (7B) | meta-llama/Llama-2-7b-chat-hf | 4096 |\n| mistralai | Mistral (7B) Instruct | mistralai/Mistral-7B-Instruct-v0.1 | 4096 |\n| mistralai | Mistral (7B) Instruct v0.2 | mistralai/Mistral-7B-Instruct-v0.2 | 32768 |\n| mistralai | Mixtral-8x7B Instruct (46.7B) | mistralai/Mixtral-8x7B-Instruct-v0.1 | 32768 |\n| NousResearch | Nous Capybara v1.9 (7B) | NousResearch/Nous-Capybara-7B-V1p9 | 8192 |\n| NousResearch | Nous Hermes 2 - Mixtral 8x7B-DPO (46.7B) | NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO | 32768 |\n| NousResearch | Nous Hermes 2 - Mixtral 8x7B-SFT (46.7B) | NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT | 32768 |\n| NousResearch | Nous Hermes LLaMA-2 (7B) | NousResearch/Nous-Hermes-llama-2-7b | 4096 |\n| NousResearch | Nous Hermes Llama-2 (13B) | NousResearch/Nous-Hermes-Llama2-13b | 4096 |\n| NousResearch | Nous Hermes-2 Yi (34B) | NousResearch/Nous-Hermes-2-Yi-34B | 4096 |\n| OpenChat | OpenChat 3.5 (7B) | openchat/openchat-3.5-1210 | 8192 |\n| OpenOrca | OpenOrca Mistral (7B) 8K | Open-Orca/Mistral-7B-OpenOrca | 8192 |\n| Qwen | Qwen-Chat (7B) | togethercomputer/Qwen-7B-Chat | 8192 |\n| Qwen | Qwen 1.5 Chat (0.5B) | Qwen/Qwen1.5-0.5B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (1.8B) | Qwen/Qwen1.5-1.8B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (4B) | Qwen/Qwen1.5-4B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (7B) | Qwen/Qwen1.5-7B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (14B) | Qwen/Qwen1.5-14B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (72B) | Qwen/Qwen1.5-72B-Chat | 4096 |\n| Snorkel AI | Snorkel Mistral PairRM DPO (7B) | snorkelai/Snorkel-Mistral-PairRM-DPO | 32768 |\n| Stanford | Alpaca (7B) | togethercomputer/alpaca-7b | 2048 |\n| Teknium | OpenHermes-2-Mistral (7B) | teknium/OpenHermes-2-Mistral-7B | 8192 |\n| Teknium | OpenHermes-2.5-Mistral (7B) | teknium/OpenHermes-2p5-Mistral-7B | 8192 |\n| TII UAE | Falcon Instruct (40B) | togethercomputer/falcon-40b-instruct | 2048 |\n| TII UAE | Falcon Instruct (7B) | togethercomputer/falcon-7b-instruct | 2048 |\n| Together | LLaMA-2-7B-32K-Instruct (7B) | togethercomputer/Llama-2-7B-32K-Instruct | 32768 |\n| Together | RedPajama-INCITE Chat (3B) | togethercomputer/RedPajama-INCITE-Chat-3B-v1 | 2048 |\n| Together | RedPajama-INCITE Chat (7B) | togethercomputer/RedPajama-INCITE-7B-Chat | 2048 |\n| Together | StripedHyena Nous (7B) | togethercomputer/StripedHyena-Nous-7B | 32768 |\n| Undi95 | ReMM SLERP L2 (13B) | Undi95/ReMM-SLERP-L2-13B | 4096 |\n| Undi95 | Toppy M (7B) | Undi95/Toppy-M-7B | 4096 |\n| WizardLM | WizardLM v1.2 (13B) | WizardLM/WizardLM-13B-V1.2 | 4096 |\n| upstage | Upstage SOLAR Instruct v1 (11B) | upstage/SOLAR-10.7B-Instruct-v1.0 | 4096 |\n\n**Code Models**  \nAccess our Code Models to automate coding tasks, bug fixes, or code generation.\n\n| Organization | Model Name | Model String for API | Context length |\n| --- | --- | --- | --- |\n| Meta | Code Llama Python (70B) | codellama/CodeLlama-70b-Python-hf | 4096 |\n| Meta | Code Llama Python (34B) | codellama/CodeLlama-34b-Python-hf | 16384 |\n| Meta | Code Llama Python (13B) | codellama/CodeLlama-13b-Python-hf | 16384 |\n| Meta | Code Llama Python (7B) | codellama/CodeLlama-7b-Python-hf | 16384 |\n| Phind | Phind Code LLaMA v2 (34B) | Phind/Phind-CodeLlama-34B-v2 | 16384 |\n| WizardLM | WizardCoder Python v1.0 (34B) | WizardLM/WizardCoder-Python-34B-V1.0 | 8192 |\n| WizardLM | WizardCoder v1.0 (15B) | WizardLM/WizardCoder-15B-V1.0 | 8192 |\n\n**Image Models**  \nExplore creative boundaries with our Image Models, perfect for generating or editing visuals.\n\n| Organization | Model Name | Model String for API |\n| --- | --- | --- |\n| Prompt Hero | Openjourney v4 | prompthero/openjourney |\n| Runway ML | Stable Diffusion 1.5 | runwayml/stable-diffusion-v1-5 |\n| SG161222 | Realistic Vision 3.0 | SG161222/Realistic_Vision_V3.0_VAE |\n| Stability AI | Stable Diffusion 2.1 | stabilityai/stable-diffusion-2-1 |\n| Stability AI | Stable Diffusion XL 1.0 | stabilityai/stable-diffusion-xl-base-1.0 |\n| Wavymulder | Analog Diffusion | wavymulder/Analog-Diffusion |\n\n**Model Request**  \nCan't find the model you need? Join our [Discord community](https://discord.gg/vayNtU9ThM) to propose new models for integration into our API offerings. Your contributions help us grow and serve you better.\n\nFor a complete list of models and their identifiers, refer to the table provided in the API documentation."
+paths:
+  /models:
+    get:
+      tags:
+      - Models
+      summary: AIMLAPI List Models
+      description: Lists the currently available engines, and provides basic information about each one such as the owner and availability.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '6976'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Mon, 22 Apr 2024 11:59:44 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"1b40-V7WXU699F8zl8h8c2ur/iCcz0FA"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                zero-one-ai/Yi-34B-Chat: together.ai
+                allenai/OLMo-7B-Instruct: together.ai
+                allenai/OLMo-7B-Twin-2T: together.ai
+                allenai/OLMo-7B: together.ai
+                Austism/chronos-hermes-13b: together.ai
+                cognitivecomputations/dolphin-2.5-mixtral-8x7b: together.ai
+                deepseek-ai/deepseek-coder-33b-instruct: together.ai
+                deepseek-ai/deepseek-llm-67b-chat: together.ai
+                garage-bAInd/Platypus2-70B-instruct: together.ai
+                google/gemma-2b-it: together.ai
+                google/gemma-7b-it: together.ai
+                Gryphe/MythoMax-L2-13b: together.ai
+                lmsys/vicuna-13b-v1.5: together.ai
+                lmsys/vicuna-7b-v1.5: together.ai
+                codellama/CodeLlama-13b-Instruct-hf: together.ai
+                codellama/CodeLlama-34b-Instruct-hf: together.ai
+                codellama/CodeLlama-70b-Instruct-hf: together.ai
+                codellama/CodeLlama-7b-Instruct-hf: together.ai
+                meta-llama/Llama-2-70b-chat-hf: together.ai
+                meta-llama/Llama-2-13b-chat-hf: together.ai
+                meta-llama/Llama-2-7b-chat-hf: together.ai
+                mistralai/Mistral-7B-Instruct-v0.1: together.ai
+                mistralai/Mistral-7B-Instruct-v0.2: together.ai
+                mistralai/Mixtral-8x7B-Instruct-v0.1: together.ai
+                NousResearch/Nous-Capybara-7B-V1p9: together.ai
+                NousResearch/Nous-Hermes-2-Mistral-7B-DPO: together.ai
+                NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO: together.ai
+                NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT: together.ai
+                NousResearch/Nous-Hermes-llama-2-7b: together.ai
+                NousResearch/Nous-Hermes-Llama2-13b: together.ai
+                NousResearch/Nous-Hermes-2-Yi-34B: together.ai
+                openchat/openchat-3.5-1210: together.ai
+                Open-Orca/Mistral-7B-OpenOrca: together.ai
+                Qwen/Qwen1.5-0.5B-Chat: together.ai
+                Qwen/Qwen1.5-1.8B-Chat: together.ai
+                Qwen/Qwen1.5-4B-Chat: together.ai
+                Qwen/Qwen1.5-7B-Chat: together.ai
+                Qwen/Qwen1.5-14B-Chat: together.ai
+                Qwen/Qwen1.5-72B-Chat: together.ai
+                snorkelai/Snorkel-Mistral-PairRM-DPO: together.ai
+                togethercomputer/alpaca-7b: together.ai
+                teknium/OpenHermes-2-Mistral-7B: together.ai
+                teknium/OpenHermes-2p5-Mistral-7B: together.ai
+                togethercomputer/Llama-2-7B-32K-Instruct: together.ai
+                togethercomputer/RedPajama-INCITE-Chat-3B-v1: together.ai
+                togethercomputer/RedPajama-INCITE-7B-Chat: together.ai
+                togethercomputer/StripedHyena-Nous-7B: together.ai
+                Undi95/ReMM-SLERP-L2-13B: together.ai
+                Undi95/Toppy-M-7B: together.ai
+                WizardLM/WizardLM-13B-V1.2: together.ai
+                upstage/SOLAR-10.7B-Instruct-v1.0: together.ai
+                zero-one-ai/Yi-34B: together.ai
+                zero-one-ai/Yi-6B: together.ai
+                google/gemma-2b: together.ai
+                google/gemma-7b: together.ai
+                meta-llama/Llama-2-70b-hf: together.ai
+                meta-llama/Llama-2-13b-hf: together.ai
+                meta-llama/Llama-2-7b-hf: together.ai
+                microsoft/phi-2: together.ai
+                Nexusflow/NexusRaven-V2-13B: together.ai
+                Qwen/Qwen1.5-0.5B: together.ai
+                Qwen/Qwen1.5-1.8B: together.ai
+                Qwen/Qwen1.5-4B: together.ai
+                Qwen/Qwen1.5-7B: together.ai
+                Qwen/Qwen1.5-14B: together.ai
+                Qwen/Qwen1.5-72B: together.ai
+                togethercomputer/GPT-JT-Moderation-6B: together.ai
+                togethercomputer/LLaMA-2-7B-32K: together.ai
+                togethercomputer/RedPajama-INCITE-Base-3B-v1: together.ai
+                togethercomputer/RedPajama-INCITE-7B-Base: together.ai
+                togethercomputer/RedPajama-INCITE-Instruct-3B-v1: together.ai
+                togethercomputer/RedPajama-INCITE-7B-Instruct: together.ai
+                togethercomputer/StripedHyena-Hessian-7B: together.ai
+                mistralai/Mistral-7B-v0.1: together.ai
+                mistralai/Mixtral-8x7B-v0.1: together.ai
+                codellama/CodeLlama-70b-Python-hf: together.ai
+                codellama/CodeLlama-34b-Python-hf: together.ai
+                codellama/CodeLlama-13b-Python-hf: together.ai
+                codellama/CodeLlama-7b-Python-hf: together.ai
+                Phind/Phind-CodeLlama-34B-v2: together.ai
+                WizardLM/WizardCoder-Python-34B-V1.0: together.ai
+                Meta-Llama/Llama-Guard-7b: together.ai
+                togethercomputer/evo-1-8k-base: together.ai
+                togethercomputer/evo-1-131k-base: together.ai
+                databricks/dolly-v2-12b: together.ai
+                databricks/dolly-v2-3b: together.ai
+                databricks/dolly-v2-7b: together.ai
+                DiscoResearch/DiscoLM-mixtral-8x7b-v2: together.ai
+                HuggingFaceH4/zephyr-7b-beta: together.ai
+                HuggingFaceH4/starchat-alpha: together.ai
+                OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5: together.ai
+                OpenAssistant/stablelm-7b-sft-v7-epoch-3: together.ai
+                togethercomputer/Koala-13B: together.ai
+                togethercomputer/Koala-7B: together.ai
+                lmsys/vicuna-13b-v1.3: together.ai
+                lmsys/vicuna-7b-v1.3: together.ai
+                lmsys/fastchat-t5-3b-v1.0: together.ai
+                togethercomputer/mpt-30b-chat: together.ai
+                togethercomputer/mpt-7b-chat: together.ai
+                NousResearch/Nous-Hermes-Llama2-70b: together.ai
+                Qwen/Qwen-7B-Chat: together.ai
+                Qwen/Qwen-14B-Chat: together.ai
+                tiiuae/falcon-7b-instruct: together.ai
+                tiiuae/falcon-40b-instruct: together.ai
+                togethercomputer/guanaco-13b: together.ai
+                togethercomputer/guanaco-33b: together.ai
+                togethercomputer/guanaco-65b: together.ai
+                togethercomputer/guanaco-7b: together.ai
+                togethercomputer/GPT-NeoXT-Chat-Base-20B: together.ai
+                togethercomputer/Pythia-Chat-Base-7B-v0.16: together.ai
+                defog/sqlcoder: together.ai
+                EleutherAI/gpt-j-6b: together.ai
+                EleutherAI/gpt-neox-20b: together.ai
+                EleutherAI/llemma_7b: together.ai
+                EleutherAI/pythia-12b-v0: together.ai
+                EleutherAI/pythia-1b-v0: together.ai
+                EleutherAI/pythia-2.8b-v0: together.ai
+                EleutherAI/pythia-6.9b: together.ai
+                google/flan-t5-xl: together.ai
+                google/flan-t5-xxl: together.ai
+                huggyllama/llama-7b: together.ai
+                huggyllama/llama-13b: together.ai
+                huggyllama/llama-30b: together.ai
+                huggyllama/llama-65b: together.ai
+                mosaicml/mpt-7b: together.ai
+                mosaicml/mpt-7b-instruct: together.ai
+                NousResearch/Nous-Hermes-13b: together.ai
+                NumbersStation/nsql-6B: together.ai
+                Qwen/Qwen-7B: together.ai
+                Qwen/Qwen-14B: together.ai
+                stabilityai/stablelm-base-alpha-3b: together.ai
+                stabilityai/stablelm-base-alpha-7b: together.ai
+                tiiuae/falcon-7b: together.ai
+                tiiuae/falcon-40b: together.ai
+                togethercomputer/GPT-JT-6B-v1: together.ai
+                WizardLM/WizardLM-70B-V1.0: together.ai
+                bigcode/starcoder: together.ai
+                codellama/CodeLlama-70b-hf: together.ai
+                NumbersStation/nsql-llama-2-7B: together.ai
+                Phind/Phind-CodeLlama-34B-Python-v1: together.ai
+                replit/replit-code-v1-3b: together.ai
+                Salesforce/codegen2-16B: together.ai
+                Salesforce/codegen2-7B: together.ai
+                meta-llama/Llama-3-8b-chat-hf: together.ai
+                meta-llama/Llama-3-70b-chat-hf: together.ai
+                meta-llama/Llama-3-8b-hf: together.ai
+                meta-llama/Meta-Llama-3-70B: together.ai
+                meta-llama/LlamaGuard-2-8b: together.ai
+                databricks/dbrx-instruct: together.ai
+                mistralai/Mixtral-8x22B-Instruct-v0.1: together.ai
+                mistralai/Mixtral-8x22B: together.ai
+                gpt-4: openai
+                gpt-4-0613: openai
+                gpt-4-32k: openai
+                gpt-4-32k-0613: openai
+                gpt-3.5-turbo-0125: openai
+                gpt-3.5-turbo: openai
+                gpt-3.5-turbo-1106: openai
+                gpt-3.5-turbo-instruct: openai
+                gpt-3.5-turbo-16k: openai
+                gpt-3.5-turbo-0613: openai
+                gpt-3.5-turbo-16k-0613: openai
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

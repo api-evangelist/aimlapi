@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management Threads > Messages API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: Threads > Messages
+paths:
+  /threads/{threadId}/messages:
+    get:
+      tags:
+      - Threads > Messages
+      summary: AIMLAPI Get Messages
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: string
+        example: example_value
+      - name: order
+        in: query
+        schema:
+          type: string
+        example: example_value
+      - name: before
+        in: query
+        schema:
+          type: string
+        example: example_value
+      - name: after
+        in: query
+        schema:
+          type: string
+        example: example_value
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Threads > Messages
+      summary: AIMLAPI Create Message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                role: user
+                content: Why the sky is blue?
+                metadata: {}
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /threads/{threadId}/messages/{messageId}:
+    get:
+      tags:
+      - Threads > Messages
+      summary: AIMLAPI Get Message
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      - name: messageId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Threads > Messages
+      summary: AIMLAPI Update Message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                metadata: {}
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      - name: messageId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

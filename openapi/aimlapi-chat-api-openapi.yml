@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management Chat API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: Chat
+paths:
+  /chat/completions:
+    post:
+      tags:
+      - Chat
+      summary: AIMLAPI Create Chat Message Completion
+      description: You can read about parameters here.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                model: '{{llmModel}}'
+                messages:
+                - role: user
+                  content: Who won the world series in 2020?
+                - role: assistant
+                  content: The Los Angeles Dodgers won the World Series in 2020.
+                - role: user
+                  content: Where was it played?
+                temperature: 1
+                top_p: 1
+                n: 1
+                stream: false
+                max_tokens: 250
+                presence_penalty: 0
+                frequency_penalty: 0
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: Accept
+        in: header
+        schema:
+          type: string
+        example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '568'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Mon, 22 Apr 2024 12:20:25 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"238-2D9iLg+dO3KTtrTjMwcYdpNqeQY"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 878591576bebef4b-PDX
+                object: chat.completion
+                created: 1713788425
+                model: mistralai/Mistral-7B-Instruct-v0.2
+                prompt: []
+                choices:
+                - finish_reason: eos
+                  logprobs: null
+                  index: 0
+                  message:
+                    role: assistant
+                    content: ' The 2020 World Series was played at Globe Life Field in Arlington, Texas. It was played with no fans in attendance due to the COVID-19 pandemic. This was the first time in the history of the World Series that it was played in its entirety in a single site.'
+                usage:
+                  prompt_tokens: 52
+                  completion_tokens: 64
+                  total_tokens: 116
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

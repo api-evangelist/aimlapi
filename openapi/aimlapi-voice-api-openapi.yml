@@ -1,0 +1,236 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management Voice API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: Voice
+paths:
+  /stt:
+    post:
+      tags:
+      - Voice
+      summary: AIMLAPI Speech to Text
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                model: '{{sstModel}}'
+                url: https://audio-samples.github.io/samples/mp3/blizzard_unconditional/sample-0.mp3
+      responses:
+        '201':
+          description: Created
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '2821'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 08 May 2024 10:18:53 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"b05-3s5wbmIwoFQ7Zpi3CB62q8npC00"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                metadata:
+                  transaction_key: deprecated
+                  request_id: a6318d7e-b9ad-438a-99cd-c5a26044ad7b
+                  sha256: fbdd3587f273e3bd0d826e36a3868ca05dedc1a3f349faa5f28e52b5370b656f
+                  created: '2024-05-08T10:18:52.928Z'
+                  duration: 10.109375
+                  channels: 1
+                  models:
+                  - 1abfe86b-e047-4eed-858a-35e5625b41ee
+                  model_info:
+                    1abfe86b-e047-4eed-858a-35e5625b41ee:
+                      name: 2-general-nova
+                      version: 2024-01-06.5664
+                      arch: nova-2
+                results:
+                  channels:
+                  - alternatives:
+                    - transcript: my thought i have nobody by a beauty and will as you toward mister rochester is served in that so don't find simpus and devoted to bowed to that might in a
+                      confidence: 0.9334016
+                      words:
+                      - word: my
+                        start: 0.24
+                        end: 0.48
+                        confidence: 0.7677139
+                      - word: thought
+                        start: 0.48
+                        end: 0.88
+                        confidence: 0.860146
+                      - word: i
+                        start: 0.88
+                        end: 0.96
+                        confidence: 0.9993
+                      - word: have
+                        start: 0.96
+                        end: 1.1999999
+                        confidence: 0.9975178
+                      - word: nobody
+                        start: 1.1999999
+                        end: 1.5999999
+                        confidence: 0.9981421
+                      - word: by
+                        start: 1.5999999
+                        end: 1.7199999
+                        confidence: 0.89347184
+                      - word: a
+                        start: 1.7199999
+                        end: 1.8399999
+                        confidence: 0.9539643
+                      - word: beauty
+                        start: 1.8399999
+                        end: 2.1599998
+                        confidence: 0.99679714
+                      - word: and
+                        start: 2.1599998
+                        end: 2.32
+                        confidence: 0.86830604
+                      - word: will
+                        start: 2.32
+                        end: 2.48
+                        confidence: 0.9836391
+                      - word: as
+                        start: 2.48
+                        end: 2.6399999
+                        confidence: 0.86166006
+                      - word: you
+                        start: 2.6399999
+                        end: 2.8
+                        confidence: 0.96505886
+                      - word: toward
+                        start: 2.8
+                        end: 3.3
+                        confidence: 0.57675695
+                      - word: mister
+                        start: 3.84
+                        end: 4.16
+                        confidence: 0.9973658
+                      - word: rochester
+                        start: 4.16
+                        end: 4.66
+                        confidence: 0.9987276
+                      - word: is
+                        start: 4.7999997
+                        end: 4.96
+                        confidence: 0.5949601
+                      - word: served
+                        start: 4.96
+                        end: 5.2
+                        confidence: 0.35592097
+                      - word: in
+                        start: 5.2
+                        end: 5.3599997
+                        confidence: 0.74498737
+                      - word: that
+                        start: 5.3599997
+                        end: 5.6
+                        confidence: 0.99769324
+                      - word: so
+                        start: 5.6
+                        end: 5.8399997
+                        confidence: 0.49508306
+                      - word: don't
+                        start: 5.8399997
+                        end: 6.08
+                        confidence: 0.9334016
+                      - word: find
+                        start: 6.08
+                        end: 6.3999996
+                        confidence: 0.97570974
+                      - word: simpus
+                        start: 6.3999996
+                        end: 6.8999996
+                        confidence: 0.7262915
+                      - word: and
+                        start: 7.2
+                        end: 7.44
+                        confidence: 0.9856228
+                      - word: devoted
+                        start: 7.44
+                        end: 7.94
+                        confidence: 0.99713933
+                      - word: to
+                        start: 8
+                        end: 8.16
+                        confidence: 0.9038218
+                      - word: bowed
+                        start: 8.16
+                        end: 8.66
+                        confidence: 0.68124074
+                      - word: to
+                        start: 9.084375
+                        end: 9.164375
+                        confidence: 0.9726658
+                      - word: that
+                        start: 9.164375
+                        end: 9.484375
+                        confidence: 0.22552642
+                      - word: might
+                        start: 9.484375
+                        end: 9.644376
+                        confidence: 0.9740415
+                      - word: in
+                        start: 9.644376
+                        end: 9.876875
+                        confidence: 0.88410664
+                      - word: a
+                        start: 9.876875
+                        end: 10.109375
+                        confidence: 0.5427023
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tts:
+    post:
+      tags:
+      - Voice
+      summary: AIMLAPI Text to Speech
+      description: This request returns an audio file.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                model: '{{ttsModel}}'
+                text: Hi! I'm your friendly assistant.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

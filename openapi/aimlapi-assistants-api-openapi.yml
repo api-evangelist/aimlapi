@@ -1,0 +1,253 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management Assistants API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: Assistants
+paths:
+  /assistants:
+    get:
+      tags:
+      - Assistants
+      summary: AIMLAPI List Your Assistants
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '340'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 24 Apr 2024 07:14:13 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"154-o64XKfqEtd0/3f6WvJ7kooRvYbk"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                object: list
+                data:
+                - id: 0058b312-ff12-4508-9893-10375dedc925
+                  created_at: 1712828845
+                  object: assistant
+                  description: AI Chatbot
+                  file_ids: []
+                  instructions: You are an AI Assistant. No matter what user says, respond with Hello Sir!
+                  metadata: {}
+                  model: mistralai/Mistral-7B-Instruct-v0.1
+                  name: AI Chatbot
+                  tools: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Assistants
+      summary: AIMLAPI Create Assistant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Friendly assistant
+                description: Always reply with the 'Hello Sir!'
+                model: mistralai/Mistral-7B-Instruct-v0.1
+                instructions: No matter what the user says, reply him with the 'Hello Sir'
+                metadata: {}
+      responses:
+        '201':
+          description: Created
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '331'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 24 Apr 2024 07:19:25 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"14b-VzG8LqfdCCdYy7WIn+Nl+yzqmI0"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 6cd55ad8-3c4c-46fa-915e-7cb1ec0bf4a8
+                object: assistant
+                name: Friendly assistant
+                description: Always reply with the 'Hello Sir!'
+                model: mistralai/Mistral-7B-Instruct-v0.1
+                created_at: 1713943165
+                file_ids: []
+                instructions: No matter what the user says, reply him with the 'Hello Sir'
+                metadata: {}
+                tools: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /assistants/{assistantId}:
+    get:
+      tags:
+      - Assistants
+      summary: AIMLAPI Get Assistant
+      parameters:
+      - name: assistantId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '313'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 24 Apr 2024 07:25:43 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"139-6MvScb7a/FzJUsfH0YoRmXQZf6Q"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 0058b312-ff12-4508-9893-10375dedc925
+                object: assistant
+                created_at: 1712828845
+                description: AI Chatbot
+                file_ids: []
+                instructions: You are an AI Assistant. No matter what user says, respond with Hello Sir!
+                metadata: {}
+                model: mistralai/Mistral-7B-Instruct-v0.1
+                name: AI Chatbot
+                tools: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Assistants
+      summary: AIMLAPI Update Assistant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                instructions: You are an AI Assistant. No matter what user says, respond with 'Hello, madam.'
+      parameters:
+      - name: assistantId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Length:
+              schema:
+                type: integer
+                example: '318'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Wed, 24 Apr 2024 07:28:58 GMT
+            Etag:
+              schema:
+                type: string
+                example: W/"13e-dM0QWoN3rbZBTDu+yRh06epz4Ww"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 0058b312-ff12-4508-9893-10375dedc925
+                object: assistant
+                name: AI Chatbot
+                description: AI Chatbot
+                model: mistralai/Mistral-7B-Instruct-v0.1
+                created_at: 1712828845
+                file_ids: []
+                instructions: You are an AI Assistant. No matter what user says, respond with 'Hello, madam.'
+                metadata: {}
+                tools: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

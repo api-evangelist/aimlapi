@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management Threads > Runs API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: Threads > Runs
+paths:
+  /threads/{threadId}/runs:
+    get:
+      tags:
+      - Threads > Runs
+      summary: AIMLAPI Get Runs
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Threads > Runs
+      summary: AIMLAPI Create Run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                assistant_id: 0058b312-ff12-4508-9893-10375dedc925
+                stream: false
+                metadata: {}
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /threads/{threadId}/runs/{runId}:
+    post:
+      tags:
+      - Threads > Runs
+      summary: AIMLAPI Update Run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                metadata: {}
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      - name: runId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      tags:
+      - Threads > Runs
+      summary: AIMLAPI Get Run
+      parameters:
+      - name: threadId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      - name: runId
+        in: path
+        schema:
+          type: string
+        required: true
+        example: '500123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

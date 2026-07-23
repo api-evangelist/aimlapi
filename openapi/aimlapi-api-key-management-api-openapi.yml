@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: AIMLAPI AI/ML API Documentation API Key Management API
+  description: "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart"
+  version: 1.0.0
+servers:
+- url: http://{{baseurl}}
+security:
+- bearerAuth: []
+tags:
+- name: API Key Management
+  description: "## **Creating an API Key**\n\nTo create a new API key Sign-ip to [app.aimlapi.com](https://app.aimlapi.com), navigate to Key Management page and create an API Key\n\nNote that your Keys only work with an Active Subscription\n\n## **Disabling an API Key**\n\nIf you need to revoke access temporarily, disable an API key by:\n\n- Sending a PUT request to `/service/api-keys/{id}/disable`, replacing `{id}` with the key's unique identifier.\n    \n- This will change the key's status to inactive.\n    \n\n## **Enabling an API Key**\n\nTo restore access using a previously disabled API key:\n\n- Send a PUT request to `/service/api-keys/{id}/enable`, replacing `{id}` with the key's unique identifier.\n    \n- The key's status will be updated to active.\n    \n\n## **Best Practices**\n\n- Regularly review and manage your API keys to ensure optimal security.\n    \n- Use separate keys for different services or environments to limit the scope of access.\n    \n- Rotate your API keys periodically to reduce the risk of unauthorized use.\n    \n\nBy effectively managing your API keys, you maintain control over who can access your AI/ML API services and safeguard your resources."
+paths:
+  /api-keys/{id}/disable:
+    put:
+      tags:
+      - API Key Management
+      summary: AIMLAPI Disable API Key
+      requestBody:
+        content: {}
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: '(Required) '
+        example: <number>
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api-keys/{id}/enable:
+    put:
+      tags:
+      - API Key Management
+      summary: AIMLAPI Enable API Key
+      requestBody:
+        content: {}
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: '(Required) '
+        example: <number>
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
