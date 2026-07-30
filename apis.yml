@@ -1,43 +1,305 @@
 aid: aimlapi
 url: https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/apis.yml
 apis:
-- aid: aimlapi:aimlapi
-  name: AIMLAPI
-  tags:
-  - LLM
-  - Chat Completions
-  - Image Generation
-  - Video Generation
-  - Speech
-  - Embeddings
-  - Vision
-  - Music
-  - OpenAI Compatible
-  - API Gateway
+- aid: aimlapi:aimlapi-api-key-management-api
+  name: AIMLAPI API Key Management API
+  description: "## **Creating an API Key**\n\nTo create a new API key Sign-ip to [app.aimlapi.com](https://app.aimlapi.com),\
+    \ navigate to Key Management page and create an API Key\n\nNote that your Keys only work with an Active\
+    \ Subscription\n\n## **Disabling an API Key**\n\nIf you need to revoke access temporarily, disable\
+    \ an API key by:\n\n- Sending a PUT request to `/service/api-keys/{id}/disable`, replacing `{id}`\
+    \ with the key's unique identifier.\n    \n- This will change the key's status to inactive.\n    \n\
+    \n## **Enabling an API Key**\n\nTo restore access using a previously disabled API key:\n\n- Send a\
+    \ PUT request to `/service/api-keys/{id}/enable`, replacing `{id}` with the key's unique identifier.\n\
+    \    \n- The key's status will be updated to active.\n    \n\n## **Best Practices**\n\n- Regularly\
+    \ review and manage your API keys to ensure optimal security.\n    \n- Use separate keys for different\
+    \ services or environments to limit the scope of access.\n    \n- Rotate your API keys periodically\
+    \ to reduce the risk of unauthorized use.\n    \n\nBy effectively managing your API keys, you maintain\
+    \ control over who can access your AI/ML API services and safeguard your resources."
   humanURL: https://aimlapi.com/
+  tags:
+  - API Key Management
   properties:
-  - url: https://docs.aimlapi.com/
-    type: Documentation
-  - url: https://docs.aimlapi.com/api-references/text-models
-    type: APIReference
-    title: Text Models API Reference
-  - url: https://docs.aimlapi.com/api-references/image-models
-    type: APIReference
-    title: Image Generation API Reference
-  - url: openapi/aimlapi-openapi.yml
-    type: OpenAPI
-  - url: https://docs.aimlapi.com/quickstart
-    type: GettingStarted
-  - url: https://aimlapi.com/app/sign-up/
-    type: Signup
-  - url: https://docs.aimlapi.com/faq
-    type: FAQ
-  - url: graphql/aimlapi-graphql.md
-    type: GraphQL
-  description: Access 400+ AI models from 40+ providers via a single OpenAI-compatible
-    REST API. Supports chat completions, image generation, video generation, speech
-    models, embeddings, music generation, and vision tasks with streaming support
-    and function calling.
+  - type: OpenAPI
+    url: openapi/aimlapi-api-key-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-assistants-api
+  name: AIMLAPI Assistants API
+  description: The Assistants API from AIMLAPI — 2 operation(s) for assistants.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Assistants
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-assistants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-chat-api
+  name: AIMLAPI Chat API
+  description: The Chat API from AIMLAPI — 1 operation(s) for chat.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Chat
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-chat-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-images-api
+  name: AIMLAPI Images API
+  description: Given a prompt and/or an input image, the model will generate a new image.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-images-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-models-api
+  name: AIMLAPI Models API
+  description: "List and describe the various models available in the API. You can refer to the [Models](https://aimlapi.com/models)\
+    \ documentation to understand what models are available and the differences between them.\n\nAI/ML\
+    \ API provides a suite of powerful, serverless models for seamless integration into your applications.\n\
+    \n**Chat Models**  \nLeverage our sophisticated Chat Models for real-time conversation interfaces.\n\
+    \n| Organization | Model Name | Model String for API | Context length |\n| --- | --- | --- | --- |\n\
+    | 01.AI | 01-ai Yi Chat (34B) | zero-one-ai/Yi-34B-Chat | 4096 |\n| Austism | Chronos Hermes (13B)\
+    \ | Austism/chronos-hermes-13b | 2048 |\n| DeepSeek | Deepseek Coder Instruct (33B) | deepseek-ai/deepseek-coder-33b-instruct\
+    \ | 16384 |\n| garage-bAInd | Platypus2 Instruct (70B) | garage-bAInd/Platypus2-70B-instruct | 4096\
+    \ |\n| Google | Gemma Instruct (2B) | google/gemma-2b-it | 8192 |\n| Google | Gemma Instruct (7B)\
+    \ | google/gemma-7b-it | 8192 |\n| Gryphe | MythoMax-L2 (13B) | Gryphe/MythoMax-L2-13b | 4096 |\n\
+    | LM Sys | Vicuna v1.5 (13B) | lmsys/vicuna-13b-v1.5 | 4096 |\n| LM Sys | Vicuna v1.5 (7B) | lmsys/vicuna-7b-v1.5\
+    \ | 4096 |\n| Meta | Code Llama Instruct (13B) | codellama/CodeLlama-13b-Instruct-hf | 16384 |\n|\
+    \ Meta | Code Llama Instruct (34B) | codellama/CodeLlama-34b-Instruct-hf | 16384 |\n| Meta | Code\
+    \ Llama Instruct (70B) | codellama/CodeLlama-70b-Instruct-hf | 4096 |\n| Meta | Code Llama Instruct\
+    \ (7B) | codellama/CodeLlama-7b-Instruct-hf | 16384 |\n| Meta | LLaMA-2 Chat (70B) | meta-llama/Llama-2-70b-chat-hf\
+    \ | 4096 |\n| Meta | LLaMA-2 Chat (13B) | meta-llama/Llama-2-13b-chat-hf | 4096 |\n| Meta | LLaMA-2\
+    \ Chat (7B) | meta-llama/Llama-2-7b-chat-hf | 4096 |\n| mistralai | Mistral (7B) Instruct | mistralai/Mistral-7B-Instruct-v0.1\
+    \ | 4096 |\n| mistralai | Mistral (7B) Instruct v0.2 | mistralai/Mistral-7B-Instruct-v0.2 | 32768\
+    \ |\n| mistralai | Mixtral-8x7B Instruct (46.7B) | mistralai/Mixtral-8x7B-Instruct-v0.1 | 32768 |\n\
+    | NousResearch | Nous Capybara v1.9 (7B) | NousResearch/Nous-Capybara-7B-V1p9 | 8192 |\n| NousResearch\
+    \ | Nous Hermes 2 - Mixtral 8x7B-DPO (46.7B) | NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO | 32768\
+    \ |\n| NousResearch | Nous Hermes 2 - Mixtral 8x7B-SFT (46.7B) | NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT\
+    \ | 32768 |\n| NousResearch | Nous Hermes LLaMA-2 (7B) | NousResearch/Nous-Hermes-llama-2-7b | 4096\
+    \ |\n| NousResearch | Nous Hermes Llama-2 (13B) | NousResearch/Nous-Hermes-Llama2-13b | 4096 |\n|\
+    \ NousResearch | Nous Hermes-2 Yi (34B) | NousResearch/Nous-Hermes-2-Yi-34B | 4096 |\n| OpenChat |\
+    \ OpenChat 3.5 (7B) | openchat/openchat-3.5-1210 | 8192 |\n| OpenOrca | OpenOrca Mistral (7B) 8K |\
+    \ Open-Orca/Mistral-7B-OpenOrca | 8192 |\n| Qwen | Qwen-Chat (7B) | togethercomputer/Qwen-7B-Chat\
+    \ | 8192 |\n| Qwen | Qwen 1.5 Chat (0.5B) | Qwen/Qwen1.5-0.5B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat\
+    \ (1.8B) | Qwen/Qwen1.5-1.8B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (4B) | Qwen/Qwen1.5-4B-Chat |\
+    \ 32768 |\n| Qwen | Qwen 1.5 Chat (7B) | Qwen/Qwen1.5-7B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (14B)\
+    \ | Qwen/Qwen1.5-14B-Chat | 32768 |\n| Qwen | Qwen 1.5 Chat (72B) | Qwen/Qwen1.5-72B-Chat | 4096 |\n\
+    | Snorkel AI | Snorkel Mistral PairRM DPO (7B) | snorkelai/Snorkel-Mistral-PairRM-DPO | 32768 |\n\
+    | Stanford | Alpaca (7B) | togethercomputer/alpaca-7b | 2048 |\n| Teknium | OpenHermes-2-Mistral (7B)\
+    \ | teknium/OpenHermes-2-Mistral-7B | 8192 |\n| Teknium | OpenHermes-2.5-Mistral (7B) | teknium/OpenHermes-2p5-Mistral-7B\
+    \ | 8192 |\n| TII UAE | Falcon Instruct (40B) | togethercomputer/falcon-40b-instruct | 2048 |\n| TII\
+    \ UAE | Falcon Instruct (7B) | togethercomputer/falcon-7b-instruct | 2048 |\n| Together | LLaMA-2-7B-32K-Instruct\
+    \ (7B) | togethercomputer/Llama-2-7B-32K-Instruct | 32768 |\n| Together | RedPajama-INCITE Chat (3B)\
+    \ | togethercomputer/RedPajama-INCITE-Chat-3B-v1 | 2048 |\n| Together | RedPajama-INCITE Chat (7B)\
+    \ | togethercomputer/RedPajama-INCITE-7B-Chat | 2048 |\n| Together | StripedHyena Nous (7B) | togethercomputer/StripedHyena-Nous-7B\
+    \ | 32768 |\n| Undi95 | ReMM SLERP L2 (13B) | Undi95/ReMM-SLERP-L2-13B | 4096 |\n| Undi95 | Toppy\
+    \ M (7B) | Undi95/Toppy-M-7B | 4096 |\n| WizardLM | WizardLM v1.2 (13B) | WizardLM/WizardLM-13B-V1.2\
+    \ | 4096 |\n| upstage | Upstage SOLAR Instruct v1 (11B) | upstage/SOLAR-10.7B-Instruct-v1.0 | 4096\
+    \ |\n\n**Code Models**  \nAccess our Code Models to automate coding tasks, bug fixes, or code generation.\n\
+    \n| Organization | Model Name | Model String for API | Context length |\n| --- | --- | --- | --- |\n\
+    | Meta | Code Llama Python (70B) | codellama/CodeLlama-70b-Python-hf | 4096 |\n| Meta | Code Llama\
+    \ Python (34B) | codellama/CodeLlama-34b-Python-hf | 16384 |\n| Meta | Code Llama Python (13B) | codellama/CodeLlama-13b-Python-hf\
+    \ | 16384 |\n| Meta | Code Llama Python (7B) | codellama/CodeLlama-7b-Python-hf | 16384 |\n| Phind\
+    \ | Phind Code LLaMA v2 (34B) | Phind/Phind-CodeLlama-34B-v2 | 16384 |\n| WizardLM | WizardCoder Python\
+    \ v1.0 (34B) | WizardLM/WizardCoder-Python-34B-V1.0 | 8192 |\n| WizardLM | WizardCoder v1.0 (15B)\
+    \ | WizardLM/WizardCoder-15B-V1.0 | 8192 |\n\n**Image Models**  \nExplore creative boundaries with\
+    \ our Image Models, perfect for generating or editing visuals.\n\n| Organization | Model Name | Model\
+    \ String for API |\n| --- | --- | --- |\n| Prompt Hero | Openjourney v4 | prompthero/openjourney |\n\
+    | Runway ML | Stable Diffusion 1.5 | runwayml/stable-diffusion-v1-5 |\n| SG161222 | Realistic Vision\
+    \ 3.0 | SG161222/Realistic_Vision_V3.0_VAE |\n| Stability AI | Stable Diffusion 2.1 | stabilityai/stable-diffusion-2-1\
+    \ |\n| Stability AI | Stable Diffusion XL 1.0 | stabilityai/stable-diffusion-xl-base-1.0 |\n| Wavymulder\
+    \ | Analog Diffusion | wavymulder/Analog-Diffusion |\n\n**Model Request**  \nCan't find the model\
+    \ you need? Join our [Discord community](https://discord.gg/vayNtU9ThM) to propose new models for\
+    \ integration into our API offerings. Your contributions help us grow and serve you better.\n\nFor\
+    \ a complete list of models and their identifiers, refer to the table provided in the API documentation."
+  humanURL: https://aimlapi.com/
+  tags:
+  - Models
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-models-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-threads-api
+  name: AIMLAPI Threads API
+  description: The Threads API from AIMLAPI — 1 operation(s) for threads.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Threads
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-threads-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-threads-messages-api
+  name: AIMLAPI Threads > Messages API
+  description: The Threads > Messages API from AIMLAPI — 2 operation(s) for threads > messages.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Threads > Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-threads-messages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-threads-runs-api
+  name: AIMLAPI Threads > Runs API
+  description: The Threads > Runs API from AIMLAPI — 2 operation(s) for threads > runs.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Threads > Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-threads-runs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-voice-api
+  name: AIMLAPI Voice API
+  description: The Voice API from AIMLAPI — 2 operation(s) for voice.
+  humanURL: https://aimlapi.com/
+  tags:
+  - Voice
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-voice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-wip-completions-api
+  name: AIMLAPI [WIP] Completions API
+  description: The [WIP] Completions API from AIMLAPI — 1 operation(s) for [wip] completions.
+  humanURL: https://aimlapi.com/
+  tags:
+  - '[WIP] Completions'
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-wip-completions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
+  - type: GraphQL
+    url: graphql/aimlapi-graphql.md
 name: AIMLAPI
 tags:
 - Artificial Intelligence
@@ -51,7 +313,20 @@ tags:
 - API Gateway
 - Developer Tools
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aimlapi.png
 access: 3rd-Party
 common:
 - type: AgenticAccess
