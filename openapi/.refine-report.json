@@ -1,0 +1,32 @@
+{
+  "provider": "aimlapi",
+  "sources": [
+    "aimlapi-api-key-management-api-openapi.yml",
+    "aimlapi-assistants-api-openapi.yml",
+    "aimlapi-chat-api-openapi.yml",
+    "aimlapi-images-api-openapi.yml",
+    "aimlapi-models-api-openapi.yml",
+    "aimlapi-threads-api-openapi.yml",
+    "aimlapi-threads-messages-api-openapi.yml",
+    "aimlapi-threads-runs-api-openapi.yml",
+    "aimlapi-voice-api-openapi.yml",
+    "aimlapi-wip-completions-api-openapi.yml"
+  ],
+  "outputs": [
+    "aimlapi-api-key-management-api-openapi.yml",
+    "aimlapi-assistants-api-openapi.yml",
+    "aimlapi-chat-api-openapi.yml",
+    "aimlapi-images-api-openapi.yml",
+    "aimlapi-models-api-openapi.yml",
+    "aimlapi-threads-api-openapi.yml",
+    "aimlapi-threads-messages-api-openapi.yml",
+    "aimlapi-threads-runs-api-openapi.yml",
+    "aimlapi-voice-api-openapi.yml",
+    "aimlapi-wip-completions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
