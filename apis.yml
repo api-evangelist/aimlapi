@@ -461,4 +461,4 @@ description: AIMLAPI is a unified AI model API gateway providing access to 400+ 
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-specificationVersion: '0.19'
+specificationVersion: '0.23'
