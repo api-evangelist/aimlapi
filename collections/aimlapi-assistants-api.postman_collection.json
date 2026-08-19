@@ -1,0 +1,539 @@
+{
+  "item": [
+    {
+      "id": "cab2b08d-efff-4774-852e-401b7bf610f9",
+      "name": "Assistants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e30c7ecf-6a73-49f0-86db-871beaf04c86",
+          "name": "AIMLAPI List Your Assistants",
+          "request": {
+            "name": "AIMLAPI List Your Assistants",
+            "description": {},
+            "url": {
+              "path": [
+                "assistants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54e9fc3f-ba5e-482a-9799-e395b93b1dbc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Content-Length",
+                  "value": "3240",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Date",
+                  "value": "Wed, 24 Apr 2024 07:14:13 GMT",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Etag",
+                  "value": "W/\"154-o64XKfqEtd0/3f6WvJ7kooRvYbk\"",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"0058b312-ff12-4508-9893-10375dedc925\",\n      \"created_at\": 1712828845,\n      \"object\": \"assistant\",\n      \"description\": \"AI Chatbot\",\n      \"file_ids\": [],\n      \"instructions\": \"You are an AI Assistant. No matter what user says, respond with Hello Sir!\",\n      \"metadata\": {},\n      \"model\": \"mistralai/Mistral-7B-Instruct-v0.1\",\n      \"name\": \"AI Chatbot\",\n      \"tools\": []\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b796b354-dd6c-47f6-a095-9b1a1385ab6b",
+          "name": "AIMLAPI Create Assistant",
+          "request": {
+            "name": "AIMLAPI Create Assistant",
+            "description": {},
+            "url": {
+              "path": [
+                "assistants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b56ec45-7544-4984-9398-a7f7d5b89adb",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Friendly assistant\",\n  \"description\": \"Always reply with the 'Hello Sir!'\",\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.1\",\n  \"instructions\": \"No matter what the user says, reply him with the 'Hello Sir'\",\n  \"metadata\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Content-Length",
+                  "value": "7856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Date",
+                  "value": "Wed, 24 Apr 2024 07:19:25 GMT",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Etag",
+                  "value": "W/\"14b-VzG8LqfdCCdYy7WIn+Nl+yzqmI0\"",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cd55ad8-3c4c-46fa-915e-7cb1ec0bf4a8\",\n  \"object\": \"assistant\",\n  \"name\": \"Friendly assistant\",\n  \"description\": \"Always reply with the 'Hello Sir!'\",\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.1\",\n  \"created_at\": 1713943165,\n  \"file_ids\": [],\n  \"instructions\": \"No matter what the user says, reply him with the 'Hello Sir'\",\n  \"metadata\": {},\n  \"tools\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f0f3cfd-7320-4dae-8edc-d8345d23fb90",
+          "name": "AIMLAPI Get Assistant",
+          "request": {
+            "name": "AIMLAPI Get Assistant",
+            "description": {},
+            "url": {
+              "path": [
+                "assistants",
+                ":assistantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assistantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f21b70e2-94d5-4618-a076-e079c31854ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistants",
+                    ":assistantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Content-Length",
+                  "value": "2790",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Date",
+                  "value": "Wed, 24 Apr 2024 07:25:43 GMT",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Etag",
+                  "value": "W/\"139-6MvScb7a/FzJUsfH0YoRmXQZf6Q\"",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0058b312-ff12-4508-9893-10375dedc925\",\n  \"object\": \"assistant\",\n  \"created_at\": 1712828845,\n  \"description\": \"AI Chatbot\",\n  \"file_ids\": [],\n  \"instructions\": \"You are an AI Assistant. No matter what user says, respond with Hello Sir!\",\n  \"metadata\": {},\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.1\",\n  \"name\": \"AI Chatbot\",\n  \"tools\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38d41d77-f5d3-405a-934e-e8713697091b",
+          "name": "AIMLAPI Update Assistant",
+          "request": {
+            "name": "AIMLAPI Update Assistant",
+            "description": {},
+            "url": {
+              "path": [
+                "assistants",
+                ":assistantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assistantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2f7cf79-ab56-44cc-a523-70ad44a06824",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistants",
+                    ":assistantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instructions\": \"You are an AI Assistant. No matter what user says, respond with 'Hello, madam.'\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Content-Length",
+                  "value": "4183",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Date",
+                  "value": "Wed, 24 Apr 2024 07:28:58 GMT",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Etag",
+                  "value": "W/\"13e-dM0QWoN3rbZBTDu+yRh06epz4Ww\"",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0058b312-ff12-4508-9893-10375dedc925\",\n  \"object\": \"assistant\",\n  \"name\": \"AI Chatbot\",\n  \"description\": \"AI Chatbot\",\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.1\",\n  \"created_at\": 1712828845,\n  \"file_ids\": [],\n  \"instructions\": \"You are an AI Assistant. No matter what user says, respond with 'Hello, madam.'\",\n  \"metadata\": {},\n  \"tools\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "50c6815e-e6bb-48cb-8e21-bfdef892ff3b",
+    "name": "AIMLAPI AI/ML API Documentation API Key Management Assistants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart",
+      "type": "text/plain"
+    }
+  }
+}

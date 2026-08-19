@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIMLAPI AI/ML API Documentation API Key Management API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Key Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Disable API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api-keys/:id/disable",
+            "params": [
+              {
+                "name": "id",
+                "value": "<number>",
+                "type": "path",
+                "description": "(Required) "
+              }
+            ]
+          },
+          "docs": "AIMLAPI Disable API Key"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Enable API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api-keys/:id/enable",
+            "params": [
+              {
+                "name": "id",
+                "value": "<number>",
+                "type": "path",
+                "description": "(Required) "
+              }
+            ]
+          },
+          "docs": "AIMLAPI Enable API Key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

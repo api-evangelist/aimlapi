@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIMLAPI AI/ML API Documentation API Key Management Threads > Runs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Threads > Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Get Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/runs",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Runs"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Create Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/runs",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Run"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Get Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/runs/:runId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "runId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Run"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Update Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/runs/:runId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "runId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Update Run"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

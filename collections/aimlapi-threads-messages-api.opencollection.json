@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIMLAPI AI/ML API Documentation API Key Management Threads > Messages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Threads > Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Get Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/messages",
+            "params": [
+              {
+                "name": "limit",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Messages"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Create Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/messages",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Message"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Get Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/threads/:threadId/messages/:messageId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "messageId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Message"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Update Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/threads/:threadId/messages/:messageId",
+            "params": [
+              {
+                "name": "threadId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "messageId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Update Message"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

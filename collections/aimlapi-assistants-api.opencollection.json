@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIMLAPI AI/ML API Documentation API Key Management Assistants API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assistants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI List Your Assistants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/assistants"
+          },
+          "docs": "AIMLAPI List Your Assistants"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Create Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/assistants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Create Assistant"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Get Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/assistants/:assistantId",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "AIMLAPI Get Assistant"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Update Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/assistants/:assistantId",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Update Assistant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

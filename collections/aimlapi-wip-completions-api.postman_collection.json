@@ -1,0 +1,140 @@
+{
+  "item": [
+    {
+      "id": "79e286dd-437e-48d4-b406-49cc32c77019",
+      "name": "[WIP] Completions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6aabfc6b-e1cd-48d1-a33d-3fdac6cb5827",
+          "name": "AIMLAPI Create Completion",
+          "request": {
+            "name": "AIMLAPI Create Completion",
+            "description": {
+              "content": "Creates a completion for the provided prompt and parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6cb7e0c0-d762-4a9e-bdee-b252896cdcbd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"{{llmModel}}\",\n  \"prompt\": \"Write a limmerick about APIs\",\n  \"max_tokens\": 250,\n  \"temperature\": 0.7\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "555f79d6-9310-438e-8aa8-c1846eb5876e",
+    "name": "AIMLAPI AI/ML API Documentation API Key Management [WIP] Completions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart",
+      "type": "text/plain"
+    }
+  }
+}

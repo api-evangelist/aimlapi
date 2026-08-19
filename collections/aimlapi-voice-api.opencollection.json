@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIMLAPI AI/ML API Documentation API Key Management Voice API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIMLAPI Speech to Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/stt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "AIMLAPI Speech to Text"
+        },
+        {
+          "info": {
+            "name": "AIMLAPI Text to Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/tts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This request returns an audio file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

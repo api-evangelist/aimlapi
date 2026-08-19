@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "d49d3f3b-025d-4fda-89d9-eb2a4019dbfd",
+      "name": "Voice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfb45e79-342e-41d8-8f75-bedec0552556",
+          "name": "AIMLAPI Speech to Text",
+          "request": {
+            "name": "AIMLAPI Speech to Text",
+            "description": {},
+            "url": {
+              "path": [
+                "stt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79848afe-cb68-4f29-8e27-ca1a2426c51e",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"{{sstModel}}\",\n  \"url\": \"https://audio-samples.github.io/samples/mp3/blizzard_unconditional/sample-0.mp3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Content-Length",
+                  "value": "7788",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Date",
+                  "value": "Wed, 08 May 2024 10:18:53 GMT",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Etag",
+                  "value": "W/\"b05-3s5wbmIwoFQ7Zpi3CB62q8npC00\"",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-Powered-By",
+                  "value": "Express",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"transaction_key\": \"deprecated\",\n    \"request_id\": \"a6318d7e-b9ad-438a-99cd-c5a26044ad7b\",\n    \"sha256\": \"fbdd3587f273e3bd0d826e36a3868ca05dedc1a3f349faa5f28e52b5370b656f\",\n    \"created\": \"2024-05-08T10:18:52.928Z\",\n    \"duration\": 10.109375,\n    \"channels\": 1,\n    \"models\": [\n      \"1abfe86b-e047-4eed-858a-35e5625b41ee\"\n    ],\n    \"model_info\": {\n      \"1abfe86b-e047-4eed-858a-35e5625b41ee\": {\n        \"name\": \"2-general-nova\",\n        \"version\": \"2024-01-06.5664\",\n        \"arch\": \"nova-2\"\n      }\n    }\n  },\n  \"results\": {\n    \"channels\": [\n      {\n        \"alternatives\": [\n          {\n            \"transcript\": \"my thought i have nobody by a beauty and will as you toward mister rochester is served in that so don't find simpus and devoted to bowed to that might in a\",\n            \"confidence\": 0.9334016,\n            \"words\": [\n              {\n                \"word\": \"my\",\n                \"start\": 0.24,\n                \"end\": 0.48,\n                \"confidence\": 0.7677139\n              },\n              {\n                \"word\": \"thought\",\n                \"start\": 0.48,\n                \"end\": 0.88,\n                \"confidence\": 0.860146\n              },\n              {\n                \"word\": \"i\",\n                \"start\": 0.88,\n                \"end\": 0.96,\n                \"confidence\": 0.9993\n              },\n              {\n                \"word\": \"have\",\n                \"start\": 0.96,\n                \"end\": 1.1999999,\n                \"confidence\": 0.9975178\n              },\n              {\n                \"word\": \"nobody\",\n                \"start\": 1.1999999,\n                \"end\": 1.5999999,\n                \"confidence\": 0.9981421\n              },\n              {\n                \"word\": \"by\",\n                \"start\": 1.5999999,\n                \"end\": 1.7199999,\n                \"confidence\": 0.89347184\n              },\n              {\n                \"word\": \"a\",\n                \"start\": 1.7199999,\n                \"end\": 1.8399999,\n                \"confidence\": 0.9539643\n              },\n              {\n                \"word\": \"beauty\",\n                \"start\": 1.8399999,\n                \"end\": 2.1599998,\n                \"confidence\": 0.99679714\n              },\n              {\n                \"word\": \"and\",\n                \"start\": 2.1599998,\n                \"end\": 2.32,\n                \"confidence\": 0.86830604\n              },\n              {\n                \"word\": \"will\",\n                \"start\": 2.32,\n                \"end\": 2.48,\n                \"confidence\": 0.9836391\n              },\n              {\n                \"word\": \"as\",\n                \"start\": 2.48,\n                \"end\": 2.6399999,\n                \"confidence\": 0.86166006\n              },\n              {\n                \"word\": \"you\",\n                \"start\": 2.6399999,\n                \"end\": 2.8,\n                \"confidence\": 0.96505886\n              },\n              {\n                \"word\": \"toward\",\n                \"start\": 2.8,\n                \"end\": 3.3,\n                \"confidence\": 0.57675695\n              },\n              {\n                \"word\": \"mister\",\n                \"start\": 3.84,\n                \"end\": 4.16,\n                \"confidence\": 0.9973658\n              },\n              {\n                \"word\": \"rochester\",\n                \"start\": 4.16,\n                \"end\": 4.66,\n                \"confidence\": 0.9987276\n              },\n              {\n                \"word\": \"is\",\n                \"start\": 4.7999997,\n                \"end\": 4.96,\n                \"confidence\": 0.5949601\n              },\n              {\n                \"word\": \"served\",\n                \"start\": 4.96,\n                \"end\": 5.2,\n                \"confidence\": 0.35592097\n              },\n              {\n                \"word\": \"in\",\n                \"start\": 5.2,\n                \"end\": 5.3599997,\n                \"confidence\": 0.74498737\n              },\n              {\n                \"word\": \"that\",\n                \"start\": 5.3599997,\n                \"end\": 5.6,\n                \"confidence\": 0.99769324\n              },\n              {\n                \"word\": \"so\",\n                \"start\": 5.6,\n                \"end\": 5.8399997,\n                \"confidence\": 0.49508306\n              },\n              {\n                \"word\": \"don't\",\n                \"start\": 5.8399997,\n                \"end\": 6.08,\n                \"confidence\": 0.9334016\n              },\n              {\n                \"word\": \"find\",\n                \"start\": 6.08,\n                \"end\": 6.3999996,\n                \"confidence\": 0.97570974\n              },\n              {\n                \"word\": \"simpus\",\n                \"start\": 6.3999996,\n                \"end\": 6.8999996,\n                \"confidence\": 0.7262915\n              },\n              {\n                \"word\": \"and\",\n                \"start\": 7.2,\n                \"end\": 7.44,\n                \"confidence\": 0.9856228\n              },\n              {\n                \"word\": \"devoted\",\n                \"start\": 7.44,\n                \"end\": 7.94,\n                \"confidence\": 0.99713933\n              },\n              {\n                \"word\": \"to\",\n                \"start\": 8,\n                \"end\": 8.16,\n                \"confidence\": 0.9038218\n              },\n              {\n                \"word\": \"bowed\",\n                \"start\": 8.16,\n                \"end\": 8.66,\n                \"confidence\": 0.68124074\n              },\n              {\n                \"word\": \"to\",\n                \"start\": 9.084375,\n                \"end\": 9.164375,\n                \"confidence\": 0.9726658\n              },\n              {\n                \"word\": \"that\",\n                \"start\": 9.164375,\n                \"end\": 9.484375,\n                \"confidence\": 0.22552642\n              },\n              {\n                \"word\": \"might\",\n                \"start\": 9.484375,\n                \"end\": 9.644376,\n                \"confidence\": 0.9740415\n              },\n              {\n                \"word\": \"in\",\n                \"start\": 9.644376,\n                \"end\": 9.876875,\n                \"confidence\": 0.88410664\n              },\n              {\n                \"word\": \"a\",\n                \"start\": 9.876875,\n                \"end\": 10.109375,\n                \"confidence\": 0.5427023\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10e6be14-401c-443e-bbda-6de51db9551b",
+          "name": "AIMLAPI Text to Speech",
+          "request": {
+            "name": "AIMLAPI Text to Speech",
+            "description": {
+              "content": "This request returns an audio file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b600e114-c852-4aeb-bddd-2ab265a15796",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"{{ttsModel}}\",\n  \"text\": \"Hi! I'm your friendly assistant.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ee6b4d8-5bac-4111-82bf-edff69dba3ac",
+    "name": "AIMLAPI AI/ML API Documentation API Key Management Voice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart",
+      "type": "text/plain"
+    }
+  }
+}
