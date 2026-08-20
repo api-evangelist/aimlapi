@@ -86,6 +86,8 @@ apis:
   description: Given a prompt and/or an input image, the model will generate a new image.
   humanURL: https://aimlapi.com/
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -302,6 +304,17 @@ apis:
     url: graphql/aimlapi-graphql.md
 name: AIMLAPI
 tags:
+- Artificial Intelligence
+- Machine-Learning
+- AI Models
+- LLM
+- Image-Generation
+- Video Generation
+- Speech
+- Embeddings
+- API Gateway
+- Developer Tools
+tags_raw:
 - Artificial Intelligence
 - Machine Learning
 - AI Models
