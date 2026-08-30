@@ -1,0 +1,306 @@
+overlay: 1.0.0
+info:
+  title: AIMLAPI Inference API — API Evangelist enhancements
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-30'
+  method: generated
+  provider: AIMLAPI
+  providerId: aimlapi
+  extends: openapi/aimlapi-inference-openapi.yml
+  extends_source: https://api.aimlapi.com/docs-yaml
+  description: >-
+    OpenAPI Overlay 1.0.0 capturing API Evangelist enhancements to AIMLAPI's own
+    published contract. The original is never mutated. Everything asserted here
+    is documented by AIMLAPI somewhere — the overlay's job is to move it INTO the
+    contract, where the published document leaves it out: authentication (every
+    operation needs a bearer key and the spec declares none), error responses
+    (the spec declares only 200s), the tracing and cost headers, and operation
+    tags. It does NOT attempt to repair the colon-style path templating or the
+    duplicated operationIds, because those change the document's identity rather
+    than annotate it; they are recorded as findings in
+    conformance/aimlapi-conformance.yml instead.
+actions:
+- target: $.info
+  update:
+    description: >-
+      AI/ML API — a single OpenAI-compatible gateway to 1000+ models from OpenAI,
+      Anthropic, Google, Meta, DeepSeek, Mistral, Alibaba, MiniMax, ElevenLabs,
+      Kling and others, across chat, responses, embeddings, images, video, music,
+      speech and OCR. Authenticate with a bearer API key from
+      https://aimlapi.com/app/keys. Base URL https://api.aimlapi.com; an
+      OpenAI client should be configured with https://api.aimlapi.com/v1.
+    contact:
+      name: AI/ML API Support
+      email: help@aimlapi.com
+      url: https://help.aimlapi.com/
+    termsOfService: https://aimlapi.com/terms-and-conditions
+    x-documentation: https://docs.aimlapi.com/
+    x-status-page: https://status.aimlapi.com/
+    x-model-catalogue: https://api.aimlapi.com/v1/models
+    x-model-deprecations: https://api.aimlapi.com/v1/models/deprecations
+- target: $
+  update:
+    security:
+    - bearerAuth: []
+    components:
+      securitySchemes:
+        bearerAuth:
+          type: http
+          scheme: bearer
+          description: >-
+            AIMLAPI API key, sent as `Authorization: Bearer <YOUR_AIMLAPI_KEY>`.
+            Created at https://aimlapi.com/app/keys or via POST /v1/keys with a
+            management key. Keys may carry model-category scopes (model:chat,
+            model:responses, model:image, model:audio, model:video,
+            model:embeddings, model:speech, model:ocr) and a USD spend threshold.
+            Source: https://docs.aimlapi.com/faq/how-can-i-work-with-my-api-keys
+    tags:
+    - name: Chat
+      description: OpenAI-compatible chat completions.
+    - name: Responses
+      description: OpenAI Responses-shaped inference.
+    - name: Messages
+      description: Anthropic Messages-shaped inference.
+    - name: Embeddings
+    - name: Images
+    - name: Video
+    - name: Speech
+    - name: Music
+    - name: OCR
+    - name: Batches
+- target: $.paths['/v1/chat/completions'].post
+  update:
+    tags:
+    - Chat
+    summary: Create a chat completion
+    description: >-
+      OpenAI-compatible chat completion across the full AIMLAPI model catalogue.
+      Set `stream: true` for Server-Sent Events, in which case cost arrives in
+      the final chunk under meta.usage rather than in a response header. The
+      `provider` field pins execution to one upstream source with no fallback;
+      `auto` (default) uses the fallback chain.
+- target: $.paths['/v1/responses'].post
+  update:
+    tags:
+    - Responses
+    summary: Create a response
+- target: $.paths['/v1/responses/:response_id'].get
+  update:
+    tags:
+    - Responses
+    summary: Retrieve a response
+- target: $.paths['/v1/messages'].post
+  update:
+    tags:
+    - Messages
+    summary: Create a message (Anthropic-shaped)
+- target: $.paths['/v1/embeddings'].post
+  update:
+    tags:
+    - Embeddings
+    summary: Create embeddings
+- target: $.paths['/v1/images/generations'].post
+  update:
+    tags:
+    - Images
+    summary: Generate an image
+- target: $.paths['/v1/images/edits'].post
+  update:
+    tags:
+    - Images
+    summary: Edit an image
+- target: $.paths['/v2/video/generations'].post
+  update:
+    tags:
+    - Video
+    summary: Submit a video generation
+    description: >-
+      Asynchronous. Returns a generation_id; poll GET /v2/video/generations with
+      it. The generation_id is the same value returned in the x-inference-id
+      response header.
+- target: $.paths['/v2/video/generations'].get
+  update:
+    tags:
+    - Video
+    summary: Poll a video generation
+    operationId: _v2_video_generations_get
+    x-overlay-note: >-
+      The published document reuses the POST's operationId here. OpenAPI requires
+      operationId to be unique; this overlay supplies a distinct one.
+- target: $.paths['/v1/tts'].post
+  update:
+    tags:
+    - Speech
+    summary: Text to speech
+- target: $.paths['/v1/stt/create'].post
+  update:
+    tags:
+    - Speech
+    summary: Submit a speech-to-text transcription
+- target: $.paths['/v1/stt/:generation_id'].get
+  update:
+    tags:
+    - Speech
+    summary: Poll a speech-to-text transcription
+- target: $.paths['/v2/generate/audio'].post
+  update:
+    tags:
+    - Music
+    summary: Submit a music generation
+- target: $.paths['/v2/generate/audio'].get
+  update:
+    tags:
+    - Music
+    summary: Poll a music generation
+    operationId: _v2_generate_audio_get
+- target: $.paths['/v2/generate/audio/preprocess'].post
+  update:
+    tags:
+    - Music
+    summary: Preprocess audio for music generation
+- target: $.paths['/v1/ocr'].post
+  update:
+    tags:
+    - OCR
+    summary: Run OCR over a document
+- target: $.paths['/v1/batches'].post
+  update:
+    tags:
+    - Batches
+    summary: Create a message batch
+    description: >-
+      Up to 100,000 requests per batch. The response carries expires_at and
+      cancel_initiated_at; a batch can be cancelled with
+      POST /v1/batches/cancel/{batch_id} while it is still processing.
+- target: $.paths['/v1/batches'].get
+  update:
+    tags:
+    - Batches
+    summary: Get batch status or results
+    operationId: _v1_batches_get
+- target: $.paths['/v1/batches/cancel/:batch_id'].post
+  update:
+    tags:
+    - Batches
+    summary: Cancel a batch
+    description: >-
+      The only reversal operation in the AIMLAPI surface. Returns the final
+      status; work already completed at cancellation time is reported in
+      request_counts and appears to be billed.
+- target: $.paths[*][*].responses
+  update:
+    '400':
+      description: >-
+        Bad Request — invalid or missing fields for the selected model. The body
+        appends "Expected" / "Received" hints naming the offending parameter.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/AimlapiProblem'
+    '401':
+      description: Unauthorized — missing, expired or invalid API key.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/AimlapiProblem'
+    '403':
+      description: >-
+        Forbidden — authenticated but out of credits, or a key acting outside its
+        scopes.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/AimlapiProblem'
+    '404':
+      description: Not Found — unknown endpoint, model or resource.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/AimlapiProblem'
+    '429':
+      description: >-
+        Too Many Requests — a rate or concurrency limit was hit. No Retry-After
+        or RateLimit-* header is returned, so the backoff interval is not
+        communicated.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/AimlapiProblem'
+    '500':
+      description: >-
+        Internal Server Error. Also returned when an upstream partner model API
+        fails, which makes a downstream failure indistinguishable from an
+        AIMLAPI one.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/AimlapiProblem'
+    '502':
+      description: Bad Gateway — a downstream partner returned an invalid response.
+    '503':
+      description: Service Unavailable — the model or a partner service is down.
+    '504':
+      description: Gateway Timeout — the generation exceeded the time limit.
+- target: $.components
+  update:
+    schemas:
+      AimlapiProblem:
+        type: object
+        description: >-
+          The AIMLAPI error envelope. Carries the RFC 9457 members title, status
+          and instance, omits type and detail, and adds message, requestId,
+          timestamp and error.
+        properties:
+          title:
+            type: string
+          status:
+            type: integer
+          instance:
+            type: string
+          message:
+            type: string
+          requestId:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+          error:
+            type: object
+            properties:
+              name:
+                type: string
+              message:
+                type: string
+      TracingHeaders:
+        type: object
+        description: Documentation-only schema for the response headers AIMLAPI returns.
+        properties:
+          x-inference-id:
+            type: string
+            description: >-
+              Always present. The reference_id of the charge in
+              GET /v2/billing/transactions and the inference_id in GET /v2/logs.
+              For an async generation it equals the generation_id.
+          x-client-request-id:
+            type: string
+            description: Echo of a valid X-Client-Request-Id you sent.
+          x-aimlapi-credits-used:
+            type: integer
+            description: Credits charged. Non-streaming JSON responses only.
+          x-aimlapi-usd-spent:
+            type: number
+            description: USD charged. Non-streaming JSON responses only.
+    parameters:
+      ClientRequestId:
+        name: X-Client-Request-Id
+        in: header
+        required: false
+        description: >-
+          Your own correlation id, 1-128 characters from A-Z a-z 0-9 and . _ : -
+          Stored, echoed back, and reported as client_request_id in GET /v2/logs.
+          A value outside that alphabet is silently dropped — the request still
+          runs and is still billed, and nothing in the response says so.
+        schema:
+          type: string
+          maxLength: 128

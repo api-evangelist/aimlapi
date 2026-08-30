@@ -1,0 +1,260 @@
+specification: API Commons Conformance
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of https://api.aimlapi.com, https://mcp.aimlapi.com and
+  https://auth.aimlapi.com plus openapi/aimlapi-inference-openapi.yml and the
+  AIMLAPI documentation
+description: >-
+  Standards conformance for AIMLAPI. The pattern across the whole surface is the
+  same: the AGENT-FACING standards are implemented properly (MCP authorization,
+  RFC 9728, RFC 8414, OAuth 2.1 with PKCE) while the CONTRACT-FACING ones are
+  partial (OpenAPI is published but declares no auth and no errors; problem+json
+  is emitted but without a type URI).
+standards:
+- id: openapi
+  name: OpenAPI Specification
+  version: 3.0.0
+  conforms: true
+  evidence:
+    url: https://api.aimlapi.com/docs-yaml
+    http_status: 200
+    content_type: text/yaml
+    file: openapi/aimlapi-inference-openapi.yml
+    note: >-
+      A real, first-party, 8.9MB OpenAPI 3.0.0 document served from the API host
+      itself, with servers[] https://api.aimlapi.com and info.title "AIML API".
+      Also embedded in the Scalar reference at https://api.aimlapi.com/docs.
+  deviations:
+  - >-
+    Path templating uses NestJS colon syntax (/v1/responses/:response_id,
+    /v1/stt/:generation_id, /v1/batches/cancel/:batch_id) instead of OpenAPI
+    brace templating, and those path parameters are consequently not declared in
+    parameters[]. A code generator will treat ":response_id" as a literal path
+    segment. The per-endpoint fragments embedded in the documentation pages use
+    the correct {batch_id} form, so the master document is the one that is wrong.
+  - >-
+    operationId is not unique. Three paths reuse a single operationId across
+    their GET and POST (_v2_video_generations, _v1_batches, _v2_generate_audio),
+    which the specification requires to be unique across the whole document.
+  - >-
+    No components section at all — every schema is inlined, which is why the
+    document is 8.9MB.
+  - No tags, no operation summaries and no operation descriptions.
+  - >-
+    No securitySchemes and no security requirement, on an API where every
+    operation requires a bearer key.
+  - Only 200 responses are described; no 4xx or 5xx response is declared anywhere.
+  - >-
+    Twelve documented, callable operations (key management, key usage, usage
+    logs, billing, transactions, model catalogue, model metrics, model
+    deprecations) are absent from the document entirely.
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: partial
+  evidence:
+    url: https://api.aimlapi.com/v1/chat/completions
+    http_status: 401
+    content_type: application/problem+json; charset=utf-8
+    note: >-
+      Emits the correct media type and the title, status and instance members.
+      Omits type and detail, and adds non-standard message, requestId, timestamp
+      and error members. A second, older envelope without problem+json is
+      documented alongside it.
+  see: errors/aimlapi-problem-types.yml
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence:
+    url: https://mcp.aimlapi.com/mcp
+    http_status: 401
+    note: >-
+      A live remote MCP server over Streamable HTTP, documented at
+      https://docs.aimlapi.com/quickstart/mcp with client instructions for Claude
+      Desktop, Claude web, Cursor and Claude Code. tools/list is auth-gated, so
+      the tool schemas were not captured.
+  deviations:
+  - >-
+    The unauthenticated 401 returns a plain JSON error object rather than a
+    WWW-Authenticate challenge carrying the resource_metadata parameter, which is
+    what the MCP authorization spec expects a client to follow. Discovery works
+    anyway because the /.well-known path is served.
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence:
+    url: https://mcp.aimlapi.com/.well-known/oauth-protected-resource
+    http_status: 200
+    file: well-known/aimlapi-mcp-oauth-protected-resource.json
+    note: >-
+      Served at both the bare path and the /mcp-suffixed path the MCP spec
+      requires. Names the resource, the authorization server and the supported
+      scopes.
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence:
+    url: https://auth.aimlapi.com/mcp-oauth/.well-known/oauth-authorization-server
+    http_status: 200
+    file: well-known/aimlapi-mcp-oauth-authorization-server.json
+    note: Served at both the issuer-suffixed and the path-inserted form.
+- id: oauth2
+  name: OAuth 2.1 authorization code with PKCE
+  conforms: true
+  evidence:
+    note: >-
+      code_challenge_methods_supported is S256 only, dynamic client registration
+      is enabled (RFC 7591), pushed authorization requests are supported (RFC
+      9126), and authorization_response_iss_parameter_supported is true (RFC
+      9207). Applies to the MCP surface only.
+  deviations:
+  - >-
+    grant_types_supported still advertises the implicit grant, which OAuth 2.1
+    removes.
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: partial
+  evidence:
+    url: https://auth.aimlapi.com/.well-known/openid-configuration
+    http_status: 404
+    note: >-
+      The server advertises the openid scope, id_token response types and RS256
+      id_token signing, but serves no openid-configuration document at the
+      standard path, so an OIDC client cannot discover it conventionally.
+- id: rfc8594
+  name: Sunset HTTP Header
+  conforms: false
+  evidence:
+    note: >-
+      No Sunset or Deprecation header on any probed response. Model retirement is
+      published through a JSON feed instead — see the domain_standards section.
+- id: rate-limit-headers
+  name: RateLimit header fields for HTTP
+  conforms: false
+  evidence:
+    note: >-
+      No RateLimit-*, X-RateLimit-* or Retry-After header observed on any
+      response. See rate-limits/aimlapi-rate-limits.yml.
+- id: idempotency
+  name: Idempotency-Key header
+  conforms: false
+  evidence:
+    note: >-
+      Not documented and not implemented. X-Client-Request-Id is correlation
+      only.
+- id: sse
+  name: Server-Sent Events
+  conforms: true
+  evidence:
+    note: >-
+      Streaming chat completions are SSE, with usage totals in the final chunk
+      under meta.usage.
+- id: etag
+  name: HTTP conditional requests (RFC 9110 ETag)
+  conforms: true
+  evidence:
+    url: https://api.aimlapi.com/v1/models/deprecations
+    http_status: 200
+    note: >-
+      Weak ETag with cache-control public, max-age=300, and generated_at
+      deliberately excluded from the ETag so it is stable across polls.
+- id: json-api
+  name: JSON:API
+  conforms: false
+- id: odata
+  name: OData
+  conforms: false
+- id: scim
+  name: SCIM
+  conforms: false
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence:
+    note: >-
+      No GraphQL endpoint is published. The repo's graphql/ directory holds an
+      API-Evangelist-authored representation, not a provider surface.
+- id: grpc
+  name: gRPC / Protobuf
+  conforms: false
+- id: soap
+  name: WSDL / SOAP
+  conforms: false
+  evidence:
+    url: https://api.aimlapi.com/?wsdl
+    http_status: 404
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence:
+    note: >-
+      Not applicable rather than missing: AIMLAPI documents no webhooks, no
+      callbacks and no message broker. The word "webhook" does not appear once in
+      the 4.2MB llms-full.txt documentation dump. The only asynchronous pattern
+      is client polling of a generation_id.
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence:
+    url: https://aimlapi.com/.well-known/agent-card.json
+    http_status: 404
+    note: >-
+      Probed on aimlapi.com, api.aimlapi.com and docs.aimlapi.com, at both
+      /.well-known/agent-card.json and the legacy /.well-known/agent.json. All
+      404.
+domain_standards:
+- id: openai-compatible-inference
+  name: OpenAI-compatible inference API
+  conforms: true
+  reward_only: true
+  evidence:
+    spec_location: >-
+      openapi/aimlapi-inference-openapi.yml — paths /v1/chat/completions,
+      /v1/embeddings, /v1/images/generations, /v1/models, /v1/responses, plus
+      GET /v1/models returning {"object":"list","data":[...]}
+    live_probe:
+      url: https://api.aimlapi.com/v1/models
+      http_status: 200
+    docs: https://docs.aimlapi.com/quickstart/supported-sdks
+    note: >-
+      The de facto interface standard of this market. AIMLAPI implements it at
+      the wire level — the OpenAI SDK works unchanged against
+      https://api.aimlapi.com/v1 — which means a buyer already speaking it
+      integrates with no bespoke connector. The provider states the exceptions
+      itself (video and speech models are not reachable through the OpenAI SDK).
+- id: anthropic-messages-compatible
+  name: Anthropic Messages API shape
+  conforms: partial
+  reward_only: true
+  evidence:
+    spec_location: >-
+      openapi/aimlapi-inference-openapi.yml — POST /v1/messages; the POST
+      /v1/batches request schema carries Anthropic's thinking / budget_tokens /
+      stop_sequences fields and describes its model field as "Anthropic model to
+      use for this request"
+    note: A second upstream wire format mirrored on the same host.
+- id: model-deprecation-feed
+  name: Machine-readable model retirement feed
+  conforms: true
+  reward_only: true
+  evidence:
+    url: https://api.aimlapi.com/v1/models/deprecations
+    http_status: 200
+    entries: 132
+    note: >-
+      Not a ratified standard, but the domain convention this market most needs
+      and least often ships: an unauthenticated, dated, ETagged feed of
+      deprecated / superseded / withdrawn model ids with replaced_by and reason.
+      Recorded here because it is the single most reusable thing AIMLAPI
+      publishes.
+compliance_certifications:
+  published: false
+  note: >-
+    No SOC 2, ISO 27001, PCI, HIPAA, FedRAMP or GDPR certification claim was
+    found. There is no trust centre and no security page — https://aimlapi.com/security
+    and https://aimlapi.com/trust both 404, and no /.well-known/security.txt is
+    served on any host. The only governance documents are the Terms and
+    Conditions and the Privacy Policy.

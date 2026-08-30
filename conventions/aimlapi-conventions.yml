@@ -1,0 +1,237 @@
+specification: API Commons Conventions
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://docs.aimlapi.com/capabilities/request-tracing-and-cost,
+  https://docs.aimlapi.com/capabilities/batch-processing,
+  https://docs.aimlapi.com/api-references/service-endpoints/usage-logs,
+  https://docs.aimlapi.com/api-references/service-endpoints/api-key-management,
+  https://docs.aimlapi.com/errors-and-messages/general-info, and
+  openapi/aimlapi-inference-openapi.yml
+description: >-
+  Cross-cutting runtime semantics for the AIMLAPI REST surface. The headline
+  convention is OpenAI compatibility: the request and response shapes on the
+  inference endpoints are drop-in replacements for OpenAI's, which is what lets
+  the OpenAI SDK work against api.aimlapi.com unchanged. Everything AIMLAPI adds
+  on top of that — per-request cost headers, a correlation id you supply, a
+  deprecation feed — is additive and does not break the compatibility.
+auth:
+  style: bearer-api-key
+  header: 'Authorization: Bearer <YOUR_AIMLAPI_KEY>'
+  oauth: MCP surface only — see authentication/aimlapi-authentication.yml
+  see: authentication/aimlapi-authentication.yml
+compatibility:
+  openai:
+    supported: true
+    base_url: https://api.aimlapi.com/v1
+    note: >-
+      An OpenAI client configured with this base URL reaches /v1/models,
+      /v1/chat/completions, /v1/embeddings and /v1/images/generations unchanged.
+      The docs state the OpenAI SDK does NOT cover video models or speech
+      (STT/TTS) — those need direct REST calls.
+  anthropic:
+    supported: partial
+    note: >-
+      POST /v1/messages is Anthropic Messages-shaped, and the batch endpoint's
+      request schema names "Anthropic model" and carries Anthropic's `thinking`
+      / `budget_tokens` / `stop_sequences` fields. AIMLAPI mirrors more than one
+      upstream vendor's wire format on the same host.
+  openai_responses:
+    supported: true
+    note: POST /v1/responses and GET /v1/responses/{response_id}.
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  note: >-
+    No Idempotency-Key header and no idempotent-retry semantics are documented
+    anywhere in the AIMLAPI documentation, and none appear in the published
+    OpenAPI. X-Client-Request-Id is a CORRELATION id, not an idempotency key —
+    the docs describe it as stored, echoed and reported, never as deduplicating.
+    Resending a chat completion after a timeout will bill twice.
+  correlation_not_idempotency: true
+pagination:
+  style: limit-offset
+  applies_to:
+  - GET /v2/logs
+  params:
+    limit:
+      default: 50
+      minimum: 1
+      maximum: 100
+    offset:
+      default: 0
+      minimum: 0
+  response_fields:
+    container: pagination
+    fields:
+    - limit
+    - offset
+    - total
+    - has_more
+  note: >-
+    The inference endpoints return single objects and do not paginate. The model
+    catalogue (GET /v1/models) returns the full list in one 519KB response with
+    no pagination at all.
+filtering:
+  repeated_parameters: true
+  note: >-
+    A documented and easily-missed convention: multi-value query filters are
+    expressed by REPEATING the parameter (?status=succeeded&status=failed), not
+    by comma-separating it. The docs warn that ?model=a,b is read as one model
+    literally named "a,b" and matches nothing, returning an empty page rather
+    than an error. The deprecation feed is the exception — it accepts both forms.
+  silent_ignore: >-
+    On the deprecation feed, unknown filter values and malformed dates are
+    IGNORED rather than rejected, so a broken poll returns the whole feed instead
+    of a 400. On the usage logs, a comma-separated status returns 400. The two
+    endpoints disagree about strictness.
+metadata:
+  supported: partial
+  note: >-
+    Batch requests carry an optional per-request `metadata` object of string
+    values, and each batch item carries a caller-chosen `custom_id`. There is no
+    account-wide metadata convention on the inference endpoints.
+request_tracing:
+  request_header:
+    name: X-Client-Request-Id
+    format: "1-128 characters from A-Z a-z 0-9 and . _ : -"
+    behaviour: stored, echoed back, and reported as client_request_id in GET /v2/logs
+    failure_mode: >-
+      A value outside that alphabet or over 128 characters is SILENTLY DROPPED.
+      The request still runs and is still billed; nothing in the response says
+      the header was ignored and client_request_id stays null in the logs. The
+      docs say so explicitly and advise sanitising ids generated from user input.
+  response_headers:
+  - name: x-inference-id
+    when: always
+    note: >-
+      The handle for everything downstream — it is the reference_id on the charge
+      in GET /v2/billing/transactions and the inference_id in GET /v2/logs. For
+      an asynchronous generation it is the same id submit returned as
+      generation_id, so a submit and all its polls share one id.
+  - name: x-client-request-id
+    when: when a valid X-Client-Request-Id was sent
+  - name: x-aimlapi-credits-used
+    when: non-streaming JSON responses
+  - name: x-aimlapi-usd-spent
+    when: non-streaming JSON responses
+  - name: x-request-id
+    when: always (observed on live 200 and 401 responses)
+  cors: >-
+    All four AIMLAPI headers are listed in Access-Control-Expose-Headers, so a
+    browser can read them cross-origin.
+  streaming_exception: >-
+    Streaming responses flush headers before the first token, so cost arrives in
+    the final SSE chunk under meta.usage {credits_used, usd_spent} instead.
+    Binary wav audio carries no cost header either; read the cost from
+    GET /v2/logs.
+cost_transparency:
+  per_request: true
+  grade: strong
+  note: >-
+    Per-request cost is returned ON THE RESPONSE ITSELF, in USD and in credits,
+    without polling a reporting endpoint afterwards. Very few API providers of
+    any kind do this, and for an autonomous agent it is the difference between
+    knowing what a step cost and finding out at the end of the month.
+versioning:
+  style: path-prefix (/v1, /v2)
+  see: lifecycle/aimlapi-lifecycle.yml
+error_envelope:
+  content_type: application/problem+json
+  shape: RFC 9457 title/status/instance plus non-standard message/requestId/timestamp/error
+  see: errors/aimlapi-problem-types.yml
+rate_limit_signaling:
+  headers: none
+  see: rate-limits/aimlapi-rate-limits.yml
+caching:
+  etag: true
+  note: >-
+    Weak ETags are returned on GET /v1/models (cache-control max-age=60) and
+    GET /v1/models/deprecations (cache-control public, max-age=300). The
+    deprecation feed deliberately excludes its own generated_at timestamp from the
+    ETag so the ETag stays stable across polls — a considered design that makes
+    conditional polling actually work.
+  prompt_caching: >-
+    The chat schema exposes Anthropic-style cache_control {type: ephemeral, ttl:
+    5m|1h} on message content parts, which is upstream prompt caching passed
+    through rather than an AIMLAPI HTTP cache.
+streaming:
+  supported: true
+  transport: server-sent events
+  note: >-
+    SSE streaming on the chat surface. There is no webhook, no callback URL and
+    no published AsyncAPI anywhere in the AIMLAPI documentation — the only
+    asynchronous pattern is client polling of a generation_id.
+provider_routing:
+  supported: true
+  note: >-
+    A `provider` field on the chat request pins execution to one upstream source
+    (openai, openrouter, xai, google, alibaba, minimax, moonshot, baidu,
+    togetherai) with no fallback; `auto` (the default) uses the full fallback
+    chain. This is a real aggregator-specific convention with no OpenAI analogue.
+dry_run_mode:
+  supported: false
+  note: >-
+    No dry-run, preview, simulate or validate-only mode is documented on any
+    endpoint. An agent cannot rehearse a billable call.
+reversibility:
+  grade: documented
+  applicable: true
+  summary: >-
+    AIMLAPI has exactly one reversal path — cancelling a batch — and the
+    inference endpoints have none, which is inherent rather than a gap: a
+    completed generation cannot be un-generated and its tokens cannot be
+    un-spent. What the platform does instead is prevent the spend, through
+    per-key USD caps, rather than reverse it. An agent should treat every
+    inference call as irreversible and every dollar as gone on success.
+  write_surfaces:
+  - operation: POST /v1/batches
+    operationId: _v1_batches
+    reversal: POST /v1/batches/cancel/{batch_id}
+    reversal_operationId: _v1_batches_cancel_batch_id
+    window_stated: partial
+    window: >-
+      Not stated as a policy. Each batch response carries expires_at (24 hours
+      after created_at in the documented example) and cancel_initiated_at, so the
+      deadline is machine-readable per object, but the docs never state a
+      cancellation window in prose and never say what happens to work already
+      completed at cancellation time. The response after cancelling reports
+      processing_status "canceling" and counts of succeeded / canceled / expired
+      requests, which implies partial work is billed.
+    docs: https://docs.aimlapi.com/capabilities/batch-processing
+  - operation: POST /v1/chat/completions and every other inference endpoint
+    reversal: null
+    window_stated: false
+    note: >-
+      No refund, void, undo or reversal operation exists. A FAILED request is
+      billed nothing — the docs state the hold is rolled back and the row appears
+      in GET /v2/logs with zero cost — but that is automatic on failure, not a
+      reversal the caller can invoke.
+  - operation: POST /v1/keys
+    reversal: DELETE /v1/keys/{prefix}
+    window_stated: false
+    note: >-
+      A key can be deleted, and PATCH /v1/keys/{prefix} can disable one. The
+      older per-tag spec in openapi/ also carries PUT /api-keys/{id}/disable and
+      PUT /api-keys/{id}/enable — a disable that is explicitly re-enableable.
+      Neither has a stated window; both are immediate and unbounded.
+  compensating_control:
+    name: per-key spend cap
+    note: >-
+      Since spend cannot be reversed, the control that matters is the ceiling:
+      a USD threshold per key with a no_reset/day/week/month retention, reset at
+      00:00 UTC, after which charges on that key are blocked. Combined with the
+      model:* key scopes this is the safest way to hand a key to an agent.
+    docs: https://docs.aimlapi.com/faq/how-can-i-work-with-my-api-keys
+cross_links:
+  errors: errors/aimlapi-problem-types.yml
+  lifecycle: lifecycle/aimlapi-lifecycle.yml
+  authentication: authentication/aimlapi-authentication.yml
+  scopes: scopes/aimlapi-scopes.yml
+  rate_limits: rate-limits/aimlapi-rate-limits.yml
+  plans: plans/aimlapi-plans-pricing.yml

@@ -4,94 +4,100 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: AIMLAPI
 providerId: aimlapi
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Artificial Intelligence
-  - Machine Learning
-  - AI Models
-  - LLM
-  - Image Generation
-  - Video Generation
-  - Speech
-  - Embeddings
-  - API Gateway
-  - Developer Tools
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the AIMLAPI API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+modified: '2026-08-30'
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live unauthenticated response-header capture against https://api.aimlapi.com
+  (GET /v1/models, GET /v1/models/deprecations, POST /v1/chat/completions) plus
+  https://docs.aimlapi.com/api-references/service-endpoints/usage-logs and
+  https://docs.aimlapi.com/errors-and-messages/errors-with-status-code-4xx
+provenance_note: >-
+  Replaces the 2026-05-04 generated scaffold, which asserted a full
+  X-RateLimit-* header family and per-tier quotas that AIMLAPI does not publish
+  or return. Those values were invented by a bulk sweep. Everything below was
+  either read off the wire or quoted from a docs page.
+description: >-
+  The honest finding is a gap. AIMLAPI documents exactly one numeric rate limit,
+  on one reporting endpoint, and returns NO rate-limit headers of any kind on any
+  response we observed. A client cannot discover its remaining budget, its window,
+  or its backoff interval from the API — it can only discover that it has already
+  been throttled, from a 429 with no Retry-After.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  observed_on_responses:
+  - x-request-id
+  - etag
+  - cache-control
+  - x-inference-id (inference responses; correlation, not throttling)
+  - x-aimlapi-credits-used (non-streaming JSON responses)
+  - x-aimlapi-usd-spent (non-streaming JSON responses)
+  note: >-
+    No RateLimit-*, X-RateLimit-*, or Retry-After header appeared on a 200 or a
+    401 from api.aimlapi.com on 2026-08-30. The 429 case could not be provoked
+    without exceeding a real account's limits, so it is possible — but
+    undocumented — that Retry-After appears only on a 429.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
+  quotaExceeded: 403
+  quotaExceededNote: >-
+    Credit exhaustion is a 403 ("You've run out of credits"), NOT a 429. A client
+    must branch on both, and they mean different remedies: 429 means slow down,
+    403 means pay.
   serviceUnavailable: 503
+limit_count: 1
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - AIMLAPI
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - AIMLAPI
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - AIMLAPI
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - AIMLAPI
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - AIMLAPI
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- scope: per-key
+  endpoint: GET /v2/logs
+  window: 60s
+  limit: 200
+  burst: null
+  status_on_exhaustion: 429
+  source: https://docs.aimlapi.com/api-references/service-endpoints/usage-logs
+  evidence: 'Documented error table row: `429` | Over 200 requests per 60 seconds'
+  note: >-
+    The only published numeric limit anywhere in the AIMLAPI documentation, and
+    it governs a reporting endpoint rather than inference.
+undocumented:
+- scope: inference endpoints (chat, images, video, audio, embeddings, ocr)
+  note: >-
+    No RPM, TPM or concurrency figure is published for any inference endpoint on
+    any plan. The 4xx docs confirm a limit exists — "You have hit a rate or
+    concurrency limit by sending too many requests in a short period of time" —
+    without naming it.
+- scope: per-plan
+  note: >-
+    The Enterprise tier is sold on "unlimited RPM/TPM", which establishes that
+    the other five tiers are metered, but no tier publishes its number.
+- scope: free tier
+  note: >-
+    An hourly free-tier allowance is described in the error catalogue
+    ("You've reached your free limit for the hour") with no figure attached. The
+    Free Tier is in any case documented as paused.
+quota_controls:
+  per_key_spend_limit:
+    supported: true
+    retention:
+    - no_reset
+    - day
+    - week
+    - month
+    unit: USD threshold
+    reset_time: 00:00 UTC
+    docs: https://docs.aimlapi.com/faq/how-can-i-work-with-my-api-keys
+    note: >-
+      AIMLAPI's real throttle is financial, not temporal: you cap a key in
+      dollars, not in requests. That is a genuine agent-safety control and it is
+      the one budget signal the platform makes first-class.
+  self_service_usage_reporting:
+  - GET /v2/usage — totals for a window
+  - GET /v2/logs — one row per request, with cost, tokens and correlation ids
+  - GET /v2/billing — current balance
+recommendation_for_provider: >-
+  Emitting RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset (RFC 9331
+  draft family) and a Retry-After on 429 would cost nothing and would let an
+  agent pace itself. Today an agent can only learn its limit by hitting it.

@@ -1,0 +1,68 @@
+specification: API Commons Agent Skills
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: generated
+source: >-
+  Authored from openapi/aimlapi-inference-openapi.yml (the provider's own
+  published contract at https://api.aimlapi.com/docs-yaml), the per-endpoint
+  OpenAPI fragments embedded in the AIMLAPI service-endpoint documentation, and
+  the conventions, errors, lifecycle and scopes artifacts in this repo.
+description: >-
+  Packaged Agent Skills for AI/ML API. Every operationId referenced is present in
+  the published contract or in a documented per-endpoint fragment; none was
+  invented. A provider-published skills file or AGENTS.md was searched for and
+  does not exist.
+searched_for_provider_published:
+  aimlapi.com/AGENTS.md: not found
+  docs.aimlapi.com skills: not found
+  note: >-
+    The provider does publish an llms.txt at https://aimlapi.com/llms.txt and a
+    GitBook "Agent Instructions" footer on every docs page describing a
+    ?ask= query interface, but no packaged Agent Skills.
+skills:
+- file: aimlapi-choose-and-call-a-model.md
+  name: aimlapi-choose-and-call-a-model
+  summary: >-
+    Resolve a model from the live catalogue and check the deprecation feed before
+    calling it, rather than hardcoding an id that may already be withdrawn.
+  operations:
+  - GET /v1/models
+  - GET /v1/models/deprecations
+  - _v1_chat_completions
+  - _v1_embeddings
+  - _v1_images_generations
+- file: aimlapi-track-what-a-call-cost.md
+  name: aimlapi-track-what-a-call-cost
+  summary: >-
+    Read per-request cost off the response headers, correlate it with your own
+    id, and reconcile against the usage logs and the billing ledger.
+  operations:
+  - _v1_chat_completions
+  - _v2_logs
+  - GET /v2/usage
+  - GET /v2/billing
+  - GET /v2/billing/transactions
+- file: aimlapi-run-a-long-generation.md
+  name: aimlapi-run-a-long-generation
+  summary: >-
+    Submit and poll asynchronous video, music and speech generations, run
+    batches, and cancel one — the only reversal in the API.
+  operations:
+  - _v2_video_generations
+  - _v1_stt_create
+  - _v2_generate_audio
+  - _v1_batches
+  - _v1_batches_cancel_batch_id
+- file: aimlapi-run-an-agent-safely.md
+  name: aimlapi-run-an-agent-safely
+  summary: >-
+    Mint a model-scoped, dollar-capped API key for an agent, watch it, revoke it,
+    and understand what the coarse mcp:invoke OAuth scope grants by comparison.
+  operations:
+  - KeysController_createKey_v1
+  - KeysController_listKeys_v1
+  - PATCH /v1/keys/{prefix}
+  - DELETE /v1/keys/{prefix}
+  - GET /v2/usage

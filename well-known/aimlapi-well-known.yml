@@ -1,0 +1,126 @@
+specification: API Commons Well-Known
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: probed
+source: >-
+  Direct unauthenticated HTTPS GET of each /.well-known/ path on every AIMLAPI
+  host named in apis.yml, in the published OpenAPI servers[] block, and in
+  https://docs.aimlapi.com/quickstart/mcp
+description: >-
+  Well-known document probe for AIMLAPI. The marketing site, the API host and the
+  GitBook docs host serve nothing under /.well-known/. The MCP host DOES: it
+  serves RFC 9728 OAuth protected-resource metadata, which points at a full
+  OAuth 2.1 authorization server with dynamic client registration at
+  auth.aimlapi.com/mcp-oauth. That is the only well-known surface AIMLAPI
+  publishes, and it exists to make the remote MCP server self-configuring.
+hosts:
+- host: mcp.aimlapi.com
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: aimlapi-mcp-oauth-protected-resource.json
+    content_type: application/json
+    note: >-
+      RFC 9728 protected resource metadata. resource https://mcp.aimlapi.com/mcp,
+      authorization_servers [https://auth.aimlapi.com/mcp-oauth], scopes_supported
+      [openid, email, offline_access, mcp:invoke].
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    file: aimlapi-mcp-oauth-protected-resource.json
+    content_type: application/json
+    note: >-
+      The path-suffixed form required by the MCP authorization spec; serves the
+      identical document.
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: >-
+      Not served on the resource host — correct behaviour. The authorization
+      server metadata lives on the issuer, auth.aimlapi.com, as the
+      protected-resource document says.
+- host: auth.aimlapi.com
+  documents:
+  - path: /mcp-oauth/.well-known/oauth-authorization-server
+    status: 200
+    file: aimlapi-mcp-oauth-authorization-server.json
+    content_type: application/json
+    note: >-
+      RFC 8414 authorization server metadata. issuer
+      https://auth.aimlapi.com/mcp-oauth, PKCE S256 only, dynamic client
+      registration endpoint present, PAR endpoint present.
+  - path: /.well-known/oauth-authorization-server/mcp-oauth
+    status: 200
+    file: aimlapi-mcp-oauth-authorization-server.json
+    content_type: application/json
+    note: The RFC 8414 path-insertion form; serves the identical document.
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: >-
+      Not served at the host root. The server advertises the openid scope and an
+      id_token response type, but publishes only OAuth metadata under the
+      issuer path.
+- host: api.aimlapi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: aimlapi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: docs.aimlapi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+findings:
+- No security.txt is served on any AIMLAPI host, so there is no machine-readable
+  vulnerability-disclosure contact.
+- >-
+  aimlapi.com answers every /.well-known/* path with an 88-byte HTML body reading
+  "Invalid .well-known request" under a 404 status — an explicit handler, not a
+  generic miss, so the absence is deliberate rather than accidental.
+- >-
+  api.aimlapi.com answers every miss with RFC 9457 application/problem+json,
+  which is itself a useful signal about the API's error envelope.

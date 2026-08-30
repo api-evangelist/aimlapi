@@ -1,0 +1,160 @@
+specification: API Commons Error Catalog
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://docs.aimlapi.com/errors-and-messages/general-info,
+  https://docs.aimlapi.com/errors-and-messages/errors-with-status-code-4xx,
+  https://docs.aimlapi.com/errors-and-messages/errors-with-status-code-5xx —
+  corroborated by live unauthenticated probes of https://api.aimlapi.com
+format: rfc9457-partial
+description: >-
+  AIMLAPI serves errors as application/problem+json and its bodies carry the
+  RFC 9457 members title, status and instance — but not type, and they add
+  non-standard members (message, requestId, timestamp, error) in place of
+  detail. The docs describe a SECOND, older envelope (message / path /
+  requestId / statusCode / timestamp) with no title and no problem+json content
+  type. Both shapes are in the wild; a client must tolerate either.
+envelopes:
+- name: problem+json (observed live, 2026-08-30)
+  content_type: application/problem+json; charset=utf-8
+  members:
+    title: RFC 9457 title, e.g. "Unauthorized", "Not Found"
+    status: RFC 9457 status, numeric
+    instance: RFC 9457 instance — the request path, e.g. /v1/chat/completions
+    message: non-standard; the human-readable remediation text
+    requestId: non-standard; correlation id, also returned as the x-request-id header
+    timestamp: non-standard; ISO 8601
+    error: non-standard; object with name (exception class) and message
+  missing:
+  - type
+  - detail
+  evidence:
+    url: https://api.aimlapi.com/v1/chat/completions
+    method: POST
+    http_status: 401
+    body: >-
+      {"title":"Unauthorized","status":401,"message":"You provided an empty string
+      instead of valid API key. You can create a new API key on the Billing page:
+      https://aimlapi.com/app/keys","instance":"/v1/chat/completions","requestId":"...","timestamp":"2026-08-30T18:23:01.734Z","error":{"name":"UnauthorizedException","message":"..."}}
+- name: legacy envelope (documented)
+  content_type: application/json
+  members:
+    message: human-readable error message
+    path: the endpoint that was called
+    requestId: correlation id
+    statusCode: HTTP status, as a STRING in the documented example
+    timestamp: ISO 8601
+  source: https://docs.aimlapi.com/errors-and-messages/general-info
+problem_types:
+- status: 400
+  title: Bad Request
+  code: Body validation error!
+  meaning: >-
+    The request body contains invalid or missing fields for the selected model.
+  remediation: >-
+    Read the text after the generic line — the API appends "Expected" / "Received"
+    hints naming the offending parameter and the allowed enum values.
+  source: docs
+- status: 400
+  title: Bad Request
+  code: "Unsupported value: 'messages[0].role' does not support 'system' with this model."
+  meaning: The role supplied is not supported by the selected model.
+  remediation: Check the model's schema for the allowed values of messages[].role.
+  source: docs
+- status: 401
+  title: Unauthorized
+  code: invalid or missing API key
+  meaning: The request is not authenticated; the key is missing, expired or invalid.
+  remediation: >-
+    Send Authorization: Bearer <API_KEY> using a key from
+    https://aimlapi.com/app/keys.
+  source: docs + live probe
+- status: 403
+  title: Forbidden
+  code: out of credits
+  meaning: >-
+    Authenticated but not allowed — credits or plan limits are exhausted. Also
+    returned when a regular key names another key's prefix on the usage endpoints.
+  remediation: Top up or update the payment method at https://aimlapi.com/app/billing/
+  source: docs
+- status: 404
+  title: Not Found
+  code: NotFoundException
+  meaning: >-
+    The endpoint or resource does not exist. Also returned by the usage endpoints
+    when a key prefix is not yours or is outside your key's scopes.
+  remediation: Check the base URL, the path and the HTTP method.
+  source: docs + live probe
+- status: 429
+  title: Too Many Requests
+  code: Too Many Requests
+  meaning: A rate or concurrency limit was hit.
+  remediation: >-
+    Reduce the request rate, add retries with backoff, or queue requests. NOTE —
+    no Retry-After or RateLimit-* header is returned, so the backoff interval is
+    not communicated.
+  source: docs
+- status: 429
+  title: Too Many Requests
+  code: Free-tier limit reached
+  meaning: >-
+    The hourly free-tier allowance is exhausted. The Free Tier is currently
+    paused per https://docs.aimlapi.com/faq/free-tier.
+  remediation: Subscribe at https://aimlapi.com/app/billing/
+  source: docs
+- status: 500
+  title: Internal Server Error
+  code: Internal server error
+  meaning: An unexpected error on the AIMLAPI side.
+  remediation: Retry; if it persists contact support with the requestId.
+  source: docs
+- status: 500
+  title: Internal Server Error
+  code: Something wrong with the server. Please, try again later.
+  meaning: >-
+    A third-party service — including a partner model API — returned an error.
+    The request itself is valid.
+  remediation: Retry later.
+  source: docs
+  note: >-
+    A downstream partner failure surfacing as a 500 rather than a 502 makes the
+    two indistinguishable to a client's retry logic.
+- status: 500
+  title: Internal Server Error
+  code: The model is under maintenance, please contact us at help@aimlapi.com.
+  meaning: One of the services handling the request failed unexpectedly.
+  remediation: Retry later; include the Request ID when contacting support.
+  source: docs
+- status: 502
+  title: Bad Gateway
+  code: Bad Gateway
+  meaning: A downstream service or partner API returned an invalid response.
+  remediation: Retry.
+  source: docs
+- status: 503
+  title: Service Unavailable
+  code: Service unavailable
+  meaning: The AI model or a partner service is temporarily unavailable.
+  remediation: Retry later.
+  source: docs
+- status: 504
+  title: Gateway Timeout
+  code: Generation timeout
+  meaning: The generation did not finish within the allowed time limit.
+  remediation: Retry, or move to the asynchronous submit/poll surface for long jobs.
+  source: docs
+gaps:
+- >-
+  The published OpenAPI (https://api.aimlapi.com/docs-yaml) declares ONLY 200
+  responses. Not one 4xx or 5xx response is described for any of its 19
+  operations, so none of the catalogue above is derivable from the contract — it
+  had to be read out of prose documentation.
+- >-
+  No `type` URI is emitted, so the problem+json bodies are not dereferenceable
+  RFC 9457 documents and errors cannot be matched on a stable identifier.
+- >-
+  Error identity is carried in free-text `message` strings that embed URLs and
+  vary per model, which makes programmatic branching fragile.

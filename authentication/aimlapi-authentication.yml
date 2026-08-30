@@ -1,12 +1,110 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/aimlapi-openapi.yml
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://docs.aimlapi.com/quickstart/supported-sdks,
+  https://docs.aimlapi.com/faq/how-can-i-work-with-my-api-keys,
+  https://docs.aimlapi.com/api-references/service-endpoints/api-key-management,
+  https://docs.aimlapi.com/quickstart/mcp,
+  https://mcp.aimlapi.com/.well-known/oauth-protected-resource — corroborated by
+  live 401 probes of https://api.aimlapi.com and https://mcp.aimlapi.com
+description: >-
+  AIMLAPI runs two distinct authentication systems. The REST API is bearer API
+  keys with two privilege classes (regular keys and management keys) and
+  per-key model scopes and spend caps. The remote MCP server additionally
+  supports full OAuth 2.1 with PKCE and dynamic client registration — the only
+  place OAuth appears in the AIMLAPI surface, and it is not available for the
+  REST API.
 summary:
   types:
   - http
+  - oauth2
 schemes:
 - name: bearerAuth
   type: http
   scheme: bearer
+  applies_to: REST API (https://api.aimlapi.com)
+  header: 'Authorization: Bearer <YOUR_AIMLAPI_KEY>'
+  key_classes:
+  - name: API key
+    purpose: Calling models and inference endpoints from applications and the Playground.
+    created_in: dashboard (https://aimlapi.com/app/keys) or POST /v1/keys with a management key
+    shown_once: true
+    prefix: >-
+      The first 8 characters of the key are its `prefix`, visible in the
+      dashboard and used as the path parameter on the key-management endpoints.
+    controls:
+      spend_limit:
+        retention:
+        - no_reset
+        - day
+        - week
+        - month
+        threshold: USD
+        reset: 00:00 UTC
+      endpoint_permissions: true
+      model_scopes: see scopes/aimlapi-scopes.yml
+  - name: Management key
+    purpose: Creating, listing, updating and deleting regular API keys via the API.
+    created_in: dashboard only — cannot be minted through the API
+    shown_once: true
+    note: >-
+      A deliberate privilege split: the credential that can mint credentials is
+      not itself mintable over the wire. A regular key naming another key's
+      prefix on the reporting endpoints gets a 403.
   sources:
-  - openapi/aimlapi-openapi.yml
+  - https://docs.aimlapi.com/faq/how-can-i-work-with-my-api-keys
+  - openapi/aimlapi-inference-openapi.yml
+- name: mcpOAuth
+  type: oauth2
+  applies_to: remote MCP server (https://mcp.aimlapi.com/mcp)
+  flows:
+    authorizationCode:
+      authorizationUrl: https://auth.aimlapi.com/mcp-oauth/auth
+      tokenUrl: https://auth.aimlapi.com/mcp-oauth/token
+      registrationUrl: https://auth.aimlapi.com/mcp-oauth/register
+      pushedAuthorizationRequestUrl: https://auth.aimlapi.com/mcp-oauth/par
+      scopes:
+        openid: OpenID Connect subject identity
+        email: the account email address
+        offline_access: refresh tokens for unattended re-authorization
+        mcp:invoke: permission to invoke MCP tools, billed to the account
+  pkce:
+    required_methods:
+    - S256
+  dynamic_client_registration: true
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - implicit
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_jwt
+  - client_secret_post
+  - private_key_jwt
+  - none
+  id_token_signing_alg:
+  - RS256
+  discovery:
+  - https://mcp.aimlapi.com/.well-known/oauth-protected-resource
+  - https://auth.aimlapi.com/mcp-oauth/.well-known/oauth-authorization-server
+  sources:
+  - https://docs.aimlapi.com/quickstart/mcp
+  - well-known/aimlapi-mcp-oauth-authorization-server.json
+gaps:
+- >-
+  The published OpenAPI at https://api.aimlapi.com/docs-yaml declares NO
+  components.securitySchemes and NO security requirement on any of its 19
+  operations, even though every one of them requires a bearer key. An agent
+  reading only the contract would not know the API needs authentication at all.
+  The bearerAuth scheme recorded here comes from the older per-tag specs in
+  openapi/ and from the prose documentation.
+- >-
+  The OAuth authorization server advertises the `openid` scope and an `id_token`
+  response type but serves no /.well-known/openid-configuration, so an OIDC
+  client cannot discover it by the standard path.
+- >-
+  No mutualTLS, no signed-request scheme, and no IP allowlisting is documented.

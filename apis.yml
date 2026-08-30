@@ -16,6 +16,7 @@ apis:
     \ to reduce the risk of unauthorized use.\n    \n\nBy effectively managing your API keys, you maintain\
     \ control over who can access your AI/ML API services and safeguard your resources."
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - API Key Management
   properties:
@@ -24,21 +25,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-assistants-api
   name: AIMLAPI Assistants API
   description: The Assistants API from AIMLAPI — 2 operation(s) for assistants.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Assistants
   properties:
@@ -47,21 +47,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-chat-api
   name: AIMLAPI Chat API
   description: The Chat API from AIMLAPI — 1 operation(s) for chat.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Chat
   properties:
@@ -70,21 +69,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-images-api
   name: AIMLAPI Images API
   description: Given a prompt and/or an input image, the model will generate a new image.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Image
   tags_raw:
@@ -95,17 +93,15 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-models-api
   name: AIMLAPI Models API
   description: "List and describe the various models available in the API. You can refer to the [Models](https://aimlapi.com/models)\
@@ -168,6 +164,7 @@ apis:
     \ integration into our API offerings. Your contributions help us grow and serve you better.\n\nFor\
     \ a complete list of models and their identifiers, refer to the table provided in the API documentation."
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Models
   properties:
@@ -176,21 +173,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-threads-api
   name: AIMLAPI Threads API
   description: The Threads API from AIMLAPI — 1 operation(s) for threads.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Threads
   properties:
@@ -199,21 +195,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-threads-messages-api
   name: AIMLAPI Threads > Messages API
   description: The Threads > Messages API from AIMLAPI — 2 operation(s) for threads > messages.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Threads > Messages
   properties:
@@ -222,21 +217,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-threads-runs-api
   name: AIMLAPI Threads > Runs API
   description: The Threads > Runs API from AIMLAPI — 2 operation(s) for threads > runs.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Threads > Runs
   properties:
@@ -245,21 +239,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-voice-api
   name: AIMLAPI Voice API
   description: The Voice API from AIMLAPI — 2 operation(s) for voice.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - Voice
   properties:
@@ -268,21 +261,20 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
 - aid: aimlapi:aimlapi-wip-completions-api
   name: AIMLAPI [WIP] Completions API
   description: The [WIP] Completions API from AIMLAPI — 1 operation(s) for [wip] completions.
   humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
   tags:
   - '[WIP] Completions'
   properties:
@@ -291,17 +283,72 @@ apis:
   - type: Documentation
     url: https://docs.aimlapi.com/
   - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models
+    url: https://docs.aimlapi.com/api-references/text-models-llm
   - type: APIReference
     url: https://docs.aimlapi.com/api-references/image-models
   - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart
+    url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-  - type: GraphQL
-    url: graphql/aimlapi-graphql.md
+- aid: aimlapi:aimlapi-inference-api
+  name: AIMLAPI Inference API
+  description: >-
+    AI/ML API's own published OpenAPI, served from the API host at
+    https://api.aimlapi.com/docs-yaml and rendered at https://api.aimlapi.com/docs.
+    19 operations across 16 paths covering chat completions, the Responses
+    surface, Anthropic-shaped messages, embeddings, image generation and editing,
+    video generation, text-to-speech, speech-to-text, music generation, OCR and
+    batch processing. The surface is OpenAI-compatible: an OpenAI client
+    configured with base_url https://api.aimlapi.com/v1 reaches it unchanged.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Inference
+  - Chat
+  - Embeddings
+  - Image
+  - Video
+  - Speech
+  - OCR
+  - Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-inference-openapi.yml
+  - type: Overlay
+    url: overlays/aimlapi-inference-overlay.yaml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-mcp-server
+  name: AIMLAPI MCP Server
+  description: >-
+    AI/ML API's first-party remote Model Context Protocol server at
+    https://mcp.aimlapi.com/mcp — Streamable HTTP with OAuth 2.1, PKCE and
+    dynamic client registration, so no API key is pasted into the client. Exposes
+    model discovery, inference across every modality, long-running job management
+    and account balance, billed to the same account as the REST API. tools/list is
+    authentication-gated, so the live tool schemas are not captured here.
+  humanURL: https://docs.aimlapi.com/quickstart/mcp
+  baseURL: https://mcp.aimlapi.com/mcp
+  tags:
+  - MCP
+  - Agents
+  properties:
+  - type: MCPServer
+    url: mcp/aimlapi-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/aimlapi-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/quickstart/mcp
 name: AIMLAPI
 tags:
 - Artificial Intelligence
@@ -354,6 +401,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aimlapi.png
 access: 3rd-Party
 common:
+- type: Website
+  url: https://aimlapi.com/
 - type: AgenticAccess
   url: agentic-access/aimlapi-agentic-access.yml
 - type: DomainSecurity
@@ -475,8 +524,68 @@ common:
   description: Taxonomy vocabulary for AIMLAPI APIs.
 - type: LlmsText
   url: https://aimlapi.com/llms.txt
+- type: OpenAPI
+  url: openapi/aimlapi-inference-openapi.yml
+- type: Overlay
+  url: overlays/aimlapi-inference-overlay.yaml
+- type: MCPServer
+  url: mcp/aimlapi-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/aimlapi-tool-crosswalk.yml
+- type: Packages
+  url: packages/aimlapi-packages.yml
+- type: SDKs
+  url: packages/aimlapi-packages.yml
+- type: WellKnown
+  url: well-known/aimlapi-well-known.yml
+- type: Conformance
+  url: conformance/aimlapi-conformance.yml
+- type: ErrorCatalog
+  url: errors/aimlapi-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/aimlapi-lifecycle.yml
+- type: StatusPage
+  url: https://status.aimlapi.com/
+  name: AI/ML API Status
+- type: Deprecation
+  url: lifecycle/aimlapi-lifecycle.yml
+  description: >-
+    Machine-readable model deprecation feed at
+    https://api.aimlapi.com/v1/models/deprecations — 132 dated entries with
+    status, shutdown date, replacement id and reason, served unauthenticated.
+- type: OAuthScopes
+  url: scopes/aimlapi-scopes.yml
+- type: Conventions
+  url: conventions/aimlapi-conventions.yml
+- type: DataModel
+  url: data-model/aimlapi-data-model.yml
+- type: ChangeLog
+  url: changelog/aimlapi-changelog.yml
+- type: Plans
+  url: plans/aimlapi-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/aimlapi-rate-limits.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/aimlapi-llms.txt
+- name: AI/ML API Help Center
+  url: https://help.aimlapi.com/
+  type: Support
+- name: AI/ML API Quickstart
+  url: https://docs.aimlapi.com/quickstart/simple-model
+  type: GettingStarted
+- name: AI/ML API Reference
+  url: https://api.aimlapi.com/docs
+  type: APIReference
+- name: AI/ML API Playground
+  url: https://aimlapi.com/app
+  type: Playground
+- name: AI/ML API Discord
+  url: https://discord.gg/vayNtU9ThM
+  type: Discord
 created: '2025-01-07'
-modified: '2026-04-19'
+modified: '2026-08-30'
 position: Consuming
 description: AIMLAPI is a unified AI model API gateway providing access to 400+ state-of-the-art
   AI models from OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, Stability AI,
@@ -487,3 +596,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-08-30'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

@@ -1,0 +1,198 @@
+specification: API Commons Data Model
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: derived
+source: >-
+  Derived from openapi/aimlapi-inference-openapi.yml and the per-endpoint
+  OpenAPI fragments embedded in the AIMLAPI service-endpoint documentation
+  (api-key-management, usage-logs, account-balance, complete-model-list,
+  model-deprecations), plus the live shapes of
+  https://api.aimlapi.com/v1/models and
+  https://api.aimlapi.com/v1/models/deprecations.
+description: >-
+  The AIMLAPI object graph is unusual for a REST API: the inference endpoints are
+  stateless request/response pairs with NO server-side resource behind them, so
+  almost the whole entity graph lives in the service endpoints — keys, models,
+  deprecations, inferences, charges and batches. The join key across the whole
+  platform is the inference id.
+derivation_note: >-
+  The published OpenAPI has no components section — every schema is inlined and
+  there is not one $ref in the document — so no relationship could be read from
+  $ref links. Everything below was derived from id-reference FIELDS and from the
+  documented cross-references between endpoints, which the docs state explicitly.
+entities:
+- name: Model
+  source: GET /v1/models
+  identity: id
+  id_format: 'source/alias, e.g. openai/gpt-5, mistralai/ministral-8b'
+  alias_form: bare alias, e.g. gpt-5
+  fields:
+  - id
+  - info.name
+  - info.developer
+  - info.description
+  - info.releasedAt
+  - context length
+  - pricing (opt-in section)
+  - modalities (opt-in section)
+  - capabilities (opt-in section)
+  note: >-
+    Public and unauthenticated. The default response carries identity only;
+    pricing, modalities and capabilities are opt-in sections so the default stays
+    small.
+- name: ModelDeprecation
+  source: GET /v1/models/deprecations
+  identity: id
+  fields:
+  - id
+  - aliases[]
+  - status (deprecated | superseded | withdrawn)
+  - deprecated_at
+  - shutdown_at
+  - replaced_by
+  - reason
+  note: Public and unauthenticated. 132 entries on 2026-08-30.
+- name: ApiKey
+  source: POST/GET /v1/keys, GET /v1/key, PATCH/DELETE /v1/keys/{prefix}
+  identity: prefix
+  id_format: the first 8 characters of the key
+  fields:
+  - name
+  - disabled
+  - prefix
+  - scopes[]
+  - limit.retention
+  - limit.threshold
+  - created_at
+  - updated_at
+  - monthly_usage
+  - key (returned only at creation)
+  note: Requires a management key.
+- name: Inference
+  source: every inference endpoint; reported by GET /v2/logs
+  identity: inference_id
+  surfaced_as: the x-inference-id response header
+  fields:
+  - created
+  - status (succeeded | failed)
+  - origin (api | playground)
+  - model
+  - cost.usd
+  - cost.credits
+  - tokens.input
+  - tokens.output
+  - tokens.total
+  - request_id
+  - inference_id
+  - client_request_id
+  note: >-
+    The central object of the platform even though no endpoint returns it as a
+    resource. For an asynchronous generation the inference_id IS the
+    generation_id, so a submit and all of its polls share one identity.
+- name: Transaction
+  source: GET /v2/billing/transactions
+  identity: reference_id
+  note: >-
+    For a MODEL_USAGE charge the reference_id is the inference id, which is what
+    joins the ledger to the request log.
+- name: Balance
+  source: GET /v2/billing, GET /v2/billing/detail
+  identity: account
+- name: Batch
+  source: POST/GET /v1/batches, POST /v1/batches/cancel/{batch_id}
+  identity: id
+  fields:
+  - id
+  - type
+  - processing_status
+  - request_counts.processing
+  - request_counts.succeeded
+  - request_counts.errored
+  - request_counts.canceled
+  - request_counts.expired
+  - created_at
+  - expires_at
+  - ended_at
+  - archived_at
+  - cancel_initiated_at
+  - results_url
+- name: BatchRequest
+  source: POST /v1/batches — requests[]
+  identity: custom_id
+  fields:
+  - custom_id
+  - params.model
+  - params.messages[]
+  - params.system
+  - params.metadata
+  - params.max_tokens
+  - params.thinking
+  constraints: 1 to 100,000 items per batch
+- name: Generation
+  source: >-
+    POST /v2/video/generations, POST /v1/stt/create, POST /v2/generate/audio and
+    their GET polls
+  identity: generation_id
+  note: >-
+    The asynchronous job object. Identical in value to the inference id, which is
+    why polling and billing line up without a second lookup.
+relationships:
+- from: Inference
+  to: Model
+  type: belongs_to
+  via: model
+- from: Inference
+  to: ApiKey
+  type: belongs_to
+  via: key_prefix
+  note: GET /v2/logs and GET /v2/usage filter on key_prefix.
+- from: Inference
+  to: Transaction
+  type: has_one
+  via: inference_id -> reference_id
+  note: Stated in the docs; the join that ties usage to the ledger.
+- from: Inference
+  to: Generation
+  type: same_identity
+  via: inference_id == generation_id
+  note: >-
+    Not a foreign key — the docs state they are the same value. Recorded as a
+    relationship because an integrator will otherwise look for a mapping table.
+- from: Batch
+  to: BatchRequest
+  type: has_many
+  via: requests[]
+- from: Batch
+  to: Model
+  type: belongs_to
+  via: requests[].params.model
+- from: ModelDeprecation
+  to: Model
+  type: belongs_to
+  via: id and aliases[]
+  note: >-
+    The docs instruct callers to match their integrated model name against BOTH
+    id and aliases, because a model may have been reachable under several public
+    ids.
+- from: ModelDeprecation
+  to: Model
+  type: has_one
+  via: replaced_by
+  note: Nullable — a withdrawn model may have no successor.
+- from: ApiKey
+  to: Inference
+  type: has_many
+  via: key_prefix
+- from: Transaction
+  to: Balance
+  type: belongs_to
+  via: account
+id_prefixes:
+  model: 'source/alias — the source segment names the upstream vendor (openai, anthropic, google, mistralai, alibaba, minimax, thedrummer, ai21)'
+  api_key: first 8 characters of the key, used as the path parameter
+  inference: opaque nanoid-style string, e.g. V1StGXR8Z5jdHi6BmyT8k
+  request: opaque nanoid-style string, returned as x-request-id
+render: null
+render_note: No subway/ diagram exists in this repo.

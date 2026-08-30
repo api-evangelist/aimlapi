@@ -1,0 +1,88 @@
+specification: API Commons OAuth Scopes
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://auth.aimlapi.com/mcp-oauth/.well-known/oauth-authorization-server
+  (probed 200) and
+  https://docs.aimlapi.com/api-references/service-endpoints/api-key-management
+docs: https://docs.aimlapi.com/quickstart/mcp
+description: >-
+  AIMLAPI has two independent permission vocabularies. OAuth scopes exist only on
+  the MCP authorization server and are coarse — one scope covers every tool call.
+  The finer-grained permission model lives on API keys instead, as a set of
+  model-category scopes attached at key creation. Both are recorded here because
+  an integrator choosing between the REST API and the MCP server is choosing
+  between the two.
+oauth:
+  issuer: https://auth.aimlapi.com/mcp-oauth
+  applies_to: https://mcp.aimlapi.com/mcp
+  discovery: https://auth.aimlapi.com/mcp-oauth/.well-known/oauth-authorization-server
+  scopes:
+  - name: openid
+    description: Standard OpenID Connect scope; returns a subject identifier.
+    standard: true
+  - name: email
+    description: The account's email address.
+    standard: true
+  - name: offline_access
+    description: >-
+      Issues a refresh token so the client can re-authorize without a browser
+      round trip. Required for an agent that runs unattended.
+    standard: true
+  - name: mcp:invoke
+    description: >-
+      Permission to invoke MCP tools on the AIMLAPI server. Calls made under this
+      scope are billed to the account exactly as REST calls are.
+    standard: false
+  granularity: coarse
+  granularity_note: >-
+    ONE scope covers every tool the server exposes — model discovery, inference
+    across every modality, job management and account balance all sit behind
+    mcp:invoke. There is no read-only scope, no spend-free scope, and no way to
+    grant an agent catalogue access without also granting it the ability to spend
+    money. The API-key scopes below are finer than the OAuth scopes.
+api_key_scopes:
+  applies_to: https://api.aimlapi.com
+  assigned_at: key creation (POST /v1/keys, `scopes` array) or in the dashboard
+  source: https://docs.aimlapi.com/api-references/service-endpoints/api-key-management
+  description: >-
+    "List of model access scopes assigned to the key. Defines which categories of
+    models can be called using this API key." Enumerated in the request and
+    response schemas of the key-management endpoints.
+  scopes:
+  - name: model:chat
+    description: Chat completion models.
+  - name: model:responses
+    description: The Responses-shaped inference surface.
+  - name: model:image
+    description: Image generation and editing models.
+  - name: model:audio
+    description: Audio and music generation models.
+  - name: model:video
+    description: Video generation models.
+  - name: model:embeddings
+    description: Embedding models.
+  - name: model:speech
+    description: Speech models (text-to-speech and speech-to-text).
+  - name: model:ocr
+    description: OCR models.
+  nullable: true
+  nullable_note: >-
+    The scopes array is declared nullable in both the request and the response
+    schema, so a key created with no scopes is a valid, unrestricted key. Scoping
+    is opt-in.
+  complementary_control:
+    spend_limit:
+      retention:
+      - no_reset
+      - day
+      - week
+      - month
+      threshold: USD
+      note: >-
+        Scopes bound WHAT a key may call; the spend limit bounds HOW MUCH it may
+        cost. Together they are the closest thing AIMLAPI has to an agent
+        sandbox.

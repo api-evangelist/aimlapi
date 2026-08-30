@@ -1,0 +1,119 @@
+specification: API Commons Packages
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: searched
+source: >-
+  npm registry (registry.npmjs.org), PyPI (pypi.org/pypi/<pkg>/json) and the
+  github.com/aimlapi organization, cross-checked against
+  https://docs.aimlapi.com/quickstart/supported-sdks
+description: >-
+  First-party client libraries published by AI/ML API (AIMLAPI). The provider's
+  own SDK guidance is that the REST API is OpenAI-compatible, so the officially
+  recommended path for most languages is the vendor-neutral OpenAI SDK pointed at
+  https://api.aimlapi.com/v1 rather than an AIMLAPI-specific package. The
+  first-party packages below exist alongside that recommendation.
+packages:
+- name: aimlapi-sdk-python
+  registry: pypi
+  url: https://pypi.org/project/aimlapi-sdk-python/
+  official: true
+  language: python
+  license: Apache-2.0
+  version: 2.24.0rc1
+  published: '2026-03-05'
+  repository: https://github.com/aimlapi/aimlapi-sdk-python
+  note: >-
+    "The official Python library for the AIMLAPI based on OpenAI SDK" — a
+    Stainless-generated client. Latest published release is a release candidate
+    (2.24.0rc1), not a stable version.
+- name: '@ai-ml.api/aimlapi-sdk-node'
+  registry: npm
+  url: https://www.npmjs.com/package/@ai-ml.api/aimlapi-sdk-node
+  official: true
+  language: typescript
+  license: Apache-2.0
+  version: 1.0.1
+  published: '2026-01-30'
+  repository: https://github.com/aimlapi/aimlapi-sdk-node
+  note: AI/ML API SDK for Node.js. Homepage points at https://docs.aimlapi.com.
+- name: langchain-aimlapi
+  registry: pypi
+  url: https://pypi.org/project/langchain-aimlapi/
+  official: true
+  language: python
+  license: MIT
+  version: 0.1.2
+  published: '2026-08-28'
+  repository: https://github.com/aimlapi/langchain-aimlapi
+  note: >-
+    First-party LangChain integration package, published from the provider's own
+    GitHub organization. The most recently released first-party package.
+- name: '@ai-ml.api/aimlapi-vercel-ai'
+  registry: npm
+  url: https://www.npmjs.com/package/@ai-ml.api/aimlapi-vercel-ai
+  official: true
+  language: typescript
+  license: Apache-2.0
+  version: 1.0.2
+  published: '2025-08-11'
+  repository: null
+  note: >-
+    AI SDK (Vercel) provider for AI/ML API. The package's declared repository url
+    (git+https://github.com/aimlapi-vercel-ai.git) is malformed — it names no
+    owner — so the source repository cannot be resolved from registry metadata.
+    Oldest first-party package by release date.
+- name: '@ai-ml.api/api-docs'
+  registry: npm
+  url: https://www.npmjs.com/package/@ai-ml.api/api-docs
+  official: true
+  language: javascript
+  license: MIT
+  version: 1.0.0
+  published: '2025-12-10'
+  repository: https://github.com/aimlapi/api-docs
+  note: >-
+    Published as "AI/ML API OpenAPI schemas for various services" — the packaged
+    form of the aimlapi/api-docs GitBook documentation source, not a client
+    library.
+- name: openclaw-aimlapi
+  registry: npm
+  url: https://www.npmjs.com/package/openclaw-aimlapi
+  official: true
+  language: typescript
+  license: MIT
+  version: 2026.4.9
+  published: '2026-04-09'
+  repository: https://github.com/aimlapi/openclaw-aimlapi
+  note: >-
+    An AIMLAPI-preconfigured redistribution of the OpenClaw agent, published from
+    the provider's own npm scope and GitHub org. One of ~30 such agent/framework
+    forks in github.com/aimlapi (crewai-aimlapi, goose-aimlapi, zed-aimlapi,
+    autogpt-aimlapi, langchain-aimlapi, dify-aimlapi-plugin and others) — a
+    distribution strategy, not a client SDK.
+recommended_path:
+  note: >-
+    The provider's Supported SDKs page directs most users to the OpenAI SDK with
+    base_url https://api.aimlapi.com/v1 and an AIMLAPI bearer key. Those are
+    third-party packages (openai on PyPI/npm) and are therefore NOT listed as
+    first-party above.
+  docs: https://docs.aimlapi.com/quickstart/supported-sdks
+absent:
+- registry: pypi
+  name: aimlapi
+  status: 404
+  note: No package under the bare name; checked 2026-08-30.
+- registry: pypi
+  name: aimlapi-sdk
+  status: 404
+- registry: maven
+  note: No first-party Java/Kotlin package found.
+- registry: nuget
+  note: No first-party .NET package found.
+- registry: crates.io
+  note: No first-party Rust package found.
+- registry: rubygems
+  note: No first-party Ruby package found.
+- registry: pkg.go.dev
+  note: No first-party Go module found.

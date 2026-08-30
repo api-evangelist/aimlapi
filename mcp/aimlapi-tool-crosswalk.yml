@@ -1,0 +1,157 @@
+specification: API Commons Tool Crosswalk
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: derived
+source: >-
+  Capability groups published at https://docs.aimlapi.com/quickstart/mcp bound to
+  operationIds read from the provider's own OpenAPI at
+  https://api.aimlapi.com/docs-yaml (saved as
+  openapi/aimlapi-inference-openapi.yml) and from the per-endpoint OpenAPI
+  fragments embedded in the service-endpoint documentation pages.
+description: >-
+  Crosswalk between the AIMLAPI remote MCP server and the REST operations that
+  back it. IMPORTANT PROVENANCE CAVEAT: mcp.aimlapi.com/mcp gates tools/list
+  behind authentication, so the LEFT-HAND SIDE OF THIS TABLE IS NOT A TOOL LIST.
+  It is the four capability groups the provider itself publishes, bound to the
+  REST operations that must be serving them. No tool name here has been observed
+  on the wire and no inputSchema has been captured; every confidence below is
+  therefore medium at best. Re-run with an authenticated tools/list to replace
+  these rows with real tool names and schemas.
+surfaces:
+  openapi:
+    file: openapi/aimlapi-inference-openapi.yml
+    source: https://api.aimlapi.com/docs-yaml
+    gated: false
+    operations: 19
+    note: >-
+      19 operations across 16 paths. Three paths reuse one operationId for both
+      their GET and their POST (_v2_video_generations, _v1_batches,
+      _v2_generate_audio), so there are only 16 distinct operationIds.
+  service_endpoints:
+    source: https://docs.aimlapi.com/api-references/service-endpoints
+    gated: false
+    note: >-
+      Account, key-management, usage, model-catalogue and deprecation operations
+      are documented with their own inline OpenAPI 3.0.0 fragments on the docs
+      pages but are ABSENT from the /docs-yaml document. They are real, callable
+      operations with no entry in the published master spec.
+  mcp:
+    url: https://mcp.aimlapi.com/mcp
+    gated: true
+    note: tools/list returns 401 invalid_key without a bearer token or OAuth session.
+  graphql:
+    url: null
+    note: AIMLAPI publishes no GraphQL surface.
+crosswalk:
+- tool: model discovery
+  category: catalogue
+  rest:
+  - GET /v1/models
+  - GET /v1/models/deprecations
+  binding: capability-group
+  confidence: medium
+  note: >-
+    Both backing operations are public and unauthenticated; GET /v1/models
+    returned 200 with 519,560 bytes and GET /v1/models/deprecations returned 200
+    with 132 entries on 2026-08-30. Neither has an entry in the published master
+    OpenAPI, so the tool's inputSchema cannot be inherited from it — only from
+    the inline fragment on the docs page.
+- tool: inference (chat / text)
+  category: inference
+  rest:
+  - _v1_chat_completions
+  - _v1_responses
+  - _v1_responses_:response_id
+  - _v1_messages
+  binding: capability-group
+  confidence: medium
+  note: >-
+    Three parallel text surfaces: the OpenAI-compatible chat completions endpoint,
+    an OpenAI Responses-shaped endpoint, and an Anthropic Messages-shaped
+    endpoint. The MCP server's "LLM chat" capability is served by at least one of
+    them; which one is not published.
+- tool: inference (embeddings)
+  category: inference
+  rest:
+  - _v1_embeddings
+  binding: capability-group
+  confidence: medium
+- tool: inference (image)
+  category: inference
+  rest:
+  - _v1_images_generations
+  - _v1_images_edits
+  binding: capability-group
+  confidence: medium
+- tool: inference (video)
+  category: inference
+  rest:
+  - _v2_video_generations
+  binding: capability-group
+  confidence: medium
+  note: One operationId covers both the POST that submits and the GET that polls.
+- tool: inference (audio / speech)
+  category: inference
+  rest:
+  - _v1_tts
+  - _v1_stt_create
+  - _v1_stt_:generation_id
+  - _v2_generate_audio
+  - _v2_generate_audio_preprocess
+  binding: capability-group
+  confidence: medium
+- tool: job management
+  category: jobs
+  rest:
+  - _v2_video_generations
+  - _v1_stt_:generation_id
+  - _v2_generate_audio
+  - _v1_batches
+  - _v1_batches_cancel_:batch_id
+  binding: capability-group
+  confidence: medium
+  note: >-
+    The docs describe "submit long-running generations and poll their
+    status/results", which is exactly the submit/poll pair on the video, stt and
+    audio endpoints plus the batch surface.
+- tool: account (balance and usage)
+  category: account
+  rest:
+  - GET /v2/billing
+  - GET /v2/usage
+  - _v2_logs
+  binding: capability-group
+  confidence: medium
+  note: >-
+    "What's my AIMLAPI balance?" is the provider's own worked example of an MCP
+    call, and GET /v2/billing is the documented balance endpoint.
+mcp_only: []
+rest_only:
+- operationId: _v1_ocr
+  note: >-
+    OCR is a published REST operation with no counterpart in any documented MCP
+    capability group.
+- operationId: KeysController_createKey_v1
+  note: >-
+    API key creation, listing, update and deletion (POST/GET /v1/keys,
+    PATCH/DELETE /v1/keys/{prefix}, GET /v1/key) require a management key and are
+    not described as an MCP capability. Correctly so — a credential-minting
+    operation is the wrong thing to expose to an agent.
+- operationId: _v1_models_deprecations
+  note: >-
+    Public deprecation feed. Reachable through "model discovery" only by
+    inference; not named as a capability.
+coverage:
+  mcp_tools_observed: 0
+  mcp_capability_groups_published: 4
+  rest_operations_in_master_spec: 19
+  rest_operations_documented_outside_master_spec: 12
+  bound_rows: 8
+  unbound_rest: 3
+  note: >-
+    Coverage cannot be computed honestly against tool names because none were
+    observed. The one number that IS solid: 12 documented, callable operations
+    (keys, key usage, usage logs, billing, transactions, model catalogue, model
+    metrics, deprecations) exist entirely outside the published master OpenAPI.

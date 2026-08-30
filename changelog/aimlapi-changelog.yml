@@ -1,0 +1,100 @@
+specification: API Commons ChangeLog
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: searched
+source: https://aimlapi.com/changelog
+description: >-
+  AIMLAPI publishes a dated, public changelog page. It is stale: the newest entry
+  is 12 February 2025, roughly eighteen months before this probe, while the
+  product plainly kept moving — the site footer advertises models the changelog
+  never mentions and the deprecation feed recorded retirements as recently as
+  27 August 2026. Recorded honestly, including the staleness, because a
+  changelog nobody updates is worse than none for an integrator trying to decide
+  whether a behaviour changed.
+url: https://aimlapi.com/changelog
+http_status: 200
+probed: '2026-08-30'
+scheme: dated entries, newest first, no version numbers
+versioned: false
+breaking_changes_flagged: false
+rss: null
+current_version: null
+current_version_note: >-
+  The published OpenAPI reports info.version 1.0.0 for the whole surface. There
+  is no release version an integrator can pin to.
+latest_entry: '2025-02-12'
+staleness_days_at_probe: 564
+entries:
+- date: '2025-02-12'
+  title: Qwen Max 2025-01-25 API is Out
+  type: addition
+  highlights: Added an updated Qwen Max, a large MoE LLM pre-trained on 20T tokens.
+- date: '2025-02-11'
+  title: Imagen 3 added
+  type: addition
+  highlights: Google's text-to-image model added.
+- date: '2025-02-07'
+  title: Qwen Max, Plus and Turbo added
+  type: addition
+  highlights: Three Alibaba models with an OpenAI-compatible interface.
+- date: '2025-02-03'
+  title: OpenAI o3-mini available
+  type: addition
+- date: '2025-02-03'
+  title: OpenAI o1 available
+  type: addition
+- date: '2025-01-30'
+  title: New top models in the Playground
+  type: addition
+  highlights: >-
+    DeepSeek R1 and V3, GPT-o1, Gemini 2.0 Flash, QvQ 72B Preview, Claude 3.5,
+    Grok, Command R added to the Playground, plus Playground bug fixes.
+- date: '2025-01-30'
+  title: Free-Tier FAQ update
+  type: documentation
+  highlights: FAQ updated to detail API and Playground rate limits for the free tier.
+- date: '2025-01-30'
+  title: Gemini 2.0 Flash Thinking is out
+  type: addition
+- date: '2025-01-29'
+  title: DeepSeek stability fixes
+  type: fix
+- date: '2025-01-23'
+  title: DeepSeek R1 added
+  type: addition
+- date: '2025-01-23'
+  title: MiniMax Text-01 available
+  type: addition
+- date: '2025-01-22'
+  title: Kling AI 1.6 added
+  type: addition
+- date: '2025-01-20'
+  title: PayPal payments enabled
+  type: billing
+- date: '2025-01-17'
+  title: Mistral Codestral 25.01 added
+  type: addition
+- date: '2025-01-16'
+  title: MiniMax Video-01 added
+  type: addition
+- date: '2025-01-06'
+  title: DeepSeek v3 added
+  type: addition
+- date: '2025-01-06'
+  title: 'Qwen: QvQ 72B Preview added'
+  type: addition
+observations:
+- >-
+  Every entry is a model addition, a billing change or a fix. Not one entry
+  records an API contract change — a new endpoint, a changed field, a removed
+  parameter — even though /v2 endpoints, the batch surface, the OCR endpoint, the
+  usage-logs API and the MCP server all appeared after the last entry.
+- >-
+  The live record of change is elsewhere: GET /v1/models/deprecations carries 132
+  dated retirement entries, the newest from 2026-08-27. An integration that needs
+  to track AIMLAPI should poll the feed, not read the changelog.
+better_source:
+  url: https://api.aimlapi.com/v1/models/deprecations
+  see: lifecycle/aimlapi-lifecycle.yml

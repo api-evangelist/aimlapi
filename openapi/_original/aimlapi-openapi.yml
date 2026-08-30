@@ -23,7 +23,7 @@ info:
     See Quickstart
   version: 1.0.0
 servers:
-- url: http://{{baseurl}}
+- url: https://api.aimlapi.com
 components:
   securitySchemes:
     bearerAuth:

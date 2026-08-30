@@ -1,0 +1,124 @@
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: AIMLAPI
+providerId: aimlapi
+generated: '2026-08-30'
+method: probed
+source: >-
+  https://api.aimlapi.com/v1/models/deprecations (live, unauthenticated),
+  https://docs.aimlapi.com/api-references/service-endpoints/model-deprecations,
+  https://status.aimlapi.com/, https://aimlapi.com/changelog
+description: >-
+  AIMLAPI's lifecycle story is unusual and worth stating plainly: it publishes no
+  API versioning or deprecation policy for its own endpoints, but it publishes a
+  machine-readable deprecation FEED for the 1000+ third-party MODELS it resells —
+  the thing that actually breaks its customers' integrations. That feed is the
+  strongest lifecycle artifact in this repo and it is better than most
+  first-party deprecation pages in the catalog.
+versioning:
+  scheme: path-prefix
+  current:
+  - v1
+  - v2
+  policy_published: false
+  note: >-
+    Paths carry /v1 and /v2 prefixes and both are in active use — /v1 for the
+    OpenAI-compatible inference surface, /v2 for video, music, billing, usage and
+    logs. No document explains what a version increment means, when a version is
+    retired, or how long a retired version is served. The published OpenAPI
+    reports info.version 1.0.0 for the whole surface regardless of the path
+    prefix.
+  aliases_documented: true
+  alias_note: >-
+    The docs explicitly state that /v1/models, /models and /api/v1/models serve
+    identical data, and that "deprecated" substitutes for "deprecations" on all
+    three deprecation paths, naming the canonical form in each case. That is
+    unusually careful path-alias documentation.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No Sunset or Deprecation response header was observed on any probed endpoint,
+    and no RFC 8594 posture is documented.
+  model_deprecation_feed:
+    url: https://api.aimlapi.com/v1/models/deprecations
+    docs: https://docs.aimlapi.com/api-references/service-endpoints/model-deprecations
+    authentication: none
+    http_status: 200
+    entries: 132
+    probed: '2026-08-30'
+    cache_control: public, max-age=300
+    etag: weak, and generated_at is deliberately excluded from it so the ETag is stable across polls
+    statuses:
+    - deprecated: still serving, retirement announced
+    - superseded: folded into another model, the id still resolves
+    - withdrawn: gone, requests return 404
+    fields:
+    - id
+    - aliases
+    - status
+    - deprecated_at
+    - shutdown_at
+    - replaced_by
+    - reason
+    filters:
+    - status
+    - since
+    sample:
+    - id: mistralai/ministral-8b
+      status: withdrawn
+      deprecated_at: '2026-08-27'
+      shutdown_at: '2026-08-27'
+      replaced_by: mistralai/ministral-8b-2512
+      reason: provider_delisted
+    - id: thedrummer/rocinante-12b
+      status: withdrawn
+      deprecated_at: '2026-08-27'
+      shutdown_at: '2026-08-27'
+      replaced_by: null
+      reason: provider_delisted
+    rationale_published: >-
+      The docs state the feed exists because GET /v1/models returns the same
+      "not here" for a withdrawn model, a superseded model and a model that never
+      existed — "treating them alike is how a model-sync job ends up disabling
+      models that are still serving."
+    assessment: >-
+      Machine-readable, unauthenticated, dated, with a replacement id and a
+      reason per entry, plus a stable ETag for cheap polling. Zero-notice
+      retirements do occur (ministral-8b was deprecated and shut down on the same
+      day, reason provider_delisted), which the schema handles honestly rather
+      than hiding: deprecated_at is documented as "the date we learned of it when
+      the provider gave no notice."
+status_page:
+  url: https://status.aimlapi.com/
+  http_status: 200
+  title: AI/ML API Status
+  probed: '2026-08-30'
+  linked_from: https://aimlapi.com/ (Resources > Status — "Service Uptime & Incidents")
+changelog:
+  url: https://aimlapi.com/changelog
+  http_status: 200
+  probed: '2026-08-30'
+  latest_entry: '2025-02-12'
+  note: >-
+    The public changelog is live and dated but has not been updated since
+    12 February 2025 — roughly eighteen months — while the catalogue itself
+    turned over 132 models in the deprecation feed and the site footer advertises
+    models (GPT-5.5, Gemini 3.5 Flash, Claude Fable 5, Kling 3.0 Pro) that the
+    changelog never mentions. The deprecation feed, not the changelog, is the
+    live record of change.
+sla:
+  published: false
+  note: >-
+    No SLA document was found. The Enterprise plan description mentions dedicated
+    servers and unlimited RPM/TPM but states no availability commitment.
+support:
+  help_center: https://help.aimlapi.com/
+  email: help@aimlapi.com
+  discord: https://discord.gg/vayNtU9ThM
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in openapi/aimlapi-inference-openapi.yml carries deprecated: true.
+  Deprecation at AIMLAPI is expressed at the model level, not the operation level.
