@@ -1,17 +1,17 @@
 ---
 kin_checks:
   slug: aimlapi
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
+  schema_version: 0.18.2
+  scored_at: '2026-09-04'
+  run_ts: 2026-09-04T062714
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.17.2.yml; counts below let you verify that.
+    in rubric/scoring-0.18.2.yml; counts below let you verify that.
   counts:
-    total: 130
-    earned: 54
+    total: 132
+    earned: 56
     partial: 17
-    missed: 38
-    na: 21
+    missed: 36
+    na: 23
   checks:
   - id: multiple_apis
     status: missed
@@ -28,8 +28,6 @@ kin_checks:
   - id: info_complete
     status: missed
     detail: 0 of 11 openapi documents pass
-  - id: servers_resolvable
-    status: missed
   - id: operations_operation_ids
     status: missed
     detail: 0 of 11 openapi documents pass
@@ -80,8 +78,6 @@ kin_checks:
     status: missed
   - id: reg_compliance_published
     status: missed
-  - id: reversibility_documented
-    status: missed
   - id: idempotency
     status: missed
   - id: event_surface_described
@@ -128,19 +124,17 @@ kin_checks:
   - id: balanced_severities
     status: partial
     earned: 0.75
-  - id: rate_limits_documented
+  - id: agent_skill_present
     status: partial
-    earned: 2.0
-  - id: plans_present
-    status: partial
-    earned: 2.0
-  - id: plans_multiple
-    status: partial
-    earned: 1.0
+    earned: 0.75
   - id: agentic_access
     status: partial
     earned: 2.5
     detail: 'authorship: derived'
+  - id: reversibility_documented
+    status: partial
+    earned: 2.4
+    detail: 'grade: documented'
   - id: mcp_server
     status: partial
     earned: 4.8
@@ -157,3 +151,7 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: documented'
+  - id: agent_skills
+    status: partial
+    earned: 1.25
+    detail: 'authorship: derived'
