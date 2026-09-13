@@ -5,13 +5,10 @@ providerId: aimlapi
 generated: '2026-08-30'
 method: probed
 source: https://docs.aimlapi.com/quickstart/mcp
-description: >-
-  AI/ML API publishes a first-party REMOTE Model Context Protocol server at
-  https://mcp.aimlapi.com/mcp, documented on its own quickstart page and
-  advertised from the site llms.txt. It is Streamable HTTP with OAuth 2.1 +
-  PKCE + dynamic client registration; no key is pasted into the client. An API
-  key in an Authorization header is supported as an alternative. Usage is billed
-  to the same AIMLAPI account as the REST API.
+description: AI/ML API publishes a first-party REMOTE Model Context Protocol server at https://mcp.aimlapi.com/mcp,
+  documented on its own quickstart page and advertised from the site llms.txt. It is Streamable HTTP with
+  OAuth 2.1 + PKCE + dynamic client registration; no key is pasted into the client. An API key in an Authorization
+  header is supported as an alternative. Usage is billed to the same AIMLAPI account as the REST API.
 deployment:
   mode: remote
   endpoint: https://mcp.aimlapi.com/mcp
@@ -19,6 +16,11 @@ deployment:
   package: null
   auth: oauth
   verified: probed
+  probe_prior: (never probed)
+  probe: gated
+  probe_why: RFC 9728 challenge on the MCP path only
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 transport: streamable-http
 authorization:
   flow: oauth2.1-authorization-code-pkce
@@ -36,10 +38,8 @@ authorization:
   alternative:
     method: api-key
     header: 'Authorization: Bearer <YOUR_AIMLAPI_KEY>'
-    note: >-
-      The docs state that sending an Authorization header switches the client out
-      of the OAuth flow and into API-key auth. This is what our anonymous probe
-      hit.
+    note: The docs state that sending an Authorization header switches the client out of the OAuth flow
+      and into API-key auth. This is what our anonymous probe hit.
 x-evidence:
   fetched: '2026-08-30'
   probes:
@@ -47,15 +47,11 @@ x-evidence:
     method: POST
     body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
     http_status: 401
-    response: >-
-      {"error":{"code":"invalid_key","message":"Missing AIMLAPI key. Provide it as
-      an \"Authorization: Bearer <key>\" header. Create a key at
-      https://aimlapi.com/app/keys","retryable":false,...}}
-    note: >-
-      The endpoint is live and answers MCP JSON-RPC, but tools/list is
-      auth-gated, so the real tool list with inputSchemas could not be captured
-      anonymously. The 401 is a JSON error object rather than an
-      RFC 9728 WWW-Authenticate challenge.
+    response: '{"error":{"code":"invalid_key","message":"Missing AIMLAPI key. Provide it as an \"Authorization:
+      Bearer <key>\" header. Create a key at https://aimlapi.com/app/keys","retryable":false,...}}'
+    note: The endpoint is live and answers MCP JSON-RPC, but tools/list is auth-gated, so the real tool
+      list with inputSchemas could not be captured anonymously. The 401 is a JSON error object rather
+      than an RFC 9728 WWW-Authenticate challenge.
   - url: https://mcp.aimlapi.com/.well-known/oauth-protected-resource
     http_status: 200
     content_type: application/json
@@ -66,24 +62,20 @@ x-evidence:
     http_status: 200
 tools:
   status: gated
-  note: >-
-    tools/list requires authentication, so the live tool names and inputSchemas
-    are NOT captured here. The capability groups below are the provider's own
-    published description of what the server exposes, from
-    https://docs.aimlapi.com/quickstart/mcp — they are capability GROUPS, not
-    tool names, and must not be read as an inputSchema-bearing tool list.
-    Authenticated introspection is required to record the real schemas.
+  note: tools/list requires authentication, so the live tool names and inputSchemas are NOT captured here.
+    The capability groups below are the provider's own published description of what the server exposes,
+    from https://docs.aimlapi.com/quickstart/mcp — they are capability GROUPS, not tool names, and must
+    not be read as an inputSchema-bearing tool list. Authenticated introspection is required to record
+    the real schemas.
   capability_groups:
   - name: model discovery
-    description: >-
-      Search and compare the catalogue; get a comparable headline price per
-      model. Backed by the public GET /v1/models catalogue.
+    description: Search and compare the catalogue; get a comparable headline price per model. Backed by
+      the public GET /v1/models catalogue.
   - name: inference
     description: LLM chat, embeddings, and image / video / audio generation.
   - name: job management
-    description: >-
-      Submit long-running generations and poll their status and results — the
-      asynchronous generation surface (video, music, speech-to-text).
+    description: Submit long-running generations and poll their status and results — the asynchronous
+      generation surface (video, music, speech-to-text).
   - name: account
     description: Check balance and usage. Backed by GET /v2/billing and GET /v2/usage.
 clients_documented:
@@ -94,8 +86,6 @@ clients_documented:
 - Any client implementing the MCP authorization spec (OAuth 2.1 + PKCE + DCR)
 docs_mcp:
   url: https://docs.aimlapi.com/~gitbook/mcp
-  note: >-
-    The site llms.txt also advertises a documentation MCP endpoint. That is
-    GitBook's docs-query MCP for the docs site, operated by the documentation
-    platform, NOT the AIMLAPI product MCP server above. Recorded here so the two
-    are not conflated.
+  note: The site llms.txt also advertises a documentation MCP endpoint. That is GitBook's docs-query MCP
+    for the docs site, operated by the documentation platform, NOT the AIMLAPI product MCP server above.
+    Recorded here so the two are not conflated.
