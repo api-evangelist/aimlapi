@@ -292,51 +292,13 @@ apis:
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-- aid: aimlapi:aimlapi-inference-api
-  name: AIMLAPI Inference API
-  description: >-
-    AI/ML API's own published OpenAPI, served from the API host at
-    https://api.aimlapi.com/docs-yaml and rendered at https://api.aimlapi.com/docs.
-    19 operations across 16 paths covering chat completions, the Responses
-    surface, Anthropic-shaped messages, embeddings, image generation and editing,
-    video generation, text-to-speech, speech-to-text, music generation, OCR and
-    batch processing. The surface is OpenAI-compatible: an OpenAI client
-    configured with base_url https://api.aimlapi.com/v1 reaches it unchanged.
-  humanURL: https://aimlapi.com/
-  baseURL: https://api.aimlapi.com
-  tags:
-  - Inference
-  - Chat
-  - Embeddings
-  - Image
-  - Video
-  - Speech
-  - OCR
-  - Batch
-  properties:
-  - type: OpenAPI
-    url: openapi/aimlapi-inference-openapi.yml
-  - type: Overlay
-    url: overlays/aimlapi-inference-overlay.yaml
-  - type: Documentation
-    url: https://docs.aimlapi.com/
-  - type: APIReference
-    url: https://api.aimlapi.com/docs
-  - type: APIReference
-    url: https://docs.aimlapi.com/api-references/service-endpoints
-  - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart/simple-model
-  - type: Signup
-    url: https://aimlapi.com/app/sign-up/
 - aid: aimlapi:aimlapi-mcp-server
   name: AIMLAPI MCP Server
-  description: >-
-    AI/ML API's first-party remote Model Context Protocol server at
-    https://mcp.aimlapi.com/mcp — Streamable HTTP with OAuth 2.1, PKCE and
-    dynamic client registration, so no API key is pasted into the client. Exposes
-    model discovery, inference across every modality, long-running job management
-    and account balance, billed to the same account as the REST API. tools/list is
-    authentication-gated, so the live tool schemas are not captured here.
+  description: AI/ML API's first-party remote Model Context Protocol server at https://mcp.aimlapi.com/mcp
+    — Streamable HTTP with OAuth 2.1, PKCE and dynamic client registration, so no API key is pasted into
+    the client. Exposes model discovery, inference across every modality, long-running job management
+    and account balance, billed to the same account as the REST API. tools/list is authentication-gated,
+    so the live tool schemas are not captured here.
   humanURL: https://docs.aimlapi.com/quickstart/mcp
   baseURL: https://mcp.aimlapi.com/mcp
   tags:
@@ -349,6 +311,186 @@ apis:
     url: mcp/aimlapi-tool-crosswalk.yml
   - type: Documentation
     url: https://docs.aimlapi.com/quickstart/mcp
+- aid: aimlapi:aimlapi-batches-api
+  name: AIMLAPI Batches API
+  description: The Batches API from AIMLAPI — 2 operation(s) for batches.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-batches-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-embeddings-api
+  name: AIMLAPI Embeddings API
+  description: The Embeddings API from AIMLAPI — 1 operation(s) for embeddings.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Embeddings
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-embeddings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-generate-api
+  name: AIMLAPI Generate API
+  description: The Generate API from AIMLAPI — 2 operation(s) for generate.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Generate
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-generate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-messages-api
+  name: AIMLAPI Messages API
+  description: The Messages API from AIMLAPI — 1 operation(s) for messages.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-messages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-ocr-api
+  name: AIMLAPI Ocr API
+  description: The Ocr API from AIMLAPI — 1 operation(s) for ocr.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Ocr
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-ocr-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-responses-api
+  name: AIMLAPI Responses API
+  description: The Responses API from AIMLAPI — 2 operation(s) for responses.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Responses
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-responses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-stt-api
+  name: AIMLAPI Stt API
+  description: The Stt API from AIMLAPI — 2 operation(s) for stt.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Stt
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-stt-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-tts-api
+  name: AIMLAPI Tts API
+  description: The Tts API from AIMLAPI — 1 operation(s) for tts.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Tts
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-tts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-video-api
+  name: AIMLAPI Video API
+  description: The Video API from AIMLAPI — 1 operation(s) for video.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Video
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-video-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://api.aimlapi.com/docs
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/service-endpoints
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
 name: AIMLAPI
 tags:
 - Artificial Intelligence
@@ -453,57 +595,45 @@ common:
 - type: Features
   data:
   - name: 400+ AI Models
-    description: Access to 400+ models from OpenAI, Anthropic, Google, Meta, DeepSeek,
-      Mistral, Stability AI, and 40+ providers.
+    description: Access to 400+ models from OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, Stability
+      AI, and 40+ providers.
   - name: OpenAI-Compatible API
-    description: Drop-in replacement for OpenAI API — use existing OpenAI client libraries
-      with AIMLAPI endpoint.
+    description: Drop-in replacement for OpenAI API — use existing OpenAI client libraries with AIMLAPI
+      endpoint.
   - name: Text and Chat Completions
-    description: Chat completions, completion, function calling, streaming, reasoning,
-      and code generation.
+    description: Chat completions, completion, function calling, streaming, reasoning, and code generation.
   - name: Image Generation
-    description: Generate images via DALL-E, Flux, Stable Diffusion, and other image
-      generation models.
+    description: Generate images via DALL-E, Flux, Stable Diffusion, and other image generation models.
   - name: Video Generation
     description: Generate video via Sora 2, Runway, and other video generation models.
   - name: Speech Models
-    description: Text-to-speech and speech-to-text transcription via Whisper and other
-      speech models.
+    description: Text-to-speech and speech-to-text transcription via Whisper and other speech models.
   - name: Music Generation
     description: AI music generation via dedicated music models.
   - name: Vision and OCR
-    description: Image understanding, visual question answering, and OCR via vision-capable
-      LLMs.
+    description: Image understanding, visual question answering, and OCR via vision-capable LLMs.
   - name: Embeddings
     description: Generate vector embeddings for semantic search and RAG applications.
   - name: Playground
-    description: Online playground for experimenting with all available models without
-      writing code.
+    description: Online playground for experimenting with all available models without writing code.
 - type: UseCases
   data:
   - name: AI Chatbot Development
-    description: Build conversational AI chatbots and virtual assistants using leading
-      LLMs.
+    description: Build conversational AI chatbots and virtual assistants using leading LLMs.
   - name: Content Generation
-    description: Automate text, image, video, and music content generation for media
-      and marketing.
+    description: Automate text, image, video, and music content generation for media and marketing.
   - name: RAG Applications
-    description: Build retrieval-augmented generation applications using embeddings
-      and LLMs.
+    description: Build retrieval-augmented generation applications using embeddings and LLMs.
   - name: Code Generation
-    description: Integrate AI code generation and review capabilities into developer
-      tools.
+    description: Integrate AI code generation and review capabilities into developer tools.
   - name: Document Processing
-    description: Extract information and summarize documents using vision and LLM
-      models.
+    description: Extract information and summarize documents using vision and LLM models.
   - name: Voice Applications
-    description: Add speech-to-text transcription and text-to-speech synthesis to
-      applications.
+    description: Add speech-to-text transcription and text-to-speech synthesis to applications.
 - type: Integrations
   data:
   - name: OpenAI SDK
-    description: Use the official OpenAI Python and Node.js SDKs with AIMLAPI base
-      URL.
+    description: Use the official OpenAI Python and Node.js SDKs with AIMLAPI base URL.
   - name: LangChain
     description: Integrate AIMLAPI models with LangChain for agentic AI workflows.
   - name: LlamaIndex
@@ -525,7 +655,7 @@ common:
 - type: LlmsText
   url: https://aimlapi.com/llms.txt
 - type: OpenAPI
-  url: openapi/aimlapi-inference-openapi.yml
+  url: openapi/_original/aimlapi-inference-openapi.yml
 - type: Overlay
   url: overlays/aimlapi-inference-overlay.yaml
 - type: MCPServer
@@ -549,10 +679,8 @@ common:
   name: AI/ML API Status
 - type: Deprecation
   url: lifecycle/aimlapi-lifecycle.yml
-  description: >-
-    Machine-readable model deprecation feed at
-    https://api.aimlapi.com/v1/models/deprecations — 132 dated entries with
-    status, shutdown date, replacement id and reason, served unauthenticated.
+  description: Machine-readable model deprecation feed at https://api.aimlapi.com/v1/models/deprecations
+    — 132 dated entries with status, shutdown date, replacement id and reason, served unauthenticated.
 - type: OAuthScopes
   url: scopes/aimlapi-scopes.yml
 - type: Conventions
@@ -585,13 +713,12 @@ common:
   url: https://discord.gg/vayNtU9ThM
   type: Discord
 created: '2025-01-07'
-modified: '2026-08-30'
+modified: '2026-09-16'
 position: Consuming
-description: AIMLAPI is a unified AI model API gateway providing access to 400+ state-of-the-art
-  AI models from OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, Stability AI,
-  and 40+ other providers through a single OpenAI-compatible API. Supported modalities
-  include text/chat LLMs, image generation, video generation, music generation, speech-to-text,
-  text-to-speech, vision/OCR, embeddings, and 3D generation.
+description: AIMLAPI is a unified AI model API gateway providing access to 400+ state-of-the-art AI models
+  from OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, Stability AI, and 40+ other providers through
+  a single OpenAI-compatible API. Supported modalities include text/chat LLMs, image generation, video
+  generation, music generation, speech-to-text, text-to-speech, vision/OCR, embeddings, and 3D generation.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
