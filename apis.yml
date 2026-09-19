@@ -1,5 +1,8 @@
 aid: aimlapi
 url: https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/apis.yml
+x-docs-platform: gitbook
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-17
 apis:
 - aid: aimlapi:aimlapi-api-key-management-api
   name: AIMLAPI API Key Management API
@@ -40,6 +43,8 @@ apis:
   humanURL: https://aimlapi.com/
   baseURL: https://api.aimlapi.com
   tags:
+  - Assistant
+  tags_raw:
   - Assistants
   properties:
   - type: OpenAPI
@@ -377,6 +382,8 @@ apis:
   humanURL: https://aimlapi.com/
   baseURL: https://api.aimlapi.com
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -397,6 +404,8 @@ apis:
   humanURL: https://aimlapi.com/
   baseURL: https://api.aimlapi.com
   tags:
+  - OCR
+  tags_raw:
   - Ocr
   properties:
   - type: OpenAPI
@@ -437,6 +446,8 @@ apis:
   humanURL: https://aimlapi.com/
   baseURL: https://api.aimlapi.com
   tags:
+  - STT
+  tags_raw:
   - Stt
   properties:
   - type: OpenAPI
@@ -457,6 +468,8 @@ apis:
   humanURL: https://aimlapi.com/
   baseURL: https://api.aimlapi.com
   tags:
+  - TTS
+  tags_raw:
   - Tts
   properties:
   - type: OpenAPI
