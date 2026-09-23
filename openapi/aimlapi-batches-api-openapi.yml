@@ -1,0 +1,363 @@
+openapi: 3.2.0
+info:
+  title: AIML Batches API
+  version: 1.0.0
+servers:
+- url: https://api.aimlapi.com
+tags:
+- name: Batches
+paths:
+  /v1/batches:
+    post:
+      operationId: _v1_batches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - claude-opus-4-1-20250805
+                    - anthropic/claude-opus-4-1-20250805
+                    - claude-sonnet-4-5-20250929
+                    - anthropic/claude-sonnet-4-5-20250929
+                    - claude-haiku-4-5-20251001
+                    - anthropic/claude-haiku-4-5-20251001
+                    - claude-opus-4-5-20251101
+                    - anthropic/claude-opus-4-5-20251101
+                    - claude-opus-4-6
+                    - anthropic/claude-opus-4-6
+                    - claude-sonnet-4-6
+                    - anthropic/claude-sonnet-4-6
+                    - claude-opus-4-7
+                    - anthropic/claude-opus-4-7
+                    - claude-opus-4-8
+                    - anthropic/claude-opus-4-8
+                    - claude-fable-5
+                    - anthropic/claude-fable-5
+                    - claude-sonnet-5
+                    - anthropic/claude-sonnet-5
+                    - claude-opus-5
+                    - anthropic/claude-opus-5
+                    - claude-opus-4-1-latest
+                    - claude-opus-4-1
+                    - anthropic/claude-opus-4.1
+                    - anthropic/claude-opus-4.1-20250805
+                    - anthropic/claude-sonnet-4.5
+                    - claude-sonnet-4-5
+                    - anthropic/claude-haiku-4.5
+                    - claude-haiku-4-5
+                    - anthropic/claude-opus-4-5
+                    - claude-opus-4-5
+                    - anthropic/claude-opus-4.5
+                    - anthropic/claude-sonnet-4.6
+                    - anthropic/claude-sonnet-4-6-20260218
+                    - anthropic/claude-opus-4.7
+                    - anthropic/claude-opus-4.8
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        custom_id:
+                          type: string
+                        params:
+                          type: object
+                          properties:
+                            model:
+                              type: string
+                            max_tokens:
+                              type: number
+                              minimum: 1
+                              default: 1024
+                            messages:
+                              type: array
+                              items: {}
+                            metadata:
+                              type: object
+                              additionalProperties:
+                                type: string
+                            stop_sequences:
+                              type: array
+                              items:
+                                type: string
+                            system:
+                              type: string
+                            temperature:
+                              type: number
+                              minimum: 0
+                              maximum: 1
+                              default: 1
+                            tool_choice: {}
+                            tools:
+                              type: array
+                              items: {}
+                            top_k:
+                              type: number
+                            top_p:
+                              type: number
+                            thinking:
+                              anyOf:
+                              - oneOf:
+                                - type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - enabled
+                                    budget_tokens:
+                                      type: integer
+                                      minimum: 1024
+                                      description: Determines how many tokens Claude can use for its internal reasoning process. Larger budgets can enable more thorough analysis for complex problems, improving response quality. Must be ≥1024 and less than max_tokens.
+                                    display:
+                                      type: string
+                                      enum:
+                                      - summarized
+                                      - omitted
+                                      default: summarized
+                                  required:
+                                  - type
+                                  - budget_tokens
+                                - type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - disabled
+                                  required:
+                                  - type
+                                - type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - adaptive
+                                    display:
+                                      type: string
+                                      enum:
+                                      - summarized
+                                      - omitted
+                                      default: summarized
+                                  required:
+                                  - type
+                              - type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                - type
+                          required:
+                          - model
+                          - messages
+                      required:
+                      - custom_id
+                      - params
+                    minItems: 1
+                    maxItems: 100000
+                required:
+                - model
+                - requests
+                title: claude-opus-4-1-20250805, anthropic/claude-opus-4-1-20250805, claude-sonnet-4-5-20250929, anthropic/claude-sonnet-4-5-20250929, claude-haiku-4-5-20251001, anthropic/claude-haiku-4-5-20251001, claude-opus-4-5-20251101, anthropic/claude-opus-4-5-20251101, claude-opus-4-6, anthropic/claude-opus-4-6, claude-sonnet-4-6, anthropic/claude-sonnet-4-6, claude-opus-4-7, anthropic/claude-opus-4-7, claude-opus-4-8, anthropic/claude-opus-4-8, claude-fable-5, anthropic/claude-fable-5, claude-sonnet-5, anthropic/claude-sonnet-5, claude-opus-5, anthropic/claude-opus-5, claude-opus-4-1-latest, claude-opus-4-1, anthropic/claude-opus-4.1, anthropic/claude-opus-4.1-20250805, anthropic/claude-sonnet-4.5, claude-sonnet-4-5, anthropic/claude-haiku-4.5, claude-haiku-4-5, anthropic/claude-opus-4-5, claude-opus-4-5, anthropic/claude-opus-4.5, anthropic/claude-sonnet-4.6, anthropic/claude-sonnet-4-6-20260218, anthropic/claude-opus-4.7, anthropic/claude-opus-4.8
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - test/dummy-batches
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        custom_id:
+                          type: string
+                          minLength: 1
+                        params:
+                          type: object
+                          properties:
+                            model:
+                              type: string
+                            max_tokens:
+                              type: integer
+                              minimum: 1
+                              default: 1024
+                            messages:
+                              type: array
+                              items: {}
+                              minItems: 1
+                          required:
+                          - model
+                          - messages
+                      required:
+                      - custom_id
+                      - params
+                    minItems: 1
+                    maxItems: 100
+                  test:
+                    type: object
+                    properties:
+                      delay:
+                        type: number
+                      runningPolls:
+                        type: number
+                      tokens:
+                        type: number
+                      errorStatus:
+                        type: number
+                      submitErrorStatus:
+                        type: number
+                required:
+                - model
+                - requests
+                title: test/dummy-batches
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - Batches
+      summary: V1 batches
+      x-summary-source: derived
+    get:
+      operationId: _v1_batches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  enum:
+                  - claude-opus-4-1-20250805
+                  - anthropic/claude-opus-4-1-20250805
+                  - claude-sonnet-4-5-20250929
+                  - anthropic/claude-sonnet-4-5-20250929
+                  - claude-haiku-4-5-20251001
+                  - anthropic/claude-haiku-4-5-20251001
+                  - claude-opus-4-5-20251101
+                  - anthropic/claude-opus-4-5-20251101
+                  - claude-opus-4-6
+                  - anthropic/claude-opus-4-6
+                  - claude-sonnet-4-6
+                  - anthropic/claude-sonnet-4-6
+                  - claude-opus-4-7
+                  - anthropic/claude-opus-4-7
+                  - claude-opus-4-8
+                  - anthropic/claude-opus-4-8
+                  - claude-fable-5
+                  - anthropic/claude-fable-5
+                  - claude-sonnet-5
+                  - anthropic/claude-sonnet-5
+                  - claude-opus-5
+                  - anthropic/claude-opus-5
+                  - claude-opus-4-1-latest
+                  - claude-opus-4-1
+                  - anthropic/claude-opus-4.1
+                  - anthropic/claude-opus-4.1-20250805
+                  - anthropic/claude-sonnet-4.5
+                  - claude-sonnet-4-5
+                  - anthropic/claude-haiku-4.5
+                  - claude-haiku-4-5
+                  - anthropic/claude-opus-4-5
+                  - claude-opus-4-5
+                  - anthropic/claude-opus-4.5
+                  - anthropic/claude-sonnet-4.6
+                  - anthropic/claude-sonnet-4-6-20260218
+                  - anthropic/claude-opus-4.7
+                  - anthropic/claude-opus-4.8
+                  - test/dummy-batches
+                id:
+                  type: string
+              required:
+              - model
+              - id
+              title: claude-opus-4-1-20250805, anthropic/claude-opus-4-1-20250805, claude-sonnet-4-5-20250929, anthropic/claude-sonnet-4-5-20250929, claude-haiku-4-5-20251001, anthropic/claude-haiku-4-5-20251001, claude-opus-4-5-20251101, anthropic/claude-opus-4-5-20251101, claude-opus-4-6, anthropic/claude-opus-4-6, claude-sonnet-4-6, anthropic/claude-sonnet-4-6, claude-opus-4-7, anthropic/claude-opus-4-7, claude-opus-4-8, anthropic/claude-opus-4-8, claude-fable-5, anthropic/claude-fable-5, claude-sonnet-5, anthropic/claude-sonnet-5, claude-opus-5, anthropic/claude-opus-5, claude-opus-4-1-latest, claude-opus-4-1, anthropic/claude-opus-4.1, anthropic/claude-opus-4.1-20250805, anthropic/claude-sonnet-4.5, claude-sonnet-4-5, anthropic/claude-haiku-4.5, claude-haiku-4-5, anthropic/claude-opus-4-5, claude-opus-4-5, anthropic/claude-opus-4.5, anthropic/claude-sonnet-4.6, anthropic/claude-sonnet-4-6-20260218, anthropic/claude-opus-4.7, anthropic/claude-opus-4.8, test/dummy-batches
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - Batches
+      summary: V1 batches
+      x-summary-source: derived
+  /v1/batches/cancel/:batch_id:
+    post:
+      operationId: _v1_batches_cancel_:batch_id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  enum:
+                  - claude-opus-4-1-20250805
+                  - anthropic/claude-opus-4-1-20250805
+                  - claude-sonnet-4-5-20250929
+                  - anthropic/claude-sonnet-4-5-20250929
+                  - claude-haiku-4-5-20251001
+                  - anthropic/claude-haiku-4-5-20251001
+                  - claude-opus-4-5-20251101
+                  - anthropic/claude-opus-4-5-20251101
+                  - claude-opus-4-6
+                  - anthropic/claude-opus-4-6
+                  - claude-sonnet-4-6
+                  - anthropic/claude-sonnet-4-6
+                  - claude-opus-4-7
+                  - anthropic/claude-opus-4-7
+                  - claude-opus-4-8
+                  - anthropic/claude-opus-4-8
+                  - claude-fable-5
+                  - anthropic/claude-fable-5
+                  - claude-sonnet-5
+                  - anthropic/claude-sonnet-5
+                  - claude-opus-5
+                  - anthropic/claude-opus-5
+                  - claude-opus-4-1-latest
+                  - claude-opus-4-1
+                  - anthropic/claude-opus-4.1
+                  - anthropic/claude-opus-4.1-20250805
+                  - anthropic/claude-sonnet-4.5
+                  - claude-sonnet-4-5
+                  - anthropic/claude-haiku-4.5
+                  - claude-haiku-4-5
+                  - anthropic/claude-opus-4-5
+                  - claude-opus-4-5
+                  - anthropic/claude-opus-4.5
+                  - anthropic/claude-sonnet-4.6
+                  - anthropic/claude-sonnet-4-6-20260218
+                  - anthropic/claude-opus-4.7
+                  - anthropic/claude-opus-4.8
+                  - test/dummy-batches
+                id:
+                  type: string
+              required:
+              - model
+              - id
+              title: claude-opus-4-1-20250805, anthropic/claude-opus-4-1-20250805, claude-sonnet-4-5-20250929, anthropic/claude-sonnet-4-5-20250929, claude-haiku-4-5-20251001, anthropic/claude-haiku-4-5-20251001, claude-opus-4-5-20251101, anthropic/claude-opus-4-5-20251101, claude-opus-4-6, anthropic/claude-opus-4-6, claude-sonnet-4-6, anthropic/claude-sonnet-4-6, claude-opus-4-7, anthropic/claude-opus-4-7, claude-opus-4-8, anthropic/claude-opus-4-8, claude-fable-5, anthropic/claude-fable-5, claude-sonnet-5, anthropic/claude-sonnet-5, claude-opus-5, anthropic/claude-opus-5, claude-opus-4-1-latest, claude-opus-4-1, anthropic/claude-opus-4.1, anthropic/claude-opus-4.1-20250805, anthropic/claude-sonnet-4.5, claude-sonnet-4-5, anthropic/claude-haiku-4.5, claude-haiku-4-5, anthropic/claude-opus-4-5, claude-opus-4-5, anthropic/claude-opus-4.5, anthropic/claude-sonnet-4.6, anthropic/claude-sonnet-4-6-20260218, anthropic/claude-opus-4.7, anthropic/claude-opus-4.8, test/dummy-batches
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - Batches
+      summary: V1 batches cancel :batch id
+      x-summary-source: derived

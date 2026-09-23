@@ -1,0 +1,1329 @@
+openapi: 3.2.0
+info:
+  title: AIML Tts API
+  version: 1.0.0
+servers:
+- url: https://api.aimlapi.com
+tags:
+- name: TTS
+paths:
+  /v1/tts:
+    post:
+      operationId: _v1_tts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - gpt-4o-mini-tts
+                    - openai/gpt-4o-mini-tts
+                    - tts-1
+                    - openai/tts-1
+                    - tts-1-hd
+                    - openai/tts-1-hd
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 4096
+                    description: The text content to be converted to speech.
+                  voice:
+                    type: string
+                    enum:
+                    - alloy
+                    - ash
+                    - ballad
+                    - coral
+                    - echo
+                    - fable
+                    - nova
+                    - onyx
+                    - sage
+                    - shimmer
+                    - verse
+                    default: alloy
+                    description: Name of the voice to be used.
+                  style:
+                    type: string
+                    description: Determines the style exaggeration of the voice. This setting attempts to amplify the style of the original speaker. It does consume additional computational resources and might increase latency if set to anything other than 0.
+                  response_format:
+                    type: string
+                    enum:
+                    - mp3
+                    - opus
+                    - aac
+                    - flac
+                    - wav
+                    - pcm
+                    default: mp3
+                    description: Format of the output content for non-streaming requests. Controls how the generated audio data is encoded in the response.
+                  speed:
+                    type: number
+                    minimum: 0.25
+                    maximum: 4
+                    default: 1
+                    description: Adjusts the speed of the voice. A value of 1.0 is the default speed, while values less than 1.0 slow down the speech, and values greater than 1.0 speed it up.
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                required:
+                - model
+                - text
+                title: gpt-4o-mini-tts, openai/gpt-4o-mini-tts, tts-1, openai/tts-1, tts-1-hd, openai/tts-1-hd
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - bytedance/seed-audio-1-0
+                    - bytedance/seed-audio-1.0
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 3000
+                    description: Text to synthesize (the TTS prompt). Use @Audio1, @Audio2, etc. to reference audio clips.
+                  references:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        speaker:
+                          type: string
+                          description: BytePlus TTS2.0 voice ID or cloned voice ID.
+                        audio_data:
+                          type: string
+                          description: Base64-encoded reference audio.
+                        audio_url:
+                          type: string
+                          format: uri
+                          description: URL of a reference audio file.
+                        image_data:
+                          type: string
+                          description: Base64-encoded reference image.
+                        image_url:
+                          type: string
+                          format: uri
+                          description: URL of a reference image.
+                    maxItems: 3
+                    description: Reference resources. Supports up to three audio references or one image reference.
+                  audio_config:
+                    type: object
+                    properties:
+                      format:
+                        type: string
+                        enum:
+                        - wav
+                        - mp3
+                        - pcm
+                        - ogg_opus
+                        default: wav
+                        description: The format of the generated music.
+                      sample_rate:
+                        anyOf:
+                        - type: string
+                          enum:
+                          - '8000'
+                          - '16000'
+                          - '24000'
+                          - '32000'
+                          - '44100'
+                          - '48000'
+                        - type: integer
+                        description: The sampling rate of the generated music.
+                        enum:
+                        - 8000
+                        - 16000
+                        - 24000
+                        - 32000
+                        - 44100
+                        - 48000
+                      speech_rate:
+                        type: integer
+                        minimum: -50
+                        maximum: 100
+                        default: 0
+                        description: Speech rate. 100 means 2.0x speed, -50 means 0.5x speed.
+                      loudness_rate:
+                        type: integer
+                        minimum: -50
+                        maximum: 100
+                        default: 0
+                        description: Volume. 100 means 2.0x volume, -50 means 0.5x volume.
+                      pitch_rate:
+                        type: integer
+                        minimum: -12
+                        maximum: 12
+                        default: 0
+                        description: Pitch adjustment.
+                  watermark:
+                    type: object
+                    properties:
+                      aigc_watermark:
+                        type: boolean
+                        default: false
+                        description: Adds an explicit audio rhythm marker.
+                      aigc_metadata:
+                        type: object
+                        properties:
+                          enable:
+                            type: boolean
+                            default: false
+                          content_producer:
+                            type: string
+                          produce_id:
+                            type: string
+                          content_propagator:
+                            type: string
+                          propagate_id:
+                            type: string
+                        description: Implicit watermark metadata.
+                required:
+                - model
+                - text
+                title: bytedance/seed-audio-1-0, bytedance/seed-audio-1.0
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - elevenlabs/eleven_multilingual_v2
+                    - elevenlabs/eleven_turbo_v2_5
+                  text:
+                    type: string
+                    description: The text content to be converted to speech.
+                  voice:
+                    type: string
+                    enum:
+                    - Rachel
+                    - Bella
+                    - Roger
+                    - Sarah
+                    - Laura
+                    - Charlie
+                    - George
+                    - Callum
+                    - River
+                    - Harry
+                    - Liam
+                    - Alice
+                    - Matilda
+                    - Will
+                    - Jessica
+                    - Eric
+                    - Chris
+                    - Brian
+                    - Daniel
+                    - Lily
+                    - Adam
+                    - Bill
+                    - Drew
+                    - Clyde
+                    - Paul
+                    - Aria
+                    - Domi
+                    - Dave
+                    - Fin
+                    - Antoni
+                    - Thomas
+                    - Emily
+                    - Elli
+                    - Patrick
+                    - Dorothy
+                    - Josh
+                    - Charlotte
+                    - James
+                    - Joseph
+                    - Jeremy
+                    - Michael
+                    - Ethan
+                    - Gigi
+                    - Freya
+                    - Grace
+                    - Serena
+                    - Nicole
+                    - Jessie
+                    - Sam
+                    - Glinda
+                    - Giovanni
+                    - Mimi
+                    default: Rachel
+                    description: Name of the voice to be used.
+                  apply_text_normalization:
+                    type: string
+                    enum:
+                    - auto
+                    - 'on'
+                    - 'off'
+                    description: 'This parameter controls text normalization with three modes: ''auto'', ''on'', and ''off''. When set to ''auto'', the system will automatically decide whether to apply text normalization (e.g., spelling out numbers). With ''on'', text normalization will always be applied, while with ''off'', it will be skipped.'
+                  output_format:
+                    type: string
+                    enum:
+                    - mp3_22050_32
+                    - mp3_44100_32
+                    - mp3_44100_64
+                    - mp3_44100_96
+                    - mp3_44100_128
+                    - mp3_44100_192
+                    - pcm_8000
+                    - pcm_16000
+                    - pcm_22050
+                    - pcm_24000
+                    - pcm_44100
+                    - pcm_48000
+                    - ulaw_8000
+                    - alaw_8000
+                    - opus_48000_32
+                    - opus_48000_64
+                    - opus_48000_96
+                    - opus_48000_128
+                    - opus_48000_192
+                    description: Format of the output content for non-streaming requests. Controls how the generated audio data is encoded in the response.
+                  voice_settings:
+                    type: object
+                    properties:
+                      stability:
+                        type: number
+                        minimum: 0
+                        maximum: 1
+                        default: 0.5
+                        description: Determines how stable the voice is and the randomness between each generation. Lower values introduce broader emotional range for the voice. Higher values can result in a monotonous voice with limited emotion.
+                      use_speaker_boost:
+                        type: boolean
+                        default: true
+                        description: This setting boosts the similarity to the original speaker. Using this setting requires a slightly higher computational load, which in turn increases latency.
+                      similarity_boost:
+                        type: number
+                        minimum: 0
+                        maximum: 1
+                        default: 0.75
+                        description: Determines how closely the AI should adhere to the original voice when attempting to replicate it.
+                      style:
+                        type: number
+                        minimum: 0
+                        maximum: 1
+                        default: 0
+                        description: Determines the style exaggeration of the voice. This setting attempts to amplify the style of the original speaker. It does consume additional computational resources and might increase latency if set to anything other than 0.
+                      speed:
+                        type: number
+                        minimum: 0.7
+                        maximum: 1.2
+                        default: 1
+                        description: Adjusts the speed of the voice. A value of 1.0 is the default speed, while values less than 1.0 slow down the speech, and values greater than 1.0 speed it up.
+                    description: Voice settings overriding stored settings for the given voice. They are applied only on the given request.
+                  seed:
+                    type: integer
+                    description: If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed.
+                  stream:
+                    type: boolean
+                    default: true
+                  next_text:
+                    type: string
+                    description: The text that comes after the text of the current request. Can be used to improve the speech's continuity when concatenating together multiple generations or to influence the speech's continuity in the current generation.
+                  previous_text:
+                    type: string
+                    description: The text that came before the text of the current request. Can be used to improve the speech's continuity when concatenating together multiple generations or to influence the speech's continuity in the current generation.
+                required:
+                - model
+                - text
+                title: elevenlabs/eleven_multilingual_v2, elevenlabs/eleven_turbo_v2_5
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - elevenlabs/v3_alpha
+                  text:
+                    type: string
+                    description: The text content to be converted to speech.
+                  voice:
+                    type: string
+                    enum:
+                    - Rachel
+                    - Bella
+                    - Roger
+                    - Sarah
+                    - Laura
+                    - Charlie
+                    - George
+                    - Callum
+                    - River
+                    - Harry
+                    - Liam
+                    - Alice
+                    - Matilda
+                    - Will
+                    - Jessica
+                    - Eric
+                    - Chris
+                    - Brian
+                    - Daniel
+                    - Lily
+                    - Adam
+                    - Bill
+                    - Drew
+                    - Clyde
+                    - Paul
+                    - Aria
+                    - Domi
+                    - Dave
+                    - Fin
+                    - Antoni
+                    - Thomas
+                    - Emily
+                    - Elli
+                    - Patrick
+                    - Dorothy
+                    - Josh
+                    - Charlotte
+                    - James
+                    - Joseph
+                    - Jeremy
+                    - Michael
+                    - Ethan
+                    - Gigi
+                    - Freya
+                    - Grace
+                    - Serena
+                    - Nicole
+                    - Jessie
+                    - Sam
+                    - Glinda
+                    - Giovanni
+                    - Mimi
+                    default: Rachel
+                    description: Name of the voice to be used.
+                  apply_text_normalization:
+                    type: string
+                    enum:
+                    - auto
+                    - 'on'
+                    - 'off'
+                    description: 'This parameter controls text normalization with three modes: ''auto'', ''on'', and ''off''. When set to ''auto'', the system will automatically decide whether to apply text normalization (e.g., spelling out numbers). With ''on'', text normalization will always be applied, while with ''off'', it will be skipped.'
+                  output_format:
+                    type: string
+                    enum:
+                    - mp3_22050_32
+                    - mp3_44100_32
+                    - mp3_44100_64
+                    - mp3_44100_96
+                    - mp3_44100_128
+                    - mp3_44100_192
+                    - pcm_8000
+                    - pcm_16000
+                    - pcm_22050
+                    - pcm_24000
+                    - pcm_44100
+                    - pcm_48000
+                    - ulaw_8000
+                    - alaw_8000
+                    - opus_48000_32
+                    - opus_48000_64
+                    - opus_48000_96
+                    - opus_48000_128
+                    - opus_48000_192
+                    description: Format of the output content for non-streaming requests. Controls how the generated audio data is encoded in the response.
+                  voice_settings:
+                    type: object
+                    properties:
+                      stability:
+                        type: number
+                        minimum: 0
+                        maximum: 1
+                        default: 0.5
+                        description: Determines how stable the voice is and the randomness between each generation. Lower values introduce broader emotional range for the voice. Higher values can result in a monotonous voice with limited emotion.
+                      use_speaker_boost:
+                        type: boolean
+                        default: true
+                        description: This setting boosts the similarity to the original speaker. Using this setting requires a slightly higher computational load, which in turn increases latency.
+                      similarity_boost:
+                        type: number
+                        minimum: 0
+                        maximum: 1
+                        default: 0.75
+                        description: Determines how closely the AI should adhere to the original voice when attempting to replicate it.
+                      style:
+                        type: number
+                        minimum: 0
+                        maximum: 1
+                        default: 0
+                        description: Determines the style exaggeration of the voice. This setting attempts to amplify the style of the original speaker. It does consume additional computational resources and might increase latency if set to anything other than 0.
+                      speed:
+                        type: number
+                        minimum: 0.7
+                        maximum: 1.2
+                        default: 1
+                        description: Adjusts the speed of the voice. A value of 1.0 is the default speed, while values less than 1.0 slow down the speech, and values greater than 1.0 speed it up.
+                    description: Voice settings overriding stored settings for the given voice. They are applied only on the given request.
+                  seed:
+                    type: integer
+                    description: If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed.
+                  stream:
+                    type: boolean
+                    default: true
+                required:
+                - model
+                - text
+                title: elevenlabs/v3_alpha
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - qwen3-tts-flash
+                    - alibaba/qwen3-tts-flash
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 600
+                    description: The text content to be converted to speech.
+                  voice:
+                    type: string
+                    enum:
+                    - Cherry
+                    - Ethan
+                    - Nofish
+                    - Jennifer
+                    - Ryan
+                    - Katerina
+                    - Elias
+                    - Jada
+                    - Dylan
+                    - Sunny
+                    - Li
+                    - Marcus
+                    - Roy
+                    - Peter
+                    - Rocky
+                    - Kiki
+                    - Eric
+                    default: Cherry
+                    description: Name of the voice to be used.
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                required:
+                - model
+                - text
+                title: qwen3-tts-flash, alibaba/qwen3-tts-flash
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - test/dummy-tts
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 4096
+                  voice:
+                    type: string
+                    default: alloy
+                  response_format:
+                    type: string
+                    enum:
+                    - mp3
+                    - opus
+                    - aac
+                    - flac
+                    - wav
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                  test:
+                    type: object
+                    properties:
+                      delay:
+                        type: number
+                      errorStatus:
+                        type: number
+                required:
+                - model
+                - text
+                title: test/dummy-tts
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - minimax/speech-2.5-turbo-preview
+                    - minimax/speech-2.5-hd-preview
+                    - minimax/speech-2.6-hd
+                    - minimax/speech-2.6-turbo
+                    - minimax/speech-2.8-turbo
+                    - minimax/speech-2.8-hd
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 5000
+                    description: The text content to be converted to speech.
+                  voice_setting:
+                    type: object
+                    properties:
+                      voice_id:
+                        anyOf:
+                        - type: string
+                          enum:
+                          - Wise_Woman
+                          - Friendly_Person
+                          - Inspirational_girl
+                          - Deep_Voice_Man
+                          - Calm_Woman
+                          - Casual_Guy
+                          - Lively_Girl
+                          - Patient_Man
+                          - Young_Knight
+                          - Determined_Man
+                          - Lovely_Girl
+                          - Decent_Boy
+                          - Imposing_Manner
+                          - Elegant_Man
+                          - Abbess
+                          - Sweet_Girl_2
+                          - Exuberant_Girl
+                        - type: string
+                          minLength: 1
+                          maxLength: 64
+                        default: Wise_Woman
+                        description: A predefined system voice for text-to-speech synthesis.
+                      speed:
+                        type: number
+                        minimum: 0.5
+                        maximum: 2
+                        default: 1
+                        description: Adjusts the speed of the voice. A value of 1.0 is the default speed, while values less than 1.0 slow down the speech, and values greater than 1.0 speed it up.
+                      vol:
+                        type: number
+                        minimum: 0.01
+                        maximum: 10
+                        default: 1
+                        description: 'The volume of the generated speech. Range: (0, 10]. Larger values indicate larger volumes.'
+                      pitch:
+                        type: integer
+                        minimum: -12
+                        maximum: 12
+                        default: 0
+                        description: 'The pitch of the generated speech. Range: [-12, 12]. 0 = default voice output.'
+                      emotion:
+                        type: string
+                        enum:
+                        - happy
+                        - sad
+                        - angry
+                        - fearful
+                        - disgusted
+                        - surprised
+                        - neutral
+                        description: Emotional tone to apply to the synthesized speech. Controls the emotional expression of the generated voice output.
+                      text_normalization:
+                        type: boolean
+                        default: false
+                        description: English text normalization support. Improves number-reading but increases latency.
+                    default:
+                      voice_id: Wise_Woman
+                    description: Voice settings overriding stored settings for the given voice. They are applied only on the given request.
+                  audio_setting:
+                    type: object
+                    properties:
+                      sample_rate:
+                        type: integer
+                        description: Audio sample rate in Hz.
+                        enum:
+                        - 8000
+                        - 16000
+                        - 22050
+                        - 24000
+                        - 32000
+                        - 44100
+                        default: '32000'
+                      bitrate:
+                        type: integer
+                        description: Audio bitrate in bits per second. Controls the compression level and audio quality. Higher bitrates provide better quality but larger file sizes.
+                        enum:
+                        - 32000
+                        - 64000
+                        - 128000
+                        - 256000
+                        default: '128000'
+                      format:
+                        type: string
+                        enum:
+                        - mp3
+                        - pcm
+                        - flac
+                        default: mp3
+                        description: Audio output format. MP3 provides good compression and compatibility, PCM offers uncompressed high quality, and FLAC provides lossless compression.
+                      channel:
+                        type: integer
+                        description: Number of audio channels. 1 for mono (single channel), 2 for stereo (dual channel) output.
+                        enum:
+                        - 1
+                        - 2
+                        default: '1'
+                    description: Audio output configuration
+                  pronunciation_dict:
+                    type: object
+                    properties:
+                      tone:
+                        type: array
+                        items:
+                          type: string
+                        description: 'Replacement of text and pronunciations. Format: ["燕少飞/(yan4)(shao3)(fei1)", "达菲/(da2)(fei1)", "omg/oh my god"]'
+                    required:
+                    - tone
+                    description: Custom pronunciation dictionary for handling specific words or phrases. Allows fine-tuning of how certain text should be pronounced using phonetic representations.
+                  timbre_weights:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        voice_id:
+                          anyOf:
+                          - type: string
+                            enum:
+                            - Wise_Woman
+                            - Friendly_Person
+                            - Inspirational_girl
+                            - Deep_Voice_Man
+                            - Calm_Woman
+                            - Casual_Guy
+                            - Lively_Girl
+                            - Patient_Man
+                            - Young_Knight
+                            - Determined_Man
+                            - Lovely_Girl
+                            - Decent_Boy
+                            - Imposing_Manner
+                            - Elegant_Man
+                            - Abbess
+                            - Sweet_Girl_2
+                            - Exuberant_Girl
+                          - type: string
+                            minLength: 1
+                            maxLength: 64
+                          description: A predefined system voice for text-to-speech synthesis.
+                        weight:
+                          type: integer
+                          minimum: 1
+                          maximum: 100
+                          description: 'Weight for voice mixing. Range: [1, 100]. Higher weights are sampled more heavily.'
+                      required:
+                      - voice_id
+                      - weight
+                    maxItems: 4
+                    description: Voice mixing configuration allowing combination of up to 4 different voices with specified weights. Each voice contributes to the final output based on its weight value (1-100).
+                  language_boost:
+                    type: string
+                    enum:
+                    - Chinese
+                    - Chinese,Yue
+                    - English
+                    - Arabic
+                    - Russian
+                    - Spanish
+                    - French
+                    - Portuguese
+                    - German
+                    - Turkish
+                    - Dutch
+                    - Ukrainian
+                    - Vietnamese
+                    - Indonesian
+                    - Japanese
+                    - Italian
+                    - Korean
+                    - Thai
+                    - Polish
+                    - Romanian
+                    - Greek
+                    - Czech
+                    - Finnish
+                    - Hindi
+                    - Bulgarian
+                    - Danish
+                    - Hebrew
+                    - Malay
+                    - Persian
+                    - Slovak
+                    - Swedish
+                    - Croatian
+                    - Filipino
+                    - Hungarian
+                    - Norwegian
+                    - Slovenian
+                    - Catalan
+                    - Nynorsk
+                    - Tamil
+                    - Afrikaans
+                    - auto
+                    description: Language recognition enhancement option.
+                  voice_modify:
+                    type: object
+                    properties:
+                      pitch:
+                        type: integer
+                        minimum: -100
+                        maximum: 100
+                        description: Pitch level (-100 to 100)
+                      intensity:
+                        type: integer
+                        minimum: -100
+                        maximum: 100
+                        description: Intensity level (-100 to 100)
+                      timbre:
+                        type: integer
+                        minimum: -100
+                        maximum: 100
+                        description: Timbre level (-100 to 100)
+                      sound_effects:
+                        type: string
+                        enum:
+                        - spacious_echo
+                        - auditorium_echo
+                        - lofi_telephone
+                        - robotic
+                        description: Audio effects to apply to the synthesized speech. Includes options like spacious_echo, auditorium_echo, lofi_telephone, and robotic effects.
+                    description: Voice modification settings for adjusting pitch, intensity, timbre, and applying sound effects to customize the voice characteristics.
+                  subtitle_enable:
+                    type: boolean
+                    default: false
+                    description: Enable subtitle generation service. Only available for non-streaming requests. Generates timing information for the synthesized speech.
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                required:
+                - model
+                - text
+                title: minimax/speech-2.5-turbo-preview, minimax/speech-2.5-hd-preview, minimax/speech-2.6-hd, minimax/speech-2.6-turbo, minimax/speech-2.8-turbo, minimax/speech-2.8-hd
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - aura
+                    - deepgram/aura
+                    - aura-asteria-en
+                    - deepgram/aura-asteria-en
+                    - '#g1_aura-asteria-en'
+                    - aura-hera-en
+                    - deepgram/aura-hera-en
+                    - '#g1_aura-hera-en'
+                    - aura-luna-en
+                    - deepgram/aura-luna-en
+                    - '#g1_aura-luna-en'
+                    - aura-stella-en
+                    - deepgram/aura-stella-en
+                    - '#g1_aura-stella-en'
+                    - aura-athena-en
+                    - deepgram/aura-athena-en
+                    - '#g1_aura-athena-en'
+                    - aura-zeus-en
+                    - deepgram/aura-zeus-en
+                    - '#g1_aura-zeus-en'
+                    - aura-orion-en
+                    - deepgram/aura-orion-en
+                    - '#g1_aura-orion-en'
+                    - aura-arcas-en
+                    - deepgram/aura-arcas-en
+                    - '#g1_aura-arcas-en'
+                    - aura-perseus-en
+                    - deepgram/aura-perseus-en
+                    - '#g1_aura-perseus-en'
+                    - aura-angus-en
+                    - deepgram/aura-angus-en
+                    - '#g1_aura-angus-en'
+                    - aura-orpheus-en
+                    - deepgram/aura-orpheus-en
+                    - '#g1_aura-orpheus-en'
+                    - aura-helios-en
+                    - deepgram/aura-helios-en
+                    - '#g1_aura-helios-en'
+                  text:
+                    type: string
+                    description: The text content to be converted to speech.
+                  container:
+                    type: string
+                    description: The file format wrapper for the output audio. The available options depend on the encoding type.
+                  encoding:
+                    type: string
+                    enum:
+                    - linear16
+                    - mulaw
+                    - alaw
+                    - mp3
+                    - opus
+                    - flac
+                    - aac
+                    default: linear16
+                    description: Specifies the expected encoding of your audio output
+                  sample_rate:
+                    type: string
+                    description: Audio sample rate in Hz.
+                  stream:
+                    type: boolean
+                    default: true
+                  voice:
+                    type: string
+                    enum:
+                    - asteria
+                    - hera
+                    - luna
+                    - stella
+                    - athena
+                    - zeus
+                    - orion
+                    - arcas
+                    - perseus
+                    - angus
+                    - orpheus
+                    - helios
+                    description: Name of the voice to be used.
+                required:
+                - model
+                - text
+                title: 'aura, deepgram/aura, aura-asteria-en, deepgram/aura-asteria-en, #g1_aura-asteria-en, aura-hera-en, deepgram/aura-hera-en, #g1_aura-hera-en, aura-luna-en, deepgram/aura-luna-en, #g1_aura-luna-en, aura-stella-en, deepgram/aura-stella-en, #g1_aura-stella-en, aura-athena-en, deepgram/aura-athena-en, #g1_aura-athena-en, aura-zeus-en, deepgram/aura-zeus-en, #g1_aura-zeus-en, aura-orion-en, deepgram/aura-orion-en, #g1_aura-orion-en, aura-arcas-en, deepgram/aura-arcas-en, #g1_aura-arcas-en, aura-perseus-en, deepgram/aura-perseus-en, #g1_aura-perseus-en, aura-angus-en, deepgram/aura-angus-en, #g1_aura-angus-en, aura-orpheus-en, deepgram/aura-orpheus-en, #g1_aura-orpheus-en, aura-helios-en, deepgram/aura-helios-en, #g1_aura-helios-en'
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - aura-2
+                    - deepgram/aura-2
+                    - aura-2-amalthea-en
+                    - deepgram/aura-2-amalthea-en
+                    - '#g1_aura-2-amalthea-en'
+                    - aura-2-andromeda-en
+                    - deepgram/aura-2-andromeda-en
+                    - '#g1_aura-2-andromeda-en'
+                    - aura-2-apollo-en
+                    - deepgram/aura-2-apollo-en
+                    - '#g1_aura-2-apollo-en'
+                    - aura-2-arcas-en
+                    - deepgram/aura-2-arcas-en
+                    - '#g1_aura-2-arcas-en'
+                    - aura-2-aries-en
+                    - deepgram/aura-2-aries-en
+                    - '#g1_aura-2-aries-en'
+                    - aura-2-asteria-en
+                    - deepgram/aura-2-asteria-en
+                    - '#g1_aura-2-asteria-en'
+                    - aura-2-athena-en
+                    - deepgram/aura-2-athena-en
+                    - '#g1_aura-2-athena-en'
+                    - aura-2-atlas-en
+                    - deepgram/aura-2-atlas-en
+                    - '#g1_aura-2-atlas-en'
+                    - aura-2-aurora-en
+                    - deepgram/aura-2-aurora-en
+                    - '#g1_aura-2-aurora-en'
+                    - aura-2-callista-en
+                    - deepgram/aura-2-callista-en
+                    - '#g1_aura-2-callista-en'
+                    - aura-2-cora-en
+                    - deepgram/aura-2-cora-en
+                    - '#g1_aura-2-cora-en'
+                    - aura-2-cordelia-en
+                    - deepgram/aura-2-cordelia-en
+                    - '#g1_aura-2-cordelia-en'
+                    - aura-2-delia-en
+                    - deepgram/aura-2-delia-en
+                    - '#g1_aura-2-delia-en'
+                    - aura-2-draco-en
+                    - deepgram/aura-2-draco-en
+                    - '#g1_aura-2-draco-en'
+                    - aura-2-electra-en
+                    - deepgram/aura-2-electra-en
+                    - '#g1_aura-2-electra-en'
+                    - aura-2-harmonia-en
+                    - deepgram/aura-2-harmonia-en
+                    - '#g1_aura-2-harmonia-en'
+                    - aura-2-helena-en
+                    - deepgram/aura-2-helena-en
+                    - '#g1_aura-2-helena-en'
+                    - aura-2-hera-en
+                    - deepgram/aura-2-hera-en
+                    - '#g1_aura-2-hera-en'
+                    - aura-2-hermes-en
+                    - deepgram/aura-2-hermes-en
+                    - '#g1_aura-2-hermes-en'
+                    - aura-2-hyperion-en
+                    - deepgram/aura-2-hyperion-en
+                    - '#g1_aura-2-hyperion-en'
+                    - aura-2-iris-en
+                    - deepgram/aura-2-iris-en
+                    - '#g1_aura-2-iris-en'
+                    - aura-2-janus-en
+                    - deepgram/aura-2-janus-en
+                    - '#g1_aura-2-janus-en'
+                    - aura-2-juno-en
+                    - deepgram/aura-2-juno-en
+                    - '#g1_aura-2-juno-en'
+                    - aura-2-jupiter-en
+                    - deepgram/aura-2-jupiter-en
+                    - '#g1_aura-2-jupiter-en'
+                    - aura-2-luna-en
+                    - deepgram/aura-2-luna-en
+                    - '#g1_aura-2-luna-en'
+                    - aura-2-mars-en
+                    - deepgram/aura-2-mars-en
+                    - '#g1_aura-2-mars-en'
+                    - aura-2-minerva-en
+                    - deepgram/aura-2-minerva-en
+                    - '#g1_aura-2-minerva-en'
+                    - aura-2-neptune-en
+                    - deepgram/aura-2-neptune-en
+                    - '#g1_aura-2-neptune-en'
+                    - aura-2-odysseus-en
+                    - deepgram/aura-2-odysseus-en
+                    - '#g1_aura-2-odysseus-en'
+                    - aura-2-ophelia-en
+                    - deepgram/aura-2-ophelia-en
+                    - '#g1_aura-2-ophelia-en'
+                    - aura-2-orion-en
+                    - deepgram/aura-2-orion-en
+                    - '#g1_aura-2-orion-en'
+                    - aura-2-orpheus-en
+                    - deepgram/aura-2-orpheus-en
+                    - '#g1_aura-2-orpheus-en'
+                    - aura-2-pandora-en
+                    - deepgram/aura-2-pandora-en
+                    - '#g1_aura-2-pandora-en'
+                    - aura-2-phoebe-en
+                    - deepgram/aura-2-phoebe-en
+                    - '#g1_aura-2-phoebe-en'
+                    - aura-2-pluto-en
+                    - deepgram/aura-2-pluto-en
+                    - '#g1_aura-2-pluto-en'
+                    - aura-2-saturn-en
+                    - deepgram/aura-2-saturn-en
+                    - '#g1_aura-2-saturn-en'
+                    - aura-2-selene-en
+                    - deepgram/aura-2-selene-en
+                    - '#g1_aura-2-selene-en'
+                    - aura-2-thalia-en
+                    - deepgram/aura-2-thalia-en
+                    - '#g1_aura-2-thalia-en'
+                    - aura-2-theia-en
+                    - deepgram/aura-2-theia-en
+                    - '#g1_aura-2-theia-en'
+                    - aura-2-vesta-en
+                    - deepgram/aura-2-vesta-en
+                    - '#g1_aura-2-vesta-en'
+                    - aura-2-zeus-en
+                    - deepgram/aura-2-zeus-en
+                    - '#g1_aura-2-zeus-en'
+                    - aura-2-celeste-es
+                    - deepgram/aura-2-celeste-es
+                    - '#g1_aura-2-celeste-es'
+                    - aura-2-estrella-es
+                    - deepgram/aura-2-estrella-es
+                    - '#g1_aura-2-estrella-es'
+                    - aura-2-nestor-es
+                    - deepgram/aura-2-nestor-es
+                    - '#g1_aura-2-nestor-es'
+                  text:
+                    type: string
+                    description: The text content to be converted to speech.
+                  container:
+                    type: string
+                    description: The file format wrapper for the output audio. The available options depend on the encoding type.
+                  encoding:
+                    type: string
+                    enum:
+                    - linear16
+                    - mulaw
+                    - alaw
+                    - mp3
+                    - opus
+                    - flac
+                    - aac
+                    default: linear16
+                    description: Specifies the expected encoding of your audio output
+                  sample_rate:
+                    type: string
+                    description: Audio sample rate in Hz.
+                  stream:
+                    type: boolean
+                    default: true
+                  voice:
+                    type: string
+                    enum:
+                    - amalthea
+                    - andromeda
+                    - apollo
+                    - arcas
+                    - aries
+                    - asteria
+                    - athena
+                    - atlas
+                    - aurora
+                    - callista
+                    - cora
+                    - cordelia
+                    - delia
+                    - draco
+                    - electra
+                    - harmonia
+                    - helena
+                    - hera
+                    - hermes
+                    - hyperion
+                    - iris
+                    - janus
+                    - juno
+                    - jupiter
+                    - luna
+                    - mars
+                    - minerva
+                    - neptune
+                    - odysseus
+                    - ophelia
+                    - orion
+                    - orpheus
+                    - pandora
+                    - phoebe
+                    - pluto
+                    - saturn
+                    - selene
+                    - thalia
+                    - theia
+                    - vesta
+                    - zeus
+                    - celeste
+                    - estrella
+                    - nestor
+                    description: Name of the voice to be used.
+                required:
+                - model
+                - text
+                title: 'aura-2, deepgram/aura-2, aura-2-amalthea-en, deepgram/aura-2-amalthea-en, #g1_aura-2-amalthea-en, aura-2-andromeda-en, deepgram/aura-2-andromeda-en, #g1_aura-2-andromeda-en, aura-2-apollo-en, deepgram/aura-2-apollo-en, #g1_aura-2-apollo-en, aura-2-arcas-en, deepgram/aura-2-arcas-en, #g1_aura-2-arcas-en, aura-2-aries-en, deepgram/aura-2-aries-en, #g1_aura-2-aries-en, aura-2-asteria-en, deepgram/aura-2-asteria-en, #g1_aura-2-asteria-en, aura-2-athena-en, deepgram/aura-2-athena-en, #g1_aura-2-athena-en, aura-2-atlas-en, deepgram/aura-2-atlas-en, #g1_aura-2-atlas-en, aura-2-aurora-en, deepgram/aura-2-aurora-en, #g1_aura-2-aurora-en, aura-2-callista-en, deepgram/aura-2-callista-en, #g1_aura-2-callista-en, aura-2-cora-en, deepgram/aura-2-cora-en, #g1_aura-2-cora-en, aura-2-cordelia-en, deepgram/aura-2-cordelia-en, #g1_aura-2-cordelia-en, aura-2-delia-en, deepgram/aura-2-delia-en, #g1_aura-2-delia-en, aura-2-draco-en, deepgram/aura-2-draco-en, #g1_aura-2-draco-en, aura-2-electra-en, deepgram/aura-2-electra-en, #g1_aura-2-electra-en, aura-2-harmonia-en, deepgram/aura-2-harmonia-en, #g1_aura-2-harmonia-en, aura-2-helena-en, deepgram/aura-2-helena-en, #g1_aura-2-helena-en, aura-2-hera-en, deepgram/aura-2-hera-en, #g1_aura-2-hera-en, aura-2-hermes-en, deepgram/aura-2-hermes-en, #g1_aura-2-hermes-en, aura-2-hyperion-en, deepgram/aura-2-hyperion-en, #g1_aura-2-hyperion-en, aura-2-iris-en, deepgram/aura-2-iris-en, #g1_aura-2-iris-en, aura-2-janus-en, deepgram/aura-2-janus-en, #g1_aura-2-janus-en, aura-2-juno-en, deepgram/aura-2-juno-en, #g1_aura-2-juno-en, aura-2-jupiter-en, deepgram/aura-2-jupiter-en, #g1_aura-2-jupiter-en, aura-2-luna-en, deepgram/aura-2-luna-en, #g1_aura-2-luna-en, aura-2-mars-en, deepgram/aura-2-mars-en, #g1_aura-2-mars-en, aura-2-minerva-en, deepgram/aura-2-minerva-en, #g1_aura-2-minerva-en, aura-2-neptune-en, deepgram/aura-2-neptune-en, #g1_aura-2-neptune-en, aura-2-odysseus-en, deepgram/aura-2-odysseus-en, #g1_aura-2-odysseus-en, aura-2-ophelia-en, deepgram/aura-2-ophelia-en, #g1_aura-2-ophelia-en, aura-2-orion-en, deepgram/aura-2-orion-en, #g1_aura-2-orion-en, aura-2-orpheus-en, deepgram/aura-2-orpheus-en, #g1_aura-2-orpheus-en, aura-2-pandora-en, deepgram/aura-2-pandora-en, #g1_aura-2-pandora-en, aura-2-phoebe-en, deepgram/aura-2-phoebe-en, #g1_aura-2-phoebe-en, aura-2-pluto-en, deepgram/aura-2-pluto-en, #g1_aura-2-pluto-en, aura-2-saturn-en, deepgram/aura-2-saturn-en, #g1_aura-2-saturn-en, aura-2-selene-en, deepgram/aura-2-selene-en, #g1_aura-2-selene-en, aura-2-thalia-en, deepgram/aura-2-thalia-en, #g1_aura-2-thalia-en, aura-2-theia-en, deepgram/aura-2-theia-en, #g1_aura-2-theia-en, aura-2-vesta-en, deepgram/aura-2-vesta-en, #g1_aura-2-vesta-en, aura-2-zeus-en, deepgram/aura-2-zeus-en, #g1_aura-2-zeus-en, aura-2-celeste-es, deepgram/aura-2-celeste-es, #g1_aura-2-celeste-es, aura-2-estrella-es, deepgram/aura-2-estrella-es, #g1_aura-2-estrella-es, aura-2-nestor-es, deepgram/aura-2-nestor-es, #g1_aura-2-nestor-es'
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - octave-2
+                    - hume/octave-2
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 500000
+                    description: The text content to be converted to speech.
+                  voice:
+                    type: string
+                    enum:
+                    - Vince Douglas
+                    - Male English Actor
+                    - Ava Song
+                    - Campfire Narrator
+                    - TikTok Fashion Influencer
+                    - Colton Rivers
+                    - Literature Professor
+                    - Booming American Narrator
+                    - Imani Carter
+                    - Terrence Bentley
+                    - Nature Documentary Narrator
+                    - Alice Bennett
+                    - Sitcom Girl
+                    - Unserious Movie Trailer Narrator
+                    - Articulate ASMR British Narrator
+                    - Big Dicky
+                    - English Children's Book Narrator
+                    - Sebastian Lockwood
+                    - Donovan Sinclair
+                    - Booming British Narrator
+                    - Relaxing ASMR Woman
+                    - Lady Elizabeth
+                    - Male Protagonist
+                    - Tough Guy
+                    - French Chef
+                    - Spanish Instructor
+                    - Charming Cowgirl
+                    default: Vince Douglas
+                    description: Name of the voice to be used.
+                  format:
+                    type: string
+                    enum:
+                    - wav
+                    - mp3
+                    default: wav
+                    description: Audio output format. MP3 provides good compression and compatibility, PCM offers uncompressed high quality, and FLAC provides lossless compression.
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                required:
+                - model
+                - text
+                title: octave-2, hume/octave-2
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - inworld/tts-1
+                    - inworld/tts-1-max
+                    - inworld/tts-1-5-max
+                    - inworld/tts-1-5-mini
+                  text:
+                    type: string
+                    minLength: 1
+                    maxLength: 500000
+                    description: The text content to be converted to speech.
+                  voice:
+                    type: string
+                    enum:
+                    - Alex
+                    - Ashley
+                    - Craig
+                    - Deborah
+                    - Dennis
+                    - Dominus
+                    - Edward
+                    - Elizabeth
+                    - Hades
+                    - Heitor
+                    - Julia
+                    - Maitê
+                    - Mark
+                    - Olivia
+                    - Pixie
+                    - Priya
+                    - Ronald
+                    - Sarah
+                    - Shaun
+                    - Theodore
+                    - Timothy
+                    - Wendy
+                    default: Alex
+                    description: Name of the voice to be used.
+                  format:
+                    type: string
+                    enum:
+                    - wav
+                    - mp3
+                    default: wav
+                    description: Audio output format. WAV delivers uncompressed audio in a widely supported container format, while MP3 provides good compression and compatibility.
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                required:
+                - model
+                - text
+                title: inworld/tts-1, inworld/tts-1-max, inworld/tts-1-5-max, inworld/tts-1-5-mini
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - vibevoice/7b
+                    - vibevoice
+                    - microsoft/vibevoice-7b
+                    - microsoft/vibevoice-1.5b
+                  script:
+                    type: string
+                    minLength: 1
+                    maxLength: 5000
+                    description: The script to convert to speech. Can be formatted with "Speaker X:" prefixes for multi-speaker dialogues.
+                  speakers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        preset:
+                          type: string
+                          enum:
+                          - Alice [EN]
+                          - Alice [EN] (Background Music)
+                          - Carter [EN]
+                          - Frank [EN]
+                          - Maya [EN]
+                          - Anchen [ZH] (Background Music)
+                          - Bowen [ZH]
+                          - Xinran [ZH]
+                          description: Default voice preset to use for the speaker. Not used if audio_url is provided.
+                        audio_url:
+                          type: string
+                          format: uri
+                          description: URL to a voice sample audio file. If provided, preset will be ignored.
+                    minItems: 1
+                    maxItems: 4
+                    default:
+                    - preset: Alice [EN]
+                    description: List of speakers to use for the script. If not provided, will be inferred from the script or voice samples.
+                  seed:
+                    type: integer
+                    description: If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed.
+                  cfg_scale:
+                    type: number
+                    minimum: 0.1
+                    maximum: 2
+                    default: 1.3
+                    description: The CFG (Classifier Free Guidance) scale is a measure of how close you want the model to stick to your prompt.
+                  stream:
+                    type: boolean
+                    enum:
+                    - false
+                    default: false
+                required:
+                - model
+                - script
+                title: vibevoice/7b, vibevoice, microsoft/vibevoice-7b, microsoft/vibevoice-1.5b
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  audio:
+                    type: string
+                    format: uri
+                  meta:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      usage:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          credits_used:
+                            type: number
+                            description: The number of tokens consumed during generation.
+                            example: 120000
+                          usd_spent:
+                            type: number
+                            description: The total amount of money spent by the user in USD.
+                            example: 0.06
+                        required:
+                        - credits_used
+                        - usd_spent
+                    description: Additional details about the generation.
+                required:
+                - audio
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+                description: Audio stream
+      tags:
+      - TTS
+      summary: V1 tts
+      x-summary-source: derived

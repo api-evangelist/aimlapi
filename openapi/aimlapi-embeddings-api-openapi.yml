@@ -1,0 +1,300 @@
+openapi: 3.2.0
+info:
+  title: AIML Embeddings API
+  version: 1.0.0
+servers:
+- url: https://api.aimlapi.com
+tags:
+- name: Embeddings
+paths:
+  /v1/embeddings:
+    post:
+      operationId: _v1_embeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - text-embedding-3-small
+                    - openai/text-embedding-3-small
+                    - text-embedding-3-large
+                    - openai/text-embedding-3-large
+                  input:
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                    - type: array
+                      items:
+                        type: string
+                      minItems: 1
+                    description: Input text to embed, encoded as a string or array of tokens.
+                  encoding_format:
+                    type: string
+                    enum:
+                    - float
+                    - base64
+                    default: float
+                    description: The format in which to return the embeddings.
+                  dimensions:
+                    type:
+                    - number
+                    - 'null'
+                    minimum: 1
+                    maximum: 3072
+                    description: The number of dimensions for the embedding. Default is 1024.
+                required:
+                - model
+                - input
+                title: text-embedding-3-small, openai/text-embedding-3-small, text-embedding-3-large, openai/text-embedding-3-large
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - text-embedding-ada-002
+                    - openai/text-embedding-ada-002
+                  input:
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                    - type: array
+                      items:
+                        type: string
+                      minItems: 1
+                    description: Input text to embed, encoded as a string or array of tokens.
+                  encoding_format:
+                    type: string
+                    enum:
+                    - float
+                    - base64
+                    default: float
+                    description: The format in which to return the embeddings.
+                required:
+                - model
+                - input
+                title: text-embedding-ada-002, openai/text-embedding-ada-002
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - voyage-large-2-instruct
+                    - anthropic/voyage-large-2-instruct
+                    - voyage-finance-2
+                    - anthropic/voyage-finance-2
+                    - voyage-multilingual-2
+                    - anthropic/voyage-multilingual-2
+                    - voyage-law-2
+                    - anthropic/voyage-law-2
+                    - voyage-code-2
+                    - anthropic/voyage-code-2
+                    - voyage-large-2
+                    - anthropic/voyage-large-2
+                    - voyage-2
+                    - anthropic/voyage-2
+                  input:
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 8000
+                    - type: array
+                      items:
+                        type: string
+                        maxLength: 800
+                    description: Input text to embed, encoded as a string or array of tokens.
+                  input_type:
+                    type: string
+                    enum:
+                    - document
+                    default: document
+                    description: The type of input data for the model.
+                required:
+                - model
+                - input
+                title: voyage-large-2-instruct, anthropic/voyage-large-2-instruct, voyage-finance-2, anthropic/voyage-finance-2, voyage-multilingual-2, anthropic/voyage-multilingual-2, voyage-law-2, anthropic/voyage-law-2, voyage-code-2, anthropic/voyage-code-2, voyage-large-2, anthropic/voyage-large-2, voyage-2, anthropic/voyage-2
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - text-multilingual-embedding-002
+                    - google/text-multilingual-embedding-002
+                  input:
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                    - type: array
+                      items:
+                        type: string
+                      minItems: 1
+                    description: Input text to embed, encoded as a string or array of tokens.
+                  dimensions:
+                    type:
+                    - number
+                    - 'null'
+                    minimum: 1
+                    maximum: 768
+                    description: The number of dimensions for the embedding. Default is 1024.
+                  auto_truncate:
+                    type: boolean
+                    default: true
+                    description: If enabled, this parameter automatically truncates the input text to fit within the model’s maximum token limit. It helps ensure that longer texts are processed without errors.
+                  task_type:
+                    type: string
+                    enum:
+                    - RETRIEVAL_QUERY
+                    - RETRIEVAL_DOCUMENT
+                    - SEMANTIC_SIMILARITY
+                    - CLASSIFICATION
+                    - CLUSTERING
+                    - QUESTION_ANSWERING
+                    - FACT_VERIFICATION
+                    description: Optional task type for which the embeddings will be used.
+                  title:
+                    type: string
+                    description: "An optional title for the text. Only applicable when task_type is RETRIEVAL_DOCUMENT.\n  \n  Note: Specifying a title for RETRIEVAL_DOCUMENT provides better quality embeddings for retrieval."
+                required:
+                - model
+                - input
+                title: text-multilingual-embedding-002, google/text-multilingual-embedding-002
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - text-embedding-v4
+                    - alibaba/text-embedding-v4
+                    - text-embedding-v3
+                    - alibaba/text-embedding-v3
+                    - alibaba/qwen-text-embedding-v4
+                    - alibaba/qwen-text-embedding-v3
+                  input:
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                    - type: array
+                      items:
+                        type: string
+                      minItems: 1
+                    description: Input text to embed, encoded as a string or array of tokens.
+                  dimensions:
+                    type: integer
+                    minimum: 64
+                    maximum: 2048
+                    default: 1024
+                    description: The number of dimensions for the embedding. Default is 1024.
+                required:
+                - model
+                - input
+                title: text-embedding-v4, alibaba/text-embedding-v4, text-embedding-v3, alibaba/text-embedding-v3, alibaba/qwen-text-embedding-v4, alibaba/qwen-text-embedding-v3
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - test/dummy-embeddings
+                  input:
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                    - type: array
+                      items:
+                        type: string
+                      minItems: 1
+                  encoding_format:
+                    type: string
+                    enum:
+                    - float
+                    - base64
+                  dimensions:
+                    type: number
+                    minimum: 1
+                    maximum: 3072
+                  test:
+                    type: object
+                    properties:
+                      credits:
+                        type: number
+                      delay:
+                        type: number
+                      errorStatus:
+                        type: number
+                required:
+                - model
+                - input
+                title: test/dummy-embeddings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    enum:
+                    - object
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        object:
+                          type: string
+                          enum:
+                          - embedding
+                        index:
+                          type: number
+                        embedding:
+                          type: array
+                          items:
+                            type: number
+                      required:
+                      - object
+                      - index
+                      - embedding
+                  model:
+                    type: string
+                  usage:
+                    type: object
+                    properties:
+                      total_tokens:
+                        type:
+                        - number
+                        - 'null'
+                  meta:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      usage:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          credits_used:
+                            type: number
+                            description: The number of tokens consumed during generation.
+                            example: 120000
+                          usd_spent:
+                            type: number
+                            description: The total amount of money spent by the user in USD.
+                            example: 0.06
+                        required:
+                        - credits_used
+                        - usd_spent
+                required:
+                - object
+                - data
+                - model
+                - usage
+      tags:
+      - Embeddings
+      summary: V1 embeddings
+      x-summary-source: derived

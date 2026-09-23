@@ -1,0 +1,36 @@
+# Front Door AI Index — aimlapi — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: aimlapi
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: aimlapi.com
+  final_host: aimlapi.com
+  ownership: own
+  owner: aimlapi
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 58
+  host_score: 58
+  density: 49.87
+  words: 1163
+  tiers:
+    agentic: 17
+    core: 21
+    model: 20
+  ambiguous: 2
+  top_terms:
+    AI: 17
+    MCP: 13
+    Claude: 7
+    OpenAI: 6
+    GPT: 4
+    ML: 4
+    Gemini: 2
+    agent: 2
+    embedding: 2
+    AI assistant: 1
+    Anthropic: 1
+    agentic: 1

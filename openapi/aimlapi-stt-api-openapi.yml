@@ -1,0 +1,1418 @@
+openapi: 3.2.0
+info:
+  title: AIML Stt API
+  version: 1.0.0
+servers:
+- url: https://api.aimlapi.com
+tags:
+- name: STT
+paths:
+  /v1/stt/create:
+    post:
+      operationId: _v1_stt_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - gpt-4o-transcribe
+                    - openai/gpt-4o-transcribe
+                    - gpt-4o-mini-transcribe
+                    - openai/gpt-4o-mini-transcribe
+                  url:
+                    type: string
+                    format: uri
+                    description: URL of the input audio file. Provide either url or file — exactly one is required, not both.
+                    example: https://example.com/audio/sample.mp3
+                  file:
+                    type: string
+                    description: The audio file to transcribe. Provide either url or file — exactly one is required, not both.
+                    format: binary
+                  language:
+                    type: string
+                    description: The BCP-47 language tag that hints at the primary spoken language. Depending on the Model and API endpoint you choose only certain languages are available
+                  prompt:
+                    type: string
+                    description: An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language.
+                  temperature:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    default: 0
+                    description: The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+                required:
+                - model
+                title: gpt-4o-transcribe, openai/gpt-4o-transcribe, gpt-4o-mini-transcribe, openai/gpt-4o-mini-transcribe
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - test/dummy-stt
+                  url:
+                    type: string
+                    minLength: 1
+                  duration:
+                    type: integer
+                    minimum: 1
+                    maximum: 600
+                    default: 5
+                  language:
+                    type: string
+                  test:
+                    type: object
+                    properties:
+                      delay:
+                        type: number
+                      runningPolls:
+                        type: number
+                      errorStatus:
+                        type: number
+                      submitErrorStatus:
+                        type: number
+                required:
+                - model
+                - url
+                title: test/dummy-stt
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - nova-2-general
+                    - deepgram/nova-2-general
+                    - '#g1_nova-2-general'
+                    - nova-2-meeting
+                    - deepgram/nova-2-meeting
+                    - '#g1_nova-2-meeting'
+                    - nova-2-phonecall
+                    - deepgram/nova-2-phonecall
+                    - '#g1_nova-2-phonecall'
+                    - nova-2-voicemail
+                    - deepgram/nova-2-voicemail
+                    - '#g1_nova-2-voicemail'
+                    - nova-2-finance
+                    - deepgram/nova-2-finance
+                    - '#g1_nova-2-finance'
+                    - nova-2-conversationalai
+                    - deepgram/nova-2-conversationalai
+                    - '#g1_nova-2-conversationalai'
+                    - nova-2-video
+                    - deepgram/nova-2-video
+                    - '#g1_nova-2-video'
+                    - nova-2-medical
+                    - deepgram/nova-2-medical
+                    - '#g1_nova-2-medical'
+                    - nova-2-drivethru
+                    - deepgram/nova-2-drivethru
+                    - '#g1_nova-2-drivethru'
+                    - nova-2-automotive
+                    - deepgram/nova-2-automotive
+                    - '#g1_nova-2-automotive'
+                    - whisper-large
+                    - deepgram/whisper-large
+                    - '#g1_whisper-large'
+                    - whisper-medium
+                    - deepgram/whisper-medium
+                    - '#g1_whisper-medium'
+                    - whisper-small
+                    - deepgram/whisper-small
+                    - '#g1_whisper-small'
+                    - whisper-tiny
+                    - deepgram/whisper-tiny
+                    - '#g1_whisper-tiny'
+                    - whisper-base
+                    - deepgram/whisper-base
+                    - '#g1_whisper-base'
+                  url:
+                    type: string
+                    format: uri
+                    description: URL of the input audio file. Provide either url or audio — exactly one is required, not both.
+                    example: https://example.com/audio/sample.mp3
+                  audio:
+                    type: string
+                    description: The audio file to transcribe. Provide either url or audio — exactly one is required, not both.
+                    format: binary
+                  custom_intent:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: A custom intent you want the model to detect within your input audio if present. Submit up to 100.
+                  custom_topic:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: A custom topic you want the model to detect within your input audio if present. Submit up to 100.
+                  custom_intent_mode:
+                    type: string
+                    enum:
+                    - strict
+                    - extended
+                    description: Sets how the model will interpret strings submitted to the custom_intent param. When strict, the model will only return intents submitted using the custom_intent param. When extended, the model will return its own detected intents in addition those submitted using the custom_intents param.
+                  custom_topic_mode:
+                    type: string
+                    enum:
+                    - strict
+                    - extended
+                    description: Sets how the model will interpret strings submitted to the custom_topic param. When strict, the model will only return topics submitted using the custom_topic param. When extended, the model will return its own detected topics in addition to those submitted using the custom_topic param.
+                  detect_language:
+                    anyOf:
+                    - type: array
+                      items:
+                        type: string
+                    - type: boolean
+                    description: Enables language detection to identify the dominant language spoken in the submitted audio.
+                  detect_entities:
+                    type: boolean
+                    description: When Entity Detection is enabled, the Punctuation feature will be enabled by default.
+                  diarize:
+                    type: boolean
+                    description: Recognizes speaker changes. Each word in the transcript will be assigned a speaker number starting at 0.
+                  dictation:
+                    type: boolean
+                    description: Identifies and extracts key entities from content in submitted audio.
+                  encoding:
+                    type: string
+                    enum:
+                    - linear16
+                    - flac
+                    - mulaw
+                    - amr-nb
+                    - amr-wb
+                    - opus
+                    - speex
+                    - g729
+                    description: 'Expected encoding of the submitted audio (used mainly for raw audio). One of: linear16, flac, mulaw, amr-nb, amr-wb, opus, speex, g729.'
+                  extra:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Arbitrary key-value pairs that are attached to the API response for usage in downstream processing.
+                  filler_words:
+                    type: boolean
+                    description: Filler Words can help transcribe interruptions in your audio, like “uh” and “um”.
+                  intents:
+                    type: boolean
+                    description: Recognizes speaker intent throughout a transcript or text.
+                  language:
+                    type: string
+                    description: The BCP-47 language tag that hints at the primary spoken language. Depending on the Model and API endpoint you choose only certain languages are available
+                  measurements:
+                    type: boolean
+                    description: Spoken measurements will be converted to their corresponding abbreviations
+                  mip_opt_out:
+                    type: boolean
+                    description: Opt out of the Deepgram Model Improvement Program for this request.
+                  multichannel:
+                    type: boolean
+                    description: Enable Multichannel transcription, can be true or false.
+                  numerals:
+                    type: boolean
+                    description: Numerals converts numbers from written format to numerical format
+                  paragraphs:
+                    type: boolean
+                    description: Splits audio into paragraphs to improve transcript readability
+                  profanity_filter:
+                    type: boolean
+                    description: Profanity Filter looks for recognized profanity and converts it to the nearest recognized non-profane word or removes it from the transcript completely
+                  punctuate:
+                    type: boolean
+                    description: Adds punctuation and capitalization to the transcript
+                  redact:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: 'Redact sensitive information from the transcript. Common values: pii, pci, numbers. Pass a single value or an array.'
+                  replace:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Search for terms and replace them in the transcript. Provide "find:replace" pairs as a single value or an array.
+                  search:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Search for terms or phrases in submitted audio
+                  sentiment:
+                    type: boolean
+                    description: Recognizes the sentiment throughout a transcript or text
+                  smart_format:
+                    type: boolean
+                    description: Applies formatting to transcript output. When set to true, additional formatting will be applied to transcripts to improve readability
+                  summarize:
+                    anyOf:
+                    - type: string
+                    - type: boolean
+                    description: Summarizes content. For Listen API, supports string version option. For Read API, accepts boolean only.
+                  tag:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Labels your requests for the purpose of identification during usage reporting
+                  topics:
+                    type: boolean
+                    description: Detects topics throughout a transcript or text
+                  utterances:
+                    type: boolean
+                    description: Segments speech into meaningful semantic units
+                  utt_split:
+                    type: number
+                    description: Seconds to wait before detecting a pause between words in submitted audio
+                  version:
+                    type: string
+                    description: Model version to use (e.g. "latest" or a specific version string). Defaults to latest.
+                  keywords:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Keywords can boost or suppress specialized terminology and brands.
+                required:
+                - model
+                title: 'nova-2-general, deepgram/nova-2-general, #g1_nova-2-general, nova-2-meeting, deepgram/nova-2-meeting, #g1_nova-2-meeting, nova-2-phonecall, deepgram/nova-2-phonecall, #g1_nova-2-phonecall, nova-2-voicemail, deepgram/nova-2-voicemail, #g1_nova-2-voicemail, nova-2-finance, deepgram/nova-2-finance, #g1_nova-2-finance, nova-2-conversationalai, deepgram/nova-2-conversationalai, #g1_nova-2-conversationalai, nova-2-video, deepgram/nova-2-video, #g1_nova-2-video, nova-2-medical, deepgram/nova-2-medical, #g1_nova-2-medical, nova-2-drivethru, deepgram/nova-2-drivethru, #g1_nova-2-drivethru, nova-2-automotive, deepgram/nova-2-automotive, #g1_nova-2-automotive, whisper-large, deepgram/whisper-large, #g1_whisper-large, whisper-medium, deepgram/whisper-medium, #g1_whisper-medium, whisper-small, deepgram/whisper-small, #g1_whisper-small, whisper-tiny, deepgram/whisper-tiny, #g1_whisper-tiny, whisper-base, deepgram/whisper-base, #g1_whisper-base'
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - nova-3
+                    - deepgram/nova-3
+                    - '#g1_nova-3'
+                    - nova-3-general
+                    - deepgram/nova-3-general
+                    - '#g1_nova-3-general'
+                    - nova-3-medical
+                    - deepgram/nova-3-medical
+                    - '#g1_nova-3-medical'
+                  url:
+                    type: string
+                    format: uri
+                    description: URL of the input audio file. Provide either url or audio — exactly one is required, not both.
+                    example: https://example.com/audio/sample.mp3
+                  audio:
+                    type: string
+                    description: The audio file to transcribe. Provide either url or audio — exactly one is required, not both.
+                    format: binary
+                  custom_intent:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: A custom intent you want the model to detect within your input audio if present. Submit up to 100.
+                  custom_topic:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: A custom topic you want the model to detect within your input audio if present. Submit up to 100.
+                  custom_intent_mode:
+                    type: string
+                    enum:
+                    - strict
+                    - extended
+                    description: Sets how the model will interpret strings submitted to the custom_intent param. When strict, the model will only return intents submitted using the custom_intent param. When extended, the model will return its own detected intents in addition those submitted using the custom_intents param.
+                  custom_topic_mode:
+                    type: string
+                    enum:
+                    - strict
+                    - extended
+                    description: Sets how the model will interpret strings submitted to the custom_topic param. When strict, the model will only return topics submitted using the custom_topic param. When extended, the model will return its own detected topics in addition to those submitted using the custom_topic param.
+                  detect_language:
+                    anyOf:
+                    - type: array
+                      items:
+                        type: string
+                    - type: boolean
+                    description: Enables language detection to identify the dominant language spoken in the submitted audio.
+                  detect_entities:
+                    type: boolean
+                    description: When Entity Detection is enabled, the Punctuation feature will be enabled by default.
+                  diarize:
+                    type: boolean
+                    description: Recognizes speaker changes. Each word in the transcript will be assigned a speaker number starting at 0.
+                  dictation:
+                    type: boolean
+                    description: Identifies and extracts key entities from content in submitted audio.
+                  encoding:
+                    type: string
+                    enum:
+                    - linear16
+                    - flac
+                    - mulaw
+                    - amr-nb
+                    - amr-wb
+                    - opus
+                    - speex
+                    - g729
+                    description: 'Expected encoding of the submitted audio (used mainly for raw audio). One of: linear16, flac, mulaw, amr-nb, amr-wb, opus, speex, g729.'
+                  extra:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Arbitrary key-value pairs that are attached to the API response for usage in downstream processing.
+                  filler_words:
+                    type: boolean
+                    description: Filler Words can help transcribe interruptions in your audio, like “uh” and “um”.
+                  intents:
+                    type: boolean
+                    description: Recognizes speaker intent throughout a transcript or text.
+                  language:
+                    type: string
+                    description: The BCP-47 language tag that hints at the primary spoken language. Depending on the Model and API endpoint you choose only certain languages are available
+                  measurements:
+                    type: boolean
+                    description: Spoken measurements will be converted to their corresponding abbreviations
+                  mip_opt_out:
+                    type: boolean
+                    description: Opt out of the Deepgram Model Improvement Program for this request.
+                  multichannel:
+                    type: boolean
+                    description: Enable Multichannel transcription, can be true or false.
+                  numerals:
+                    type: boolean
+                    description: Numerals converts numbers from written format to numerical format
+                  paragraphs:
+                    type: boolean
+                    description: Splits audio into paragraphs to improve transcript readability
+                  profanity_filter:
+                    type: boolean
+                    description: Profanity Filter looks for recognized profanity and converts it to the nearest recognized non-profane word or removes it from the transcript completely
+                  punctuate:
+                    type: boolean
+                    description: Adds punctuation and capitalization to the transcript
+                  redact:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: 'Redact sensitive information from the transcript. Common values: pii, pci, numbers. Pass a single value or an array.'
+                  replace:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Search for terms and replace them in the transcript. Provide "find:replace" pairs as a single value or an array.
+                  search:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Search for terms or phrases in submitted audio
+                  sentiment:
+                    type: boolean
+                    description: Recognizes the sentiment throughout a transcript or text
+                  smart_format:
+                    type: boolean
+                    description: Applies formatting to transcript output. When set to true, additional formatting will be applied to transcripts to improve readability
+                  summarize:
+                    anyOf:
+                    - type: string
+                    - type: boolean
+                    description: Summarizes content. For Listen API, supports string version option. For Read API, accepts boolean only.
+                  tag:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: Labels your requests for the purpose of identification during usage reporting
+                  topics:
+                    type: boolean
+                    description: Detects topics throughout a transcript or text
+                  utterances:
+                    type: boolean
+                    description: Segments speech into meaningful semantic units
+                  utt_split:
+                    type: number
+                    description: Seconds to wait before detecting a pause between words in submitted audio
+                  version:
+                    type: string
+                    description: Model version to use (e.g. "latest" or a specific version string). Defaults to latest.
+                  keyterm:
+                    anyOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    description: 'Keyterm Prompting (Nova-3 / Flux only): boost recognition of specialized terms, brands, and proper nouns. Pass a single term or an array of terms.'
+                required:
+                - model
+                title: 'nova-3, deepgram/nova-3, #g1_nova-3, nova-3-general, deepgram/nova-3-general, #g1_nova-3-general, nova-3-medical, deepgram/nova-3-medical, #g1_nova-3-medical'
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - slam-1
+                    - aai/slam-1
+                    - universal
+                    - aai/universal
+                  url:
+                    type: string
+                    format: uri
+                    description: URL of the input audio file. Provide either url or audio — exactly one is required, not both.
+                    example: https://example.com/audio/sample.mp3
+                  audio:
+                    type: string
+                    description: The audio file to transcribe. Provide either url or audio — exactly one is required, not both.
+                    format: binary
+                  audio_start_from:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The point in time, in milliseconds, in the file at which the transcription was started.
+                  audio_end_at:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The point in time, in milliseconds, in the file at which the transcription was terminated.
+                  language_code:
+                    type: string
+                    description: The language of your audio file. Possible values are found in Supported Languages. The default value is 'en_us'.
+                  language_confidence_threshold:
+                    type:
+                    - number
+                    - 'null'
+                    minimum: 0
+                    maximum: 1
+                    description: The confidence threshold for the automatically detected language. An error will be returned if the language confidence is below this threshold. Defaults to 0.
+                  language_detection:
+                    type: boolean
+                    description: Enable Automatic language detection, either true or false. Available for universal model only.
+                  punctuate:
+                    type:
+                    - boolean
+                    - 'null'
+                    default: null
+                    description: Adds punctuation and capitalization to the transcript
+                  format_text:
+                    type: boolean
+                    default: true
+                    description: Enable Text Formatting, can be true or false.
+                  disfluencies:
+                    type: boolean
+                    default: false
+                    description: Transcribe Filler Words, like "umm", in your media file; can be true or false.
+                  multichannel:
+                    type: boolean
+                    default: false
+                    description: Enable Multichannel transcription, can be true or false.
+                  speaker_labels:
+                    type:
+                    - boolean
+                    - 'null'
+                    default: null
+                    description: Enable Speaker diarization, can be true or false.
+                  speakers_expected:
+                    type:
+                    - integer
+                    - 'null'
+                    default: null
+                    description: Tell the speaker label model how many speakers it should attempt to identify. See Speaker diarization for more details.
+                  content_safety:
+                    type: boolean
+                    default: false
+                    description: Enable Content Moderation, can be true or false.
+                  iab_categories:
+                    type: boolean
+                    default: false
+                    description: Enable Topic Detection, can be true or false.
+                  custom_spelling:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        from:
+                          type: string
+                        to:
+                          type: string
+                      required:
+                      - from
+                      - to
+                    description: Customize how words are spelled and formatted using to and from values.
+                  auto_highlights:
+                    type: boolean
+                    default: false
+                    description: Enable Key Phrases, either true or false.
+                  word_boost:
+                    type: array
+                    items:
+                      type: string
+                    description: The list of custom vocabulary to boost transcription probability for.
+                  boost_param:
+                    type: string
+                    enum:
+                    - low
+                    - default
+                    - high
+                    description: 'How much to boost specified words. Allowed values: low, default, high.'
+                  filter_profanity:
+                    type: boolean
+                    default: false
+                    description: Filter profanity from the transcribed text, can be true or false.
+                  redact_pii:
+                    type: boolean
+                    default: false
+                    description: Redact PII from the transcribed text using the Redact PII model, can be true or false.
+                  redact_pii_audio:
+                    type: boolean
+                    default: false
+                    description: Generate a copy of the original media file with spoken PII "beeped" out, can be true or false. See PII redaction for more details.
+                  redact_pii_audio_quality:
+                    type: string
+                    enum:
+                    - mp3
+                    - wav
+                    description: Controls the filetype of the audio created by redact_pii_audio. Currently supports mp3 (default) and wav. See PII redaction for more details.
+                  redact_pii_policies:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                      - account_number
+                      - banking_information
+                      - blood_type
+                      - credit_card_cvv
+                      - credit_card_expiration
+                      - credit_card_number
+                      - date
+                      - date_interval
+                      - date_of_birth
+                      - drivers_license
+                      - drug
+                      - duration
+                      - email_address
+                      - event
+                      - filename
+                      - gender_sexuality
+                      - healthcare_number
+                      - injury
+                      - ip_address
+                      - language
+                      - location
+                      - marital_status
+                      - medical_condition
+                      - medical_process
+                      - money_amount
+                      - nationality
+                      - number_sequence
+                      - occupation
+                      - organization
+                      - passport_number
+                      - password
+                      - person_age
+                      - person_name
+                      - phone_number
+                      - physical_attribute
+                      - political_affiliation
+                      - religion
+                      - statistics
+                      - time
+                      - url
+                      - us_social_security_number
+                      - username
+                      - vehicle_id
+                      - zodiac_sign
+                    description: The list of PII Redaction policies to enable. See PII redaction for more details.
+                  redact_pii_sub:
+                    type: string
+                    enum:
+                    - entity_name
+                    - hash
+                    description: The replacement logic for detected PII, can be `entity_type` or `hash`. See PII redaction for more details.
+                  sentiment_analysis:
+                    type: boolean
+                    default: false
+                    description: Enable Sentiment Analysis, can be true or false.
+                  entity_detection:
+                    type: boolean
+                    default: false
+                    description: Enable Entity Detection, can be true or false.
+                  summarization:
+                    type: boolean
+                    default: false
+                    description: Enable Summarization, can be true or false.
+                  summary_model:
+                    type: string
+                    enum:
+                    - informative
+                    - conversational
+                    - catchy
+                    description: 'The model to summarize the transcript. Allowed values: informative, conversational, catchy.'
+                  summary_type:
+                    type: string
+                    enum:
+                    - bullets
+                    - bullets_verbose
+                    - gist
+                    - headline
+                    - paragraph
+                    description: 'The type of summary. Allowed values: bullets, bullets_verbose, gist, headline, paragraph.'
+                  auto_chapters:
+                    type: boolean
+                    default: false
+                    description: Enable Auto Chapters, either true or false.
+                  speech_threshold:
+                    type:
+                    - number
+                    - 'null'
+                    minimum: 0
+                    maximum: 1
+                    description: Reject audio files that contain less than this fraction of speech. Valid values are in the range [0, 1] inclusive.
+                required:
+                - model
+                title: slam-1, aai/slam-1, universal, aai/universal
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  generation_id:
+                    type: string
+                required:
+                - generation_id
+      tags:
+      - STT
+      summary: V1 stt create
+      x-summary-source: derived
+  /v1/stt/:generation_id:
+    get:
+      operationId: _v1_stt_:generation_id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  enum:
+                  - gpt-4o-transcribe
+                  - openai/gpt-4o-transcribe
+                  - gpt-4o-mini-transcribe
+                  - openai/gpt-4o-mini-transcribe
+                  - test/dummy-stt
+                  - nova-2-general
+                  - deepgram/nova-2-general
+                  - '#g1_nova-2-general'
+                  - nova-2-meeting
+                  - deepgram/nova-2-meeting
+                  - '#g1_nova-2-meeting'
+                  - nova-2-phonecall
+                  - deepgram/nova-2-phonecall
+                  - '#g1_nova-2-phonecall'
+                  - nova-2-voicemail
+                  - deepgram/nova-2-voicemail
+                  - '#g1_nova-2-voicemail'
+                  - nova-2-finance
+                  - deepgram/nova-2-finance
+                  - '#g1_nova-2-finance'
+                  - nova-2-conversationalai
+                  - deepgram/nova-2-conversationalai
+                  - '#g1_nova-2-conversationalai'
+                  - nova-2-video
+                  - deepgram/nova-2-video
+                  - '#g1_nova-2-video'
+                  - nova-2-medical
+                  - deepgram/nova-2-medical
+                  - '#g1_nova-2-medical'
+                  - nova-2-drivethru
+                  - deepgram/nova-2-drivethru
+                  - '#g1_nova-2-drivethru'
+                  - nova-2-automotive
+                  - deepgram/nova-2-automotive
+                  - '#g1_nova-2-automotive'
+                  - nova-3
+                  - deepgram/nova-3
+                  - '#g1_nova-3'
+                  - nova-3-general
+                  - deepgram/nova-3-general
+                  - '#g1_nova-3-general'
+                  - nova-3-medical
+                  - deepgram/nova-3-medical
+                  - '#g1_nova-3-medical'
+                  - whisper-large
+                  - deepgram/whisper-large
+                  - '#g1_whisper-large'
+                  - whisper-medium
+                  - deepgram/whisper-medium
+                  - '#g1_whisper-medium'
+                  - whisper-small
+                  - deepgram/whisper-small
+                  - '#g1_whisper-small'
+                  - whisper-tiny
+                  - deepgram/whisper-tiny
+                  - '#g1_whisper-tiny'
+                  - whisper-base
+                  - deepgram/whisper-base
+                  - '#g1_whisper-base'
+                  - slam-1
+                  - aai/slam-1
+                  - universal
+                  - aai/universal
+                id:
+                  type: string
+              required:
+              - model
+              - id
+              title: 'gpt-4o-transcribe, openai/gpt-4o-transcribe, gpt-4o-mini-transcribe, openai/gpt-4o-mini-transcribe, test/dummy-stt, nova-2-general, deepgram/nova-2-general, #g1_nova-2-general, nova-2-meeting, deepgram/nova-2-meeting, #g1_nova-2-meeting, nova-2-phonecall, deepgram/nova-2-phonecall, #g1_nova-2-phonecall, nova-2-voicemail, deepgram/nova-2-voicemail, #g1_nova-2-voicemail, nova-2-finance, deepgram/nova-2-finance, #g1_nova-2-finance, nova-2-conversationalai, deepgram/nova-2-conversationalai, #g1_nova-2-conversationalai, nova-2-video, deepgram/nova-2-video, #g1_nova-2-video, nova-2-medical, deepgram/nova-2-medical, #g1_nova-2-medical, nova-2-drivethru, deepgram/nova-2-drivethru, #g1_nova-2-drivethru, nova-2-automotive, deepgram/nova-2-automotive, #g1_nova-2-automotive, nova-3, deepgram/nova-3, #g1_nova-3, nova-3-general, deepgram/nova-3-general, #g1_nova-3-general, nova-3-medical, deepgram/nova-3-medical, #g1_nova-3-medical, whisper-large, deepgram/whisper-large, #g1_whisper-large, whisper-medium, deepgram/whisper-medium, #g1_whisper-medium, whisper-small, deepgram/whisper-small, #g1_whisper-small, whisper-tiny, deepgram/whisper-tiny, #g1_whisper-tiny, whisper-base, deepgram/whisper-base, #g1_whisper-base, slam-1, aai/slam-1, universal, aai/universal'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - queued
+                    - generating
+                    - completed
+                    - error
+                  output:
+                    anyOf:
+                    - type: object
+                      properties:
+                        metadata:
+                          type: object
+                          properties:
+                            transaction_key:
+                              type: string
+                              description: A unique transaction key; currently always “deprecated”.
+                            request_id:
+                              type: string
+                              description: A UUID identifying this specific transcription request.
+                            sha256:
+                              type: string
+                              description: The SHA-256 hash of the submitted audio file (for pre-recorded requests).
+                            created:
+                              type: string
+                              format: date-time
+                              description: ISO-8601 timestamp.
+                            duration:
+                              type: number
+                              description: Length of the audio in seconds.
+                            channels:
+                              type: number
+                              description: The top-level results object containing per-channel transcription alternatives.
+                            models:
+                              type: array
+                              items:
+                                type: string
+                              description: List of model UUIDs used for this transcription
+                            model_info:
+                              type: object
+                              additionalProperties:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                    description: The human-readable name of the model — identifies which model was used.
+                                  version:
+                                    type: string
+                                    description: The specific version of the model.
+                                  arch:
+                                    type: string
+                                    description: The architecture of the model — describes the model family / generation.
+                                required:
+                                - name
+                                - version
+                                - arch
+                              description: 'Mapping from each model UUID (in ''models'') to detailed info: its name, version, and architecture.'
+                          required:
+                          - transaction_key
+                          - request_id
+                          - sha256
+                          - created
+                          - duration
+                          - channels
+                          - models
+                          - model_info
+                          description: Metadata about the transcription response, including timing, models, and IDs.
+                        results:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            channels:
+                              type: object
+                              properties:
+                                alternatives:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      transcript:
+                                        type: string
+                                        description: The full transcript text for this alternative.
+                                      confidence:
+                                        type: number
+                                        description: Overall confidence score (0-1) that assigns to this transcript alternative.
+                                      words:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            word:
+                                              type: string
+                                              description: The raw recognized word, without punctuation or capitalization.
+                                            start:
+                                              type: number
+                                              description: Start timestamp of the word (in seconds, from beginning of audio).
+                                            end:
+                                              type: number
+                                              description: End timestamp of the word (in seconds).
+                                            confidence:
+                                              type: number
+                                              description: Confidence score (0-1) for this individual word.
+                                            punctuated_word:
+                                              type: string
+                                              description: The same word but with punctuation/capitalization applied (if smart_format is enabled).
+                                          required:
+                                          - word
+                                          - start
+                                          - end
+                                          - confidence
+                                          - punctuated_word
+                                        description: List of word-level timing, confidence, and punctuation details.
+                                      paragraphs:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            transcript:
+                                              type: string
+                                              description: The transcript split into paragraphs (with line breaks), when paragraphing is enabled.
+                                            paragraphs:
+                                              type: object
+                                              properties:
+                                                sentences:
+                                                  type: array
+                                                  items:
+                                                    type: object
+                                                    properties:
+                                                      text:
+                                                        type: string
+                                                        description: Text of a single sentence in the paragraph.
+                                                      start:
+                                                        type: number
+                                                        description: Start time of the sentence (in seconds).
+                                                      end:
+                                                        type: number
+                                                        description: End time of the sentence (in seconds).
+                                                    required:
+                                                    - text
+                                                    - start
+                                                    - end
+                                                  description: List of sentences in this paragraph, with start/end times.
+                                                num_words:
+                                                  type: number
+                                                  description: Number of words in this paragraph.
+                                                start:
+                                                  type: number
+                                                  description: Start time of the paragraph (in seconds).
+                                                end:
+                                                  type: number
+                                                  description: End time of the paragraph (in seconds).
+                                              required:
+                                              - sentences
+                                              - num_words
+                                              - start
+                                              - end
+                                              description: 'Structure describing each paragraph: its timespan, word count, and sentence breakdown.'
+                                          required:
+                                          - transcript
+                                          - paragraphs
+                                        description: An array of paragraph objects, present when the paragraphs feature is enabled.
+                                    required:
+                                    - transcript
+                                    - confidence
+                                    - words
+                                    - paragraphs
+                                  description: List of possible transcription hypotheses (“alternatives”) for each channel.
+                              required:
+                              - alternatives
+                              description: The top-level results object containing per-channel transcription alternatives.
+                          required:
+                          - channels
+                      required:
+                      - metadata
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        language_model:
+                          type: string
+                        acoustic_model:
+                          type: string
+                        language_code:
+                          type: string
+                        status:
+                          type: string
+                          enum:
+                          - queued
+                          - processing
+                          - completed
+                          - error
+                        language_detection:
+                          type: boolean
+                        language_confidence_threshold:
+                          type: number
+                        language_confidence:
+                          type: number
+                        speech_model:
+                          type: string
+                          enum:
+                          - best
+                          - slam-1
+                          - universal
+                        text:
+                          type: string
+                        words:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              confidence:
+                                type: number
+                              end:
+                                type: number
+                              speaker:
+                                type: string
+                              start:
+                                type: number
+                              text:
+                                type: string
+                            required:
+                            - confidence
+                            - end
+                            - start
+                            - text
+                        utterances:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              confidence:
+                                type: number
+                              end:
+                                type: number
+                              speaker:
+                                type: string
+                              start:
+                                type: number
+                              text:
+                                type: string
+                              words:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    confidence:
+                                      type: number
+                                    end:
+                                      type: number
+                                    speaker:
+                                      type: string
+                                    start:
+                                      type: number
+                                    text:
+                                      type: string
+                                  required:
+                                  - confidence
+                                  - end
+                                  - start
+                                  - text
+                            required:
+                            - confidence
+                            - end
+                            - speaker
+                            - start
+                            - text
+                            - words
+                        confidence:
+                          type: number
+                        audio_duration:
+                          type: number
+                        punctuate:
+                          type: boolean
+                        format_text:
+                          type: boolean
+                        disfluencies:
+                          type: boolean
+                        multichannel:
+                          type: boolean
+                        webhook_url:
+                          type: string
+                        webhook_status_code:
+                          type: number
+                        webhook_auth_header_name:
+                          type: string
+                        speed_boost:
+                          type: boolean
+                        auto_highlights_result:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+                            results:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  count:
+                                    type: number
+                                  rank:
+                                    type: number
+                                  text:
+                                    type: string
+                                  timestamps:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        start:
+                                          type: number
+                                        end:
+                                          type: number
+                                      required:
+                                      - start
+                                      - end
+                                required:
+                                - count
+                                - rank
+                                - text
+                                - timestamps
+                          required:
+                          - status
+                          - results
+                        auto_highlights:
+                          type: boolean
+                        audio_start_from:
+                          type: number
+                        audio_end_at:
+                          type: number
+                        word_boost:
+                          type: array
+                          items:
+                            type: string
+                        boost_param:
+                          type: string
+                        filter_profanity:
+                          type: boolean
+                        redact_pii:
+                          type: boolean
+                        redact_pii_audio:
+                          type: boolean
+                        redact_pii_audio_quality:
+                          type: string
+                          enum:
+                          - mp3
+                          - wav
+                        redact_pii_policies:
+                          type: array
+                          items:
+                            type: string
+                        redact_pii_sub:
+                          type: string
+                          enum:
+                          - entity_name
+                          - hash
+                        speaker_labels:
+                          type: boolean
+                        speakers_expected:
+                          type: number
+                        content_safety:
+                          type: boolean
+                        iab_categories:
+                          type: boolean
+                        content_safety_labels:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+                            results:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
+                                  labels:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        label:
+                                          type: string
+                                        confidence:
+                                          type: number
+                                        severity:
+                                          type: number
+                                      required:
+                                      - label
+                                      - confidence
+                                      - severity
+                                  sentences_idx_start:
+                                    type: number
+                                  sentences_idx_end:
+                                    type: number
+                                  timestamp:
+                                    type: object
+                                    properties:
+                                      start:
+                                        type: number
+                                      end:
+                                        type: number
+                                    required:
+                                    - start
+                                    - end
+                                required:
+                                - text
+                                - labels
+                                - sentences_idx_start
+                                - sentences_idx_end
+                                - timestamp
+                            summary:
+                              type: object
+                              additionalProperties:
+                                type: number
+                          required:
+                          - status
+                          - results
+                          - summary
+                        iab_categories_result:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+                            results:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
+                                  labels:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        relevance:
+                                          type: number
+                                        label:
+                                          type: string
+                                      required:
+                                      - relevance
+                                      - label
+                                  timestamp:
+                                    type: object
+                                    properties:
+                                      start:
+                                        type: number
+                                      end:
+                                        type: number
+                                    required:
+                                    - start
+                                    - end
+                                required:
+                                - text
+                                - labels
+                                - timestamp
+                            summary:
+                              type: object
+                              additionalProperties:
+                                type: number
+                          required:
+                          - status
+                          - results
+                          - summary
+                        custom_spelling:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              from:
+                                type: string
+                              to:
+                                type: string
+                            required:
+                            - from
+                            - to
+                        chapters:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              summary:
+                                type: string
+                              headline:
+                                type: string
+                              gist:
+                                type: string
+                              start:
+                                type: number
+                              end:
+                                type: number
+                            required:
+                            - summary
+                            - headline
+                            - gist
+                            - start
+                            - end
+                        summarization:
+                          type: boolean
+                        summary_type:
+                          type: string
+                        summary_model:
+                          type: string
+                        summary:
+                          type: string
+                        auto_chapters:
+                          type: boolean
+                        sentiment_analysis:
+                          type: boolean
+                        sentiment_analysis_results:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              text:
+                                type: string
+                              start:
+                                type: number
+                              end:
+                                type: number
+                              sentiment:
+                                type: string
+                                enum:
+                                - POSITIVE
+                                - NEUTRAL
+                                - NEGATIVE
+                              confidence:
+                                type: number
+                              speaker:
+                                type: string
+                            required:
+                            - text
+                            - start
+                            - end
+                            - sentiment
+                            - confidence
+                        entity_detection:
+                          type: boolean
+                        entities:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              entity_type:
+                                type: string
+                              text:
+                                type: string
+                              start:
+                                type: number
+                              end:
+                                type: number
+                            required:
+                            - entity_type
+                            - text
+                            - start
+                            - end
+                        speech_threshold:
+                          type: number
+                        throttled:
+                          type: boolean
+                        error:
+                          type: string
+                      required:
+                      - id
+                      - status
+                    - type: object
+                      properties:
+                        text:
+                          type: string
+                        usage:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - tokens
+                            input_tokens:
+                              type: number
+                            input_token_details:
+                              type: object
+                              properties:
+                                text_tokens:
+                                  type: number
+                                audio_tokens:
+                                  type: number
+                              required:
+                              - text_tokens
+                              - audio_tokens
+                            output_tokens:
+                              type: number
+                            total_tokens:
+                              type: number
+                          required:
+                          - input_tokens
+                          - output_tokens
+                          - total_tokens
+                      required:
+                      - text
+                  error:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+                    required:
+                    - name
+                    - message
+                required:
+                - id
+                - status
+                - output
+      tags:
+      - STT
+      summary: V1 stt :generation id
+      x-summary-source: derived

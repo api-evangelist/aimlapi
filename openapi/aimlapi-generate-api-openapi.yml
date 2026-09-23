@@ -1,0 +1,650 @@
+openapi: 3.2.0
+info:
+  title: AIML Generate API
+  version: 1.0.0
+servers:
+- url: https://api.aimlapi.com
+tags:
+- name: Generate
+paths:
+  /v2/generate/audio:
+    post:
+      operationId: _v2_generate_audio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - elevenlabs/eleven_music
+                  prompt:
+                    type: string
+                    maxLength: 2000
+                    description: A text description that can define the genre, mood, instruments, vocals, tempo, structure, and even lyrics of the track. It can be high-level (“peaceful meditation with voiceover”) or detailed (“solo piano in C minor, 90 BPM, raw and emotional”). Use keywords to control genre, emotional tone, vocals (e.g., a cappella, two singers harmonizing), structure (e.g., “lyrics begin at 15 seconds”), or provide custom lyrics directly in the prompt.
+                  music_length_ms:
+                    type: integer
+                    minimum: 10000
+                    maximum: 300000
+                    default: 10000
+                    description: The length of the song to generate in milliseconds. This parameter may not always be respected by the model, and the actual audio length can differ.
+                    format: milliseconds
+                required:
+                - model
+                - prompt
+                title: elevenlabs/eleven_music
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - test/dummy-audio
+                  prompt:
+                    type: string
+                    minLength: 1
+                  duration:
+                    type: integer
+                    minimum: 1
+                    maximum: 10
+                    default: 5
+                  test:
+                    type: object
+                    properties:
+                      delay:
+                        type: number
+                      runningPolls:
+                        type: number
+                      errorStatus:
+                        type: number
+                      submitErrorStatus:
+                        type: number
+                required:
+                - model
+                - prompt
+                title: test/dummy-audio
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - minimax/music-1.5
+                  prompt:
+                    type: string
+                    minLength: 10
+                    maxLength: 300
+                    description: 'A description of the music, specifying style, mood, and scenario. Length: 10–300 characters.'
+                  lyrics:
+                    type: string
+                    minLength: 10
+                    maxLength: 3000
+                    description: 'Lyrics of the song. Use (
+
+                      ) to separate lines. You may add structure tags like [Intro], [Verse], [Chorus], [Bridge], [Outro] to enhance the arrangement. Length: 10–3000 characters.'
+                    example: '[Verse]
+
+                      Streetlights flicker, the night breeze sighs
+
+                      Shadows stretch as I walk alone
+
+                      An old coat wraps my silent sorrow
+
+                      Wandering, longing, where should I go
+
+                      [Chorus]
+
+                      Pushing the wooden door, the aroma spreads
+
+                      In a familiar corner, a stranger gazes'
+                  audio_setting:
+                    type: object
+                    properties:
+                      sample_rate:
+                        type: integer
+                        description: The sampling rate of the generated music.
+                        enum:
+                        - 16000
+                        - 24000
+                        - 32000
+                        - 44100
+                        default: '44100'
+                      bitrate:
+                        type: integer
+                        description: The bit rate of the generated music.
+                        enum:
+                        - 32000
+                        - 64000
+                        - 128000
+                        - 256000
+                        default: '256000'
+                      format:
+                        type: string
+                        enum:
+                        - mp3
+                        - wav
+                        - pcm
+                        default: mp3
+                        description: The format of the generated music.
+                required:
+                - model
+                - prompt
+                - lyrics
+                title: minimax/music-1.5
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - minimax/music-2.0
+                  prompt:
+                    type: string
+                    minLength: 10
+                    maxLength: 2000
+                    description: 'A description of the music, specifying style, mood, and scenario. Length: 10–2000 characters.'
+                  lyrics:
+                    type: string
+                    minLength: 10
+                    maxLength: 3000
+                    description: 'Lyrics of the song. Use (
+
+                      ) to separate lines. You may add structure tags like [Intro], [Verse], [Chorus], [Bridge], [Outro] to enhance the arrangement. Length: 10–3000 characters.'
+                    example: '[Verse]
+
+                      Streetlights flicker, the night breeze sighs
+
+                      Shadows stretch as I walk alone
+
+                      An old coat wraps my silent sorrow
+
+                      Wandering, longing, where should I go
+
+                      [Chorus]
+
+                      Pushing the wooden door, the aroma spreads
+
+                      In a familiar corner, a stranger gazes'
+                  audio_setting:
+                    type: object
+                    properties:
+                      sample_rate:
+                        type: integer
+                        description: The sampling rate of the generated music.
+                        enum:
+                        - 16000
+                        - 24000
+                        - 32000
+                        - 44100
+                        default: '44100'
+                      bitrate:
+                        type: integer
+                        description: The bit rate of the generated music.
+                        enum:
+                        - 32000
+                        - 64000
+                        - 128000
+                        - 256000
+                        default: '256000'
+                      format:
+                        type: string
+                        enum:
+                        - mp3
+                        - wav
+                        - pcm
+                        default: mp3
+                        description: The format of the generated music.
+                required:
+                - model
+                - prompt
+                - lyrics
+                title: minimax/music-2.0
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - minimax/music-2.6
+                  prompt:
+                    type: string
+                    maxLength: 2000
+                    description: 'A description of the music, specifying style, mood, and scenario. Length: 10–2000 characters.'
+                  lyrics:
+                    type: string
+                    maxLength: 3000
+                    description: 'Lyrics of the song. Use (
+
+                      ) to separate lines. You may add structure tags like [Intro], [Verse], [Chorus], [Bridge], [Outro] to enhance the arrangement. Length: 10–3000 characters.'
+                    example: '[Verse]
+
+                      Streetlights flicker, the night breeze sighs
+
+                      Shadows stretch as I walk alone
+
+                      An old coat wraps my silent sorrow
+
+                      Wandering, longing, where should I go
+
+                      [Chorus]
+
+                      Pushing the wooden door, the aroma spreads
+
+                      In a familiar corner, a stranger gazes'
+                  audio_setting:
+                    type: object
+                    properties:
+                      sample_rate:
+                        type: integer
+                        description: The sampling rate of the generated music.
+                        enum:
+                        - 16000
+                        - 24000
+                        - 32000
+                        - 44100
+                        default: '44100'
+                      bitrate:
+                        type: integer
+                        description: The bit rate of the generated music.
+                        enum:
+                        - 32000
+                        - 64000
+                        - 128000
+                        - 256000
+                        default: '256000'
+                      format:
+                        type: string
+                        enum:
+                        - mp3
+                        - wav
+                        - pcm
+                        default: mp3
+                        description: The format of the generated music.
+                  lyrics_optimizer:
+                    type: boolean
+                    default: false
+                    description: Whether to automatically generate lyrics based on the prompt description. When set to true and lyrics is empty, the system will automatically generate lyrics from the prompt.
+                  is_instrumental:
+                    type: boolean
+                    default: false
+                    description: Whether to generate instrumental music (no vocals). When set to true, the lyrics field is not required.
+                required:
+                - model
+                title: minimax/music-2.6
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - minimax/music-cover
+                  prompt:
+                    type: string
+                    minLength: 10
+                    maxLength: 2000
+                    description: 'A description of the music, specifying style, mood, and scenario. Length: 10–2000 characters.'
+                  reference_audio_url:
+                    type: string
+                    format: uri
+                    description: 'A URL or a Base64-encoded of the reference audio. Reference audio constraints:
+
+                      - Duration: 6 seconds to 6 minutes
+
+                      - Size: max 50 MB
+
+                      - Format: common audio formats (mp3, wav, flac, etc.)
+
+                      - Must contain vocals: purely instrumental tracks are rejected, because the cover is built from the detected vocal melody
+
+                      Prefer a Base64 data URI or a fast CDN URL: the provider downloads an external URL itself, so a slow host adds its download time to the request.
+
+                      Mutually exclusive with cover_feature_id.
+
+                      '
+                  cover_feature_id:
+                    type: string
+                    minLength: 1
+                    description: 'Identifier of preprocessed reference-audio features, obtained from POST /v2/generate/audio/preprocess. Two-step flow: call the preprocess endpoint, review or edit the formatted_lyrics it returns, then send them here as lyrics together with this id. Valid for 24 hours. Mutually exclusive with reference_audio_url; requires lyrics.'
+                  lyrics:
+                    type: string
+                    minLength: 10
+                    maxLength: 3000
+                  audio_setting:
+                    type: object
+                    properties:
+                      sample_rate:
+                        type: integer
+                        description: The sampling rate of the generated music.
+                        enum:
+                        - 16000
+                        - 24000
+                        - 32000
+                        - 44100
+                        default: '44100'
+                      bitrate:
+                        type: integer
+                        description: The bit rate of the generated music.
+                        enum:
+                        - 32000
+                        - 64000
+                        - 128000
+                        - 256000
+                        default: '256000'
+                      format:
+                        type: string
+                        enum:
+                        - mp3
+                        - wav
+                        - pcm
+                        default: mp3
+                        description: The format of the generated music.
+                required:
+                - model
+                - prompt
+                title: minimax/music-cover
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - lyria2
+                    - google/lyria2
+                  prompt:
+                    type: string
+                    description: Lyrics with optional formatting. You can use a newline to separate each line of lyrics. You can use two newlines to add a pause between lines. You can use double hash marks (##) at the beginning and end of the lyrics to add accompaniment. Maximum 600 characters.
+                  negative_prompt:
+                    type: string
+                    description: A description of what to exclude from the generated audio
+                  seed:
+                    type: integer
+                    minimum: 0
+                    description: A seed for deterministic generation. If provided, the model will attempt to produce the same audio given the same prompt and other parameters.
+                required:
+                - model
+                - prompt
+                title: lyria2, google/lyria2
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - minimax-music
+                  prompt:
+                    type: string
+                    description: Lyrics with optional formatting. You can use a newline to separate each line of lyrics. You can use two newlines to add a pause between lines. You can use double hash marks (##) at the beginning and end of the lyrics to add accompaniment. Maximum 600 characters.
+                  reference_audio_url:
+                    type: string
+                    format: uri
+                    description: Reference song, should contain music and vocals. Must be a .wav or .mp3 file longer than 15 seconds.
+                required:
+                - model
+                - prompt
+                - reference_audio_url
+                title: minimax-music
+              - type: object
+                properties:
+                  model:
+                    type: string
+                    enum:
+                    - stable-audio
+                  prompt:
+                    type: string
+                    description: The prompt to generate audio.
+                  seconds_start:
+                    type: integer
+                    maximum: 47
+                    minimum: 1
+                    description: The start point of the audio clip to generate.
+                  seconds_total:
+                    type: integer
+                    maximum: 47
+                    minimum: 1
+                    default: 30
+                    description: The duration of the audio clip to generate.
+                  steps:
+                    type: integer
+                    minimum: 1
+                    maximum: 1000
+                    default: 100
+                    description: The number of steps to denoise the audio.
+                required:
+                - model
+                - prompt
+                title: stable-audio
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the generated audio.
+                    example: 60ac7c34-3224-4b14-8e7d-0aa0db708325
+                  status:
+                    type: string
+                    enum:
+                    - queued
+                    - generating
+                    - completed
+                    - error
+                    description: The current status of the generation task.
+                    example: completed
+                  audio_file:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      url:
+                        type: string
+                        format: uri
+                        description: The URL where the file can be downloaded from.
+                        example: https://cdn.aimlapi.com/generations/hippopotamus/1757963033314-8ca7729d-b78c-4d4c-9ef9-89b2fb3d07e8.mp3
+                    required:
+                    - url
+                  error:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+                    required:
+                    - name
+                    - message
+                    description: Description of the error, if any.
+                  meta:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      usage:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          credits_used:
+                            type: number
+                            description: The number of tokens consumed during generation.
+                            example: 120000
+                          usd_spent:
+                            type: number
+                            description: The total amount of money spent by the user in USD.
+                            example: 0.06
+                        required:
+                        - credits_used
+                        - usd_spent
+                    description: Additional details about the generation.
+                required:
+                - id
+                - status
+      tags:
+      - Generate
+      summary: V2 generate audio
+      x-summary-source: derived
+    get:
+      operationId: _v2_generate_audio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  enum:
+                  - elevenlabs/eleven_music
+                  - test/dummy-audio
+                  - minimax/music-1.5
+                  - minimax/music-2.0
+                  - minimax/music-2.6
+                  - minimax/music-cover
+                  - lyria2
+                  - minimax-music
+                  - stable-audio
+                  - google/lyria2
+                id:
+                  type: string
+              required:
+              - model
+              - id
+              title: elevenlabs/eleven_music, test/dummy-audio, minimax/music-1.5, minimax/music-2.0, minimax/music-2.6, minimax/music-cover, lyria2, minimax-music, stable-audio, google/lyria2
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the generated audio.
+                    example: 60ac7c34-3224-4b14-8e7d-0aa0db708325
+                  status:
+                    type: string
+                    enum:
+                    - queued
+                    - generating
+                    - completed
+                    - error
+                    description: The current status of the generation task.
+                    example: completed
+                  audio_file:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      url:
+                        type: string
+                        format: uri
+                        description: The URL where the file can be downloaded from.
+                        example: https://cdn.aimlapi.com/generations/hippopotamus/1757963033314-8ca7729d-b78c-4d4c-9ef9-89b2fb3d07e8.mp3
+                    required:
+                    - url
+                  error:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+                    required:
+                    - name
+                    - message
+                    description: Description of the error, if any.
+                  meta:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      usage:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          credits_used:
+                            type: number
+                            description: The number of tokens consumed during generation.
+                            example: 120000
+                          usd_spent:
+                            type: number
+                            description: The total amount of money spent by the user in USD.
+                            example: 0.06
+                        required:
+                        - credits_used
+                        - usd_spent
+                    description: Additional details about the generation.
+                required:
+                - id
+                - status
+      tags:
+      - Generate
+      summary: V2 generate audio
+      x-summary-source: derived
+  /v2/generate/audio/preprocess:
+    post:
+      operationId: _v2_generate_audio_preprocess
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  enum:
+                  - minimax/music-cover
+                reference_audio_url:
+                  type: string
+                  format: uri
+                  description: 'A URL or a Base64-encoded data URI of the reference audio to analyze. Reference audio constraints:
+
+                    - Duration: 6 seconds to 6 minutes
+
+                    - Size: max 50 MB
+
+                    - Format: common audio formats (mp3, wav, flac, etc.)
+
+                    - Must contain vocals: purely instrumental tracks are rejected, because the cover is built from the detected vocal melody
+
+                    Prefer a Base64 data URI or a fast CDN URL: the provider downloads an external URL itself, so a slow host adds its download time to the request.
+
+                    The analysis result (cover_feature_id) is valid for 24 hours; pass it to POST /v2/generate/audio together with lyrics to generate the cover.'
+              required:
+              - model
+              - reference_audio_url
+              title: minimax/music-cover
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cover_feature_id:
+                    type: string
+                    description: Identifier of the preprocessed reference-audio features. Valid for 24 hours and only within this platform. Pass it to POST /v2/generate/audio instead of reference_audio_url, together with lyrics.
+                  formatted_lyrics:
+                    type: string
+                    description: Lyrics recognized from the reference audio, formatted with section tags such as [Verse] and [Chorus]. Review or edit them and pass as lyrics in the generation call.
+                  structure_result:
+                    type: string
+                    description: Detected song structure as a raw JSON string (segment types and timestamps), exactly as returned by the provider.
+                  audio_duration:
+                    type: number
+                    description: Duration of the reference audio in seconds.
+                required:
+                - cover_feature_id
+                - formatted_lyrics
+                - structure_result
+                - audio_duration
+      tags:
+      - Generate
+      summary: V2 generate audio preprocess
+      x-summary-source: derived
