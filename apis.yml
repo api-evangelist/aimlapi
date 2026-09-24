@@ -507,10 +507,10 @@ apis:
 name: AIMLAPI
 tags:
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - AI Models
 - LLM
-- Image-Generation
+- Image Generation
 - Video Generation
 - Speech
 - Embeddings
@@ -527,6 +527,8 @@ tags_raw:
 - Embeddings
 - API Gateway
 - Developer Tools
+- Machine-Learning
+- Image-Generation
 kind: contract
 deliveryModel:
   model: saas
