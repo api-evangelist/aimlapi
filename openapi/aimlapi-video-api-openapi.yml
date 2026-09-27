@@ -6456,7 +6456,7 @@ paths:
       summary: V2 video generations
       x-summary-source: derived
     get:
-      operationId: _v2_video_generations
+      operationId: getV2VideoGenerations
       requestBody:
         required: true
         content:
@@ -6840,3 +6840,5 @@ paths:
       - Video
       summary: V2 video generations
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: _v2_video_generations

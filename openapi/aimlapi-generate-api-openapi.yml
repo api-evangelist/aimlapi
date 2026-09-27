@@ -485,7 +485,7 @@ paths:
       summary: V2 generate audio
       x-summary-source: derived
     get:
-      operationId: _v2_generate_audio
+      operationId: getV2GenerateAudio
       requestBody:
         required: true
         content:
@@ -586,6 +586,8 @@ paths:
       - Generate
       summary: V2 generate audio
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: _v2_generate_audio
   /v2/generate/audio/preprocess:
     post:
       operationId: _v2_generate_audio_preprocess

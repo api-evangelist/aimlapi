@@ -227,7 +227,7 @@ paths:
       summary: V1 batches
       x-summary-source: derived
     get:
-      operationId: _v1_batches
+      operationId: getV1Batches
       requestBody:
         required: true
         content:
@@ -293,6 +293,8 @@ paths:
       - Batches
       summary: V1 batches
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: _v1_batches
   /v1/batches/cancel/:batch_id:
     post:
       operationId: _v1_batches_cancel_:batch_id
