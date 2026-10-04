@@ -558,6 +558,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aimlapi.png
 access: 3rd-Party
 common:
+- type: CapabilityMap
+  url: capabilities/aimlapi-capability-edges.yml
+  name: AIMLAPI Business Capability Map
 - type: Website
   url: https://aimlapi.com/
 - type: AgenticAccess

@@ -1,0 +1,25 @@
+slug: aimlapi
+provider: AIMLAPI
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: API Key Management
+  spec_file: aimlapi-api-key-management-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.82
+  evidence: '"PUT /api-keys/{id}/disable  AIMLAPI Disable API Key"; description: "**API Key Management**:
+    Securely manage your API keys for controlled access"'
+  reason: Operations issue/enable/disable API credentials used by developers to consume the public API
+    — Developer Identity & Credential Management.
