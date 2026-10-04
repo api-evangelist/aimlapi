@@ -61,28 +61,6 @@ apis:
     url: https://aimlapi.com/app/sign-up/
   - type: FAQ
     url: https://docs.aimlapi.com/faq
-- aid: aimlapi:aimlapi-chat-api
-  name: AIMLAPI Chat API
-  description: The Chat API from AIMLAPI — 1 operation(s) for chat.
-  humanURL: https://aimlapi.com/
-  baseURL: https://api.aimlapi.com
-  tags:
-  - Chat
-  properties:
-  - type: OpenAPI
-    url: openapi/aimlapi-chat-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aimlapi.com/
-  - type: APIReference
-    url: https://docs.aimlapi.com/api-references/text-models-llm
-  - type: APIReference
-    url: https://docs.aimlapi.com/api-references/image-models
-  - type: GettingStarted
-    url: https://docs.aimlapi.com/quickstart/simple-model
-  - type: Signup
-    url: https://aimlapi.com/app/sign-up/
-  - type: FAQ
-    url: https://docs.aimlapi.com/faq
 - aid: aimlapi:aimlapi-images-api
   name: AIMLAPI Images API
   description: Given a prompt and/or an input image, the model will generate a new image.
@@ -299,11 +277,12 @@ apis:
     url: https://docs.aimlapi.com/faq
 - aid: aimlapi:aimlapi-mcp-server
   name: AIMLAPI MCP Server
-  description: AI/ML API's first-party remote Model Context Protocol server at https://mcp.aimlapi.com/mcp
-    — Streamable HTTP with OAuth 2.1, PKCE and dynamic client registration, so no API key is pasted into
-    the client. Exposes model discovery, inference across every modality, long-running job management
-    and account balance, billed to the same account as the REST API. tools/list is authentication-gated,
-    so the live tool schemas are not captured here.
+  description: >-
+    AI/ML API's first-party remote Model Context Protocol server at https://mcp.aimlapi.com/mcp — Streamable
+    HTTP with OAuth 2.1, PKCE and dynamic client registration, so no API key is pasted into the client.
+    Exposes model discovery, inference across every modality, long-running job management and account
+    balance, billed to the same account as the REST API. tools/list is authentication-gated, so the live
+    tool schemas are not captured here.
   humanURL: https://docs.aimlapi.com/quickstart/mcp
   baseURL: https://mcp.aimlapi.com/mcp
   tags:
@@ -504,6 +483,28 @@ apis:
     url: https://docs.aimlapi.com/quickstart/simple-model
   - type: Signup
     url: https://aimlapi.com/app/sign-up/
+- aid: aimlapi:aimlapi-chat-completions-api
+  name: AIMLAPI Chat Completions API
+  description: The Chat Completions API from AIMLAPI — 2 operation(s) for chat completions.
+  humanURL: https://aimlapi.com/
+  baseURL: https://api.aimlapi.com
+  tags:
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/aimlapi-chat-completions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aimlapi.com/
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/text-models-llm
+  - type: APIReference
+    url: https://docs.aimlapi.com/api-references/image-models
+  - type: GettingStarted
+    url: https://docs.aimlapi.com/quickstart/simple-model
+  - type: Signup
+    url: https://aimlapi.com/app/sign-up/
+  - type: FAQ
+    url: https://docs.aimlapi.com/faq
 name: AIMLAPI
 tags:
 - Artificial Intelligence

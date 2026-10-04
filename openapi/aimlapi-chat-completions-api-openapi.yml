@@ -6,7 +6,7 @@ info:
 servers:
 - url: https://api.aimlapi.com
 tags:
-- name: Chat
+- name: Chat Completions
 paths:
   /v1/chat/completions:
     post:
@@ -77167,7 +77167,7 @@ paths:
                 - model
                 - object
       tags:
-      - Chat
+      - Chat Completions
       summary: V1 chat completions
       x-summary-source: derived
     servers:
@@ -77175,7 +77175,7 @@ paths:
   /chat/completions:
     post:
       tags:
-      - Chat
+      - Chat Completions
       summary: AIMLAPI Create Chat Message Completion
       description: You can read about parameters here.
       requestBody:
