@@ -89,3 +89,21 @@ docs_mcp:
   note: The site llms.txt also advertises a documentation MCP endpoint. That is GitBook's docs-query MCP
     for the docs site, operated by the documentation platform, NOT the AIMLAPI product MCP server above.
     Recorded here so the two are not conflated.
+rfc9728:
+  endpoint: https://mcp.aimlapi.com/mcp
+  metadata_url: https://mcp.aimlapi.com/.well-known/oauth-protected-resource/mcp
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.aimlapi.com/mcp
+    authorization_servers:
+    - https://auth.aimlapi.com/mcp-oauth
+    scopes_supported:
+    - openid
+    - email
+    - offline_access
+    - mcp:invoke
+    bearer_methods_supported:
+    - header

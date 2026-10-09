@@ -172,3 +172,58 @@ billing_api:
 - GET /v2/billing/transactions
 - GET /v2/usage
 - GET /v2/logs
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - negotiated
+  - subscription
+  units:
+  - token
+  plans:
+  - name: Developer Plan
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - token
+    periods: []
+  - name: Startup Plan
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - token
+    periods: []
+  - name: Production Plan
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - token
+    periods:
+    - month
+  - name: Pay In Crypto Plan
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - token
+    periods:
+    - month
+  - name: Scale Plan
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - token
+    periods:
+    - month
+  - name: Enterprise Plan
+    access: negotiated
+    model: negotiated
+    model_how: stated
+    units: []
+    periods: []
