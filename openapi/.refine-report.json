@@ -25,7 +25,9 @@
     "aimlapi-voice-api-openapi.yml",
     "aimlapi-wip-completions-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -64,13 +66,14 @@
     "aimlapi-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "tag 'Chat' spans 2 source specs (aimlapi-inference-openapi.yml, aimlapi-openapi.yml): per-path servers applied",
     "tag 'Images' spans 2 source specs (aimlapi-inference-openapi.yml, aimlapi-openapi.yml): per-path servers applied",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: aimlapi-chat-completions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 20 total)"
   ],
   "skipped": [
     "aimlapi-api-key-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "aimlapi-assistants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "aimlapi-batches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "aimlapi-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "aimlapi-chat-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "aimlapi-embeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "aimlapi-generate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "aimlapi-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
