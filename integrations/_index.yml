@@ -39,3 +39,74 @@
     builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
+- slug: aimlapi-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@ai-ml.api/aimlapi-sdk-node
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@ai-ml.api/aimlapi-sdk-node'
+      version: 1.0.1
+      released: '2026-08-25'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@ai-ml.api/aimlapi-sdk-node
+      repo_leg: domain:aimlapi.com
+      publisher_leg: email:aimlapi.com
+      matched_by: domain
+    - name: '@ai-ml.api/api-docs'
+      version: 1.0.0
+      released: '2026-08-25'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@ai-ml.api/api-docs
+      repo_leg: github-org:aimlapi
+      publisher_leg: email:aimlapi.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: aimlapi-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/aimlapi-sdk-python/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: aimlapi-sdk-python
+      version: 2.24.0rc1
+      released: '2026-03-05'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/aimlapi-sdk-python/
+      repo_leg: domain:aimlapi.com
+      publisher_leg: email:aimlapi.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
