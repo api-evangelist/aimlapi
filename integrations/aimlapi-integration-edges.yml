@@ -1,22 +1,4 @@
 edges:
-- partner_name: LiteLLM
-  partner: litellm
-  partner_match: router
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: system-coverage
-  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
-  coverage_role:
-  - provider
-  router_signals:
-    provider:
-      models: 13
-      router_ids:
-      - aiml
-  matched_by: verified-token-table
-  detected_by: sweep-model-routing.py
-  first_seen: '2026-10-13'
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -111,6 +93,51 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: LiteLLM
+  partner: litellm
+  partner_match: router
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+  coverage_role:
+  - provider
+  router_signals:
+    provider:
+      models: 13
+      router_ids:
+      - aiml
+  matched_by: verified-token-table
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
+- partner_name: PyPI organization accounts
+  partner: pypi
+  partner_match: register
+  type: register
+  channel: package-registry
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://pypi.org/org/AIML.API/
+  category: PyPI organization
+  contract_reference:
+    register: PyPI organization accounts
+    spec_file: null
+    role: pypi-organization
+    registered_name: AIML.API
+    register_id: https://pypi.org/org/AIML.API/
+    org_display_name: AI/ML API
+    matched_by: verified-package
+    packages_verified:
+    - aimlapi-sdk-python
+    org_projects: 2
+    identity_note: the org is reached through packages sweep-official-sdks / official-clis verified as the provider's
+      own (domain / org leg AND publisher leg); never by the org name
+    signal_note: 'participation only (python): an organization account on PyPI, not a package count'
+    detected_by: sweep-ide-extension-marketplaces.py
+    detected: '2026-10-20'
+  detected_by: sweep-ide-extension-marketplaces.py
+  first_seen: '2026-10-20'
 generated: '2026-10-13'
 method: searched
 checked:
@@ -123,5 +150,7 @@ checked:
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
 - https://zapier.com/api/v4/apps/
+- https://pypi.org/org/{org}/
+- https://pypi.org/pypi/{package}/json
 source:
 - https://zapier.com/api/v4/apps/
