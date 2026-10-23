@@ -9,6 +9,9 @@ artifacts:
   authentication/aimlapi-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  capabilities/aimlapi-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/aimlapi-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -24,24 +27,48 @@ artifacts:
   collections/aimlapi-assistants-api.postman_collection.json:
     method: derived
     evidence: openapi/aimlapi-assistants-api
+  collections/aimlapi-batches-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-batches-api
   collections/aimlapi-chat-api.opencollection.json:
-    method: derived
-    evidence: openapi/aimlapi-chat-api
+    method: unknown
+    evidence: no authorship recorded
   collections/aimlapi-chat-api.postman_collection.json:
+    method: unknown
+    evidence: no authorship recorded
+  collections/aimlapi-chat-completions-api.postman_collection.json:
     method: derived
-    evidence: openapi/aimlapi-chat-api
+    evidence: openapi/aimlapi-chat-completions-api
+  collections/aimlapi-embeddings-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-embeddings-api
+  collections/aimlapi-generate-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-generate-api
   collections/aimlapi-images-api.opencollection.json:
     method: derived
     evidence: openapi/aimlapi-images-api
   collections/aimlapi-images-api.postman_collection.json:
     method: derived
     evidence: openapi/aimlapi-images-api
+  collections/aimlapi-messages-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-messages-api
   collections/aimlapi-models-api.opencollection.json:
     method: derived
     evidence: openapi/aimlapi-models-api
   collections/aimlapi-models-api.postman_collection.json:
     method: derived
     evidence: openapi/aimlapi-models-api
+  collections/aimlapi-ocr-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-ocr-api
+  collections/aimlapi-responses-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-responses-api
+  collections/aimlapi-stt-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-stt-api
   collections/aimlapi-threads-api.opencollection.json:
     method: derived
     evidence: openapi/aimlapi-threads-api
@@ -60,6 +87,12 @@ artifacts:
   collections/aimlapi-threads-runs-api.postman_collection.json:
     method: derived
     evidence: openapi/aimlapi-threads-runs-api
+  collections/aimlapi-tts-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-tts-api
+  collections/aimlapi-video-api.postman_collection.json:
+    method: derived
+    evidence: openapi/aimlapi-video-api
   collections/aimlapi-voice-api.opencollection.json:
     method: derived
     evidence: openapi/aimlapi-voice-api
@@ -117,6 +150,12 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/aimlapi-integration-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/aimlapi-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -162,127 +201,7 @@ artifacts:
   json-structure/aimlapi-model-info-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -366,6 +285,21 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/aimlapi-lifecycle.yml:
     method: unknown
     evidence: no authorship recorded
@@ -395,7 +329,7 @@ artifacts:
   openapi/aimlapi-batches-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/aimlapi-chat-api-openapi.yml:
+  openapi/aimlapi-chat-completions-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/aimlapi-embeddings-api-openapi.yml:
