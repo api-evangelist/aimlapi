@@ -138,6 +138,27 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-ide-extension-marketplaces.py
   first_seen: '2026-10-20'
+- partner_name: Hugging Face (hugging-face-hub)
+  partner: hugging-face
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: hugging-face-hub
+  evidence: https://huggingface.co/AimlAPI
+  mirror_of: hugging-face/integrations/hugging-face-integration-edges.yml
+  apps:
+  - AimlAPI/Bagoodex-Web-Search
+  - AimlAPI/EmailAgent
+  - AimlAPI/AI-Sticker-Maker
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Hugging Face Hub spaces
+  badges:
+  - Verified publisher (Hugging Face verified organisation)
 generated: '2026-10-13'
 method: searched
 checked:
@@ -152,5 +173,6 @@ checked:
 - https://zapier.com/api/v4/apps/
 - https://pypi.org/org/{org}/
 - https://pypi.org/pypi/{package}/json
+- hugging-face/integrations/hugging-face-integration-edges.yml
 source:
 - https://zapier.com/api/v4/apps/
