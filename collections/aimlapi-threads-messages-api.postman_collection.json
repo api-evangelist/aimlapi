@@ -1,515 +1,520 @@
 {
+  "info": {
+    "_postman_id": "c8318c79-3d4e-4c0a-81b9-ef47421a1272",
+    "name": "AIMLAPI AI/ML API Documentation Threads > Messages API",
+    "description": "=K Welcome to the AI/ML API docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n\n- **API Key Management**: Securely manage your API keys for controlled access.\n\n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n\nSee Quickstart",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:01.000Z",
+    "updatedAt": "2026-10-21T21:00:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c8318c79-3d4e-4c0a-81b9-ef47421a1272"
+  },
   "item": [
     {
-      "id": "4215567e-223d-4763-b086-9b77ca77b285",
-      "name": "Threads > Messages",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "threads",
       "item": [
         {
-          "id": "0020a19b-00b8-4a9e-b3f2-39c25dfc52f7",
-          "name": "AIMLAPI Get Messages",
-          "request": {
-            "name": "AIMLAPI Get Messages",
-            "description": {},
-            "url": {
-              "path": [
-                "threads",
-                ":threadId",
-                "messages"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "order",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "before",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "threadId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{threadId}",
+          "item": [
             {
-              "id": "2958212f-0c2b-4161-a1d8-bc517eb1a588",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "threads",
-                    ":threadId",
-                    "messages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "example_value"
-                    },
-                    {
-                      "key": "order",
-                      "value": "example_value"
-                    },
-                    {
-                      "key": "before",
-                      "value": "example_value"
-                    },
-                    {
-                      "key": "after",
-                      "value": "example_value"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "threadId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "messages",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{messageId}",
+                  "item": [
+                    {
+                      "name": "AIMLAPI Get Message",
+                      "id": "95f445a5-8aa4-4c33-a467-739258c0afc6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/threads/:threadId/messages/:messageId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "threads",
+                            ":threadId",
+                            "messages",
+                            ":messageId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8c1840ae-9d4a-4b65-8a0b-41dcf325957f",
+                              "key": "threadId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "cb0151f8-3f8f-4b85-9cef-fe639ee70fed",
+                              "key": "messageId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "76c6e2e5-117a-42d7-bcba-dc70595d4cfd",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/threads/:threadId/messages/:messageId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threads",
+                                ":threadId",
+                                "messages",
+                                ":messageId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "threadId"
+                                },
+                                {
+                                  "key": "messageId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "",
+                          "createdAt": "2026-10-21T21:00:01.000Z",
+                          "updatedAt": "2026-10-21T21:00:01.000Z",
+                          "uid": "35240-76c6e2e5-117a-42d7-bcba-dc70595d4cfd"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:01.000Z",
+                      "updatedAt": "2026-10-21T21:00:01.000Z",
+                      "uid": "35240-95f445a5-8aa4-4c33-a467-739258c0afc6"
+                    },
+                    {
+                      "name": "AIMLAPI Update Message",
+                      "id": "fff58ace-a663-4811-90dd-fa9d585e5210",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/threads/:threadId/messages/:messageId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "threads",
+                            ":threadId",
+                            "messages",
+                            ":messageId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8f112e0f-37a5-4369-a88b-8031143aa025",
+                              "key": "threadId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "d87d8cd7-91eb-47eb-bc9f-de6caceb2a58",
+                              "key": "messageId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "00b0d093-1411-421e-a18c-e6d749bd2c85",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/threads/:threadId/messages/:messageId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threads",
+                                ":threadId",
+                                "messages",
+                                ":messageId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "threadId"
+                                },
+                                {
+                                  "key": "messageId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "",
+                          "createdAt": "2026-10-21T21:00:01.000Z",
+                          "updatedAt": "2026-10-21T21:00:01.000Z",
+                          "uid": "35240-00b0d093-1411-421e-a18c-e6d749bd2c85"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:01.000Z",
+                      "updatedAt": "2026-10-21T21:00:01.000Z",
+                      "uid": "35240-fff58ace-a663-4811-90dd-fa9d585e5210"
+                    }
+                  ],
+                  "id": "8ce85181-ff5e-48ba-b301-032fc2c27e1a",
+                  "createdAt": "2026-10-21T21:00:01.000Z",
+                  "updatedAt": "2026-10-21T21:00:01.000Z",
+                  "uid": "35240-8ce85181-ff5e-48ba-b301-032fc2c27e1a"
+                },
+                {
+                  "name": "AIMLAPI Get Messages",
+                  "id": "fad6bbe1-fbde-406e-bfcf-77cb2e6e1d1d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/threads/:threadId/messages?limit=<string>&order=<string>&before=<string>&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "threads",
+                        ":threadId",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "order",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "3b2f824a-3563-466f-9750-4e8061bc65cc",
+                          "key": "threadId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1c4cd915-ea0f-491e-a2d0-9cb7cae311bb",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/threads/:threadId/messages?limit=<string>&order=<string>&before=<string>&after=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "threads",
+                            ":threadId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "order",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "after",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "",
+                      "createdAt": "2026-10-21T21:00:01.000Z",
+                      "updatedAt": "2026-10-21T21:00:01.000Z",
+                      "uid": "35240-1c4cd915-ea0f-491e-a2d0-9cb7cae311bb"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:00:01.000Z",
+                  "updatedAt": "2026-10-21T21:00:01.000Z",
+                  "uid": "35240-fad6bbe1-fbde-406e-bfcf-77cb2e6e1d1d"
+                },
+                {
+                  "name": "AIMLAPI Create Message",
+                  "id": "b07fafce-7405-4a42-a4ef-5c39b14fe2c5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/threads/:threadId/messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "threads",
+                        ":threadId",
+                        "messages"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d577080f-2316-4bc9-bfa2-e989f2e1cf8d",
+                          "key": "threadId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "79dbf880-a371-4c18-9dad-8a252b474775",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/threads/:threadId/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "threads",
+                            ":threadId",
+                            "messages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "",
+                      "createdAt": "2026-10-21T21:00:01.000Z",
+                      "updatedAt": "2026-10-21T21:00:01.000Z",
+                      "uid": "35240-79dbf880-a371-4c18-9dad-8a252b474775"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:00:01.000Z",
+                  "updatedAt": "2026-10-21T21:00:01.000Z",
+                  "uid": "35240-b07fafce-7405-4a42-a4ef-5c39b14fe2c5"
                 }
               ],
-              "body": "\"\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "6135d362-50f0-4e4a-b6fa-52116fcae9cd",
+              "createdAt": "2026-10-21T21:00:01.000Z",
+              "updatedAt": "2026-10-21T21:00:01.000Z",
+              "uid": "35240-6135d362-50f0-4e4a-b6fa-52116fcae9cd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "075fb53c-ee2e-43b3-b10e-5f676bdcb981",
-          "name": "AIMLAPI Create Message",
-          "request": {
-            "name": "AIMLAPI Create Message",
-            "description": {},
-            "url": {
-              "path": [
-                "threads",
-                ":threadId",
-                "messages"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "threadId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c170cd48-a9a6-45a3-9fd2-b6c721ec31cb",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "threads",
-                    ":threadId",
-                    "messages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "threadId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"role\": \"user\",\n  \"content\": \"Why the sky is blue?\",\n  \"metadata\": {}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "146a9eff-fe16-4e80-bf99-04b2e7fc9fe9",
-          "name": "AIMLAPI Get Message",
-          "request": {
-            "name": "AIMLAPI Get Message",
-            "description": {},
-            "url": {
-              "path": [
-                "threads",
-                ":threadId",
-                "messages",
-                ":messageId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "threadId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "messageId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d63e3388-b5ab-458a-9128-4e8c9d8e859e",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "threads",
-                    ":threadId",
-                    "messages",
-                    ":messageId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "threadId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "messageId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9f05c2a8-a90c-4514-8dc6-a0a12faaaae0",
-          "name": "AIMLAPI Update Message",
-          "request": {
-            "name": "AIMLAPI Update Message",
-            "description": {},
-            "url": {
-              "path": [
-                "threads",
-                ":threadId",
-                "messages",
-                ":messageId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "threadId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "messageId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "50cb9094-394e-4733-baea-9fea1f6d9cee",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "threads",
-                    ":threadId",
-                    "messages",
-                    ":messageId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "threadId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "messageId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"metadata\": {}\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "350ad173-95df-4dd6-be0e-4799d3133395",
+          "createdAt": "2026-10-21T21:00:01.000Z",
+          "updatedAt": "2026-10-21T21:00:01.000Z",
+          "uid": "35240-350ad173-95df-4dd6-be0e-4799d3133395"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://{{baseurl}}",
-      "key": "baseUrl"
+      "id": "3dfbf63a-fe3f-46a1-bf1e-0de622412b20",
+      "createdAt": "2026-10-21T21:00:01.000Z",
+      "updatedAt": "2026-10-21T21:00:01.000Z",
+      "uid": "35240-3dfbf63a-fe3f-46a1-bf1e-0de622412b20"
     }
   ],
   "auth": {
@@ -517,17 +522,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "74970b4e-1282-40ad-9b09-3691e07e6ab4",
-    "name": "AIMLAPI AI/ML API Documentation API Key Management Threads > Messages API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
     }
-  }
+  ]
 }

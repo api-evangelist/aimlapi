@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "d63c74df-0d40-44ad-8af4-02108c889ef2",
+    "name": "AIML Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:49.000Z",
+    "updatedAt": "2026-10-21T21:00:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d63c74df-0d40-44ad-8af4-02108c889ef2"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "messages",
+          "item": [
+            {
+              "name": "V1 messages",
+              "id": "06eb7d70-79fb-44ae-aa60-e4bfaf8ba511",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"claude-haiku-4-5\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"deserunt72a\": \"<string>\"\n  },\n  \"stop_sequences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream\": false,\n  \"system\": \"<string>\",\n  \"tool_choice\": {\n    \"type\": \"auto\",\n    \"disable_parallel_tool_use\": \"<boolean>\"\n  },\n  \"tools\": [\n    {\n      \"name\": \"<string>\",\n      \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {},\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"type\": \"custom\",\n      \"defer_loading\": \"<boolean>\",\n      \"eager_input_streaming\": \"<boolean>\",\n      \"input_examples\": [\n        {\n          \"laborum_4\": {},\n          \"laborum35\": {}\n        },\n        {\n          \"cillum_b6\": {}\n        }\n      ],\n      \"strict\": \"<boolean>\",\n      \"allowed_callers\": [\n        \"code_execution_20250825\",\n        \"code_execution_20260120\"\n      ],\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"1h\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {},\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"type\": \"custom\",\n      \"defer_loading\": \"<boolean>\",\n      \"eager_input_streaming\": \"<boolean>\",\n      \"input_examples\": [\n        {\n          \"eu_7\": {},\n          \"non9\": {}\n        },\n        {\n          \"anim0_5\": {},\n          \"nostrud_d0a\": {}\n        }\n      ],\n      \"strict\": \"<boolean>\",\n      \"allowed_callers\": [\n        \"direct\",\n        \"direct\"\n      ],\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"1h\"\n      }\n    }\n  ],\n  \"thinking\": {\n    \"type\": \"enabled\",\n    \"budget_tokens\": \"<integer>\",\n    \"display\": \"summarized\"\n  },\n  \"max_tokens\": 64000,\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"top_k\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/messages",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "messages"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f4fe4f05-8c6b-407f-bc80-92b94285f586",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"claude-haiku-4-5\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"deserunt72a\": \"<string>\"\n  },\n  \"stop_sequences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream\": false,\n  \"system\": \"<string>\",\n  \"tool_choice\": {\n    \"type\": \"auto\",\n    \"disable_parallel_tool_use\": \"<boolean>\"\n  },\n  \"tools\": [\n    {\n      \"name\": \"<string>\",\n      \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {},\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"type\": \"custom\",\n      \"defer_loading\": \"<boolean>\",\n      \"eager_input_streaming\": \"<boolean>\",\n      \"input_examples\": [\n        {\n          \"laborum_4\": {},\n          \"laborum35\": {}\n        },\n        {\n          \"cillum_b6\": {}\n        }\n      ],\n      \"strict\": \"<boolean>\",\n      \"allowed_callers\": [\n        \"code_execution_20250825\",\n        \"code_execution_20260120\"\n      ],\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"1h\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {},\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"type\": \"custom\",\n      \"defer_loading\": \"<boolean>\",\n      \"eager_input_streaming\": \"<boolean>\",\n      \"input_examples\": [\n        {\n          \"eu_7\": {},\n          \"non9\": {}\n        },\n        {\n          \"anim0_5\": {},\n          \"nostrud_d0a\": {}\n        }\n      ],\n      \"strict\": \"<boolean>\",\n      \"allowed_callers\": [\n        \"direct\",\n        \"direct\"\n      ],\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"1h\"\n      }\n    }\n  ],\n  \"thinking\": {\n    \"type\": \"enabled\",\n    \"budget_tokens\": \"<integer>\",\n    \"display\": \"summarized\"\n  },\n  \"max_tokens\": 64000,\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"top_k\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "messages"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T21:00:50.000Z",
+                  "updatedAt": "2026-10-21T21:00:50.000Z",
+                  "uid": "35240-f4fe4f05-8c6b-407f-bc80-92b94285f586"
+                }
+              ],
+              "createdAt": "2026-10-21T21:00:50.000Z",
+              "updatedAt": "2026-10-21T21:00:50.000Z",
+              "uid": "35240-06eb7d70-79fb-44ae-aa60-e4bfaf8ba511"
+            }
+          ],
+          "id": "c20b23db-2e8f-4766-a76b-7776f7f77715",
+          "createdAt": "2026-10-21T21:00:49.000Z",
+          "updatedAt": "2026-10-21T21:00:49.000Z",
+          "uid": "35240-c20b23db-2e8f-4766-a76b-7776f7f77715"
+        }
+      ],
+      "id": "40e1d568-fa33-4a06-a262-06da19703866",
+      "createdAt": "2026-10-21T21:00:49.000Z",
+      "updatedAt": "2026-10-21T21:00:49.000Z",
+      "uid": "35240-40e1d568-fa33-4a06-a262-06da19703866"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

@@ -1,32 +1,26 @@
 {
+  "info": {
+    "_postman_id": "bd8a5082-b236-4d0b-bfd5-25494cce9aac",
+    "name": "AIMLAPI AI/ML API Documentation [WIP] Completions API",
+    "description": "=K Welcome to the AI/ML API docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n\n- **API Key Management**: Securely manage your API keys for controlled access.\n\n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n\nSee Quickstart",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:21.000Z",
+    "updatedAt": "2026-10-21T21:00:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bd8a5082-b236-4d0b-bfd5-25494cce9aac"
+  },
   "item": [
     {
-      "id": "79e286dd-437e-48d4-b406-49cc32c77019",
-      "name": "[WIP] Completions",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "completions",
       "item": [
         {
-          "id": "6aabfc6b-e1cd-48d1-a33d-3fdac6cb5827",
           "name": "AIMLAPI Create Completion",
+          "id": "880e48bf-9591-4b63-9bfa-e62343907c22",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "AIMLAPI Create Completion",
-            "description": {
-              "content": "Creates a completion for the provided prompt and parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "completions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -37,86 +31,94 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "<object>",
+              "raw": "{}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/completions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "completions"
+              ]
+            },
+            "description": "Creates a completion for the provided prompt and parameters."
           },
           "response": [
             {
-              "id": "6cb7e0c0-d762-4a9e-bdee-b252896cdcbd",
+              "id": "20f6d40f-53ae-4d75-be44-935102cd3bdb",
               "name": "Successful response",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "completions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"model\": \"{{llmModel}}\",\n  \"prompt\": \"Write a limmerick about APIs\",\n  \"max_tokens\": 250,\n  \"temperature\": 0.7\n}",
+                  "raw": "{}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/completions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "completions"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "\"\"",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "",
+              "createdAt": "2026-10-21T21:00:22.000Z",
+              "updatedAt": "2026-10-21T21:00:22.000Z",
+              "uid": "35240-20f6d40f-53ae-4d75-be44-935102cd3bdb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:00:21.000Z",
+          "updatedAt": "2026-10-21T21:00:21.000Z",
+          "uid": "35240-880e48bf-9591-4b63-9bfa-e62343907c22"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://{{baseurl}}",
-      "key": "baseUrl"
+      "id": "cac7c440-3a38-42bc-baa2-7afb56187c04",
+      "createdAt": "2026-10-21T21:00:21.000Z",
+      "updatedAt": "2026-10-21T21:00:21.000Z",
+      "uid": "35240-cac7c440-3a38-42bc-baa2-7afb56187c04"
     }
   ],
   "auth": {
@@ -124,17 +126,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "555f79d6-9310-438e-8aa8-c1846eb5876e",
-    "name": "AIMLAPI AI/ML API Documentation API Key Management [WIP] Completions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
     }
-  }
+  ]
 }

@@ -1,0 +1,361 @@
+{
+  "info": {
+    "_postman_id": "8fd1bbc9-e5fa-44f2-95bd-fc9b07fcf7cd",
+    "name": "AIML Batches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:26.000Z",
+    "updatedAt": "2026-10-21T21:00:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8fd1bbc9-e5fa-44f2-95bd-fc9b07fcf7cd"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "batches",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": ":batch_id",
+                  "item": [
+                    {
+                      "name": "V1 batches cancel :batch id",
+                      "id": "3e5ed559-7f87-4906-a178-040f0c6effa2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"anthropic/claude-haiku-4.5\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/batches/cancel/:batch_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "batches",
+                            "cancel",
+                            ":batch_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "64866cd1-6388-42dc-aa0d-d314d3d28d74",
+                              "key": "batch_id"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ecbf9608-46af-4831-9a0e-e3907684a915",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"anthropic/claude-haiku-4.5\",\n  \"id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/batches/cancel/:batch_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "batches",
+                                "cancel",
+                                ":batch_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "batch_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-10-21T21:00:27.000Z",
+                          "updatedAt": "2026-10-21T21:00:27.000Z",
+                          "uid": "35240-ecbf9608-46af-4831-9a0e-e3907684a915"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:27.000Z",
+                      "updatedAt": "2026-10-21T21:00:27.000Z",
+                      "uid": "35240-3e5ed559-7f87-4906-a178-040f0c6effa2"
+                    }
+                  ],
+                  "id": "8350406e-afd9-43b4-b15c-44c619bcfb9e",
+                  "createdAt": "2026-10-21T21:00:27.000Z",
+                  "updatedAt": "2026-10-21T21:00:27.000Z",
+                  "uid": "35240-8350406e-afd9-43b4-b15c-44c619bcfb9e"
+                }
+              ],
+              "id": "9ada3c26-7eb1-4cb7-b8f4-e7849865f2e5",
+              "createdAt": "2026-10-21T21:00:27.000Z",
+              "updatedAt": "2026-10-21T21:00:27.000Z",
+              "uid": "35240-9ada3c26-7eb1-4cb7-b8f4-e7849865f2e5"
+            },
+            {
+              "name": "V1 batches",
+              "id": "44a42bb4-0fc6-4532-a55a-43c1d8876a0b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"anthropic/claude-opus-4.1-20250805\",\n  \"requests\": [\n    {\n      \"custom_id\": \"<string>\",\n      \"params\": {\n        \"model\": \"<string>\",\n        \"max_tokens\": 1024,\n        \"metadata\": {\n          \"fugiatd3\": \"<string>\",\n          \"ut_3\": \"<string>\"\n        },\n        \"stop_sequences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"system\": \"<string>\",\n        \"temperature\": 1,\n        \"tool_choice\": {},\n        \"top_k\": \"<number>\",\n        \"top_p\": \"<number>\",\n        \"thinking\": {\n          \"type\": \"enabled\",\n          \"budget_tokens\": \"<integer>\",\n          \"display\": \"summarized\"\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/batches",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "batches"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "20e20b47-7488-4247-9791-5f43b63653f6",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"anthropic/claude-opus-4.1-20250805\",\n  \"requests\": [\n    {\n      \"custom_id\": \"<string>\",\n      \"params\": {\n        \"model\": \"<string>\",\n        \"max_tokens\": 1024,\n        \"metadata\": {\n          \"fugiatd3\": \"<string>\",\n          \"ut_3\": \"<string>\"\n        },\n        \"stop_sequences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"system\": \"<string>\",\n        \"temperature\": 1,\n        \"tool_choice\": {},\n        \"top_k\": \"<number>\",\n        \"top_p\": \"<number>\",\n        \"thinking\": {\n          \"type\": \"enabled\",\n          \"budget_tokens\": \"<integer>\",\n          \"display\": \"summarized\"\n        }\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/batches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "batches"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T21:00:27.000Z",
+                  "updatedAt": "2026-10-21T21:00:27.000Z",
+                  "uid": "35240-20e20b47-7488-4247-9791-5f43b63653f6"
+                }
+              ],
+              "createdAt": "2026-10-21T21:00:27.000Z",
+              "updatedAt": "2026-10-21T21:00:27.000Z",
+              "uid": "35240-44a42bb4-0fc6-4532-a55a-43c1d8876a0b"
+            },
+            {
+              "name": "V1 batches",
+              "id": "c0b7a0ec-2853-4324-abaf-8e4234abbd61",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"anthropic/claude-haiku-4.5\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/batches",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "batches"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1877ca87-871d-4202-ac2a-c0a71c2cf9b0",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"anthropic/claude-haiku-4.5\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/batches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "batches"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T21:00:27.000Z",
+                  "updatedAt": "2026-10-21T21:00:27.000Z",
+                  "uid": "35240-1877ca87-871d-4202-ac2a-c0a71c2cf9b0"
+                }
+              ],
+              "createdAt": "2026-10-21T21:00:27.000Z",
+              "updatedAt": "2026-10-21T21:00:27.000Z",
+              "uid": "35240-c0b7a0ec-2853-4324-abaf-8e4234abbd61"
+            }
+          ],
+          "id": "f4bddb7f-4a2d-4ea6-8c2c-48ef88a20df6",
+          "createdAt": "2026-10-21T21:00:27.000Z",
+          "updatedAt": "2026-10-21T21:00:27.000Z",
+          "uid": "35240-f4bddb7f-4a2d-4ea6-8c2c-48ef88a20df6"
+        }
+      ],
+      "id": "fb7c115d-c284-41bb-8a6d-31135c740337",
+      "createdAt": "2026-10-21T21:00:27.000Z",
+      "updatedAt": "2026-10-21T21:00:27.000Z",
+      "uid": "35240-fb7c115d-c284-41bb-8a6d-31135c740337"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "info": {
+    "_postman_id": "8c583af6-d9f7-4a9e-837c-42490fcf1cef",
+    "name": "AIML Stt API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:14.000Z",
+    "updatedAt": "2026-10-21T21:01:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c583af6-d9f7-4a9e-837c-42490fcf1cef"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "stt",
+          "item": [
+            {
+              "name": "create",
+              "item": [
+                {
+                  "name": "V1 stt create",
+                  "id": "6c56dd80-a4bd-4513-b8ce-3cb4562c96b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"gpt-4o-mini-transcribe\",\n  \"url\": \"<uri>\",\n  \"file\": \"<binary>\",\n  \"language\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"temperature\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/stt/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "stt",
+                        "create"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5078bbba-7c66-4185-80e1-b6ded8a24030",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"gpt-4o-mini-transcribe\",\n  \"url\": \"<uri>\",\n  \"file\": \"<binary>\",\n  \"language\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"temperature\": 0\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/stt/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "stt",
+                            "create"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"generation_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:01:15.000Z",
+                      "updatedAt": "2026-10-21T21:01:15.000Z",
+                      "uid": "35240-5078bbba-7c66-4185-80e1-b6ded8a24030"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:01:15.000Z",
+                  "updatedAt": "2026-10-21T21:01:15.000Z",
+                  "uid": "35240-6c56dd80-a4bd-4513-b8ce-3cb4562c96b0"
+                }
+              ],
+              "id": "e0e70cb9-71d1-4624-b160-0d5023ab0b34",
+              "createdAt": "2026-10-21T21:01:15.000Z",
+              "updatedAt": "2026-10-21T21:01:15.000Z",
+              "uid": "35240-e0e70cb9-71d1-4624-b160-0d5023ab0b34"
+            },
+            {
+              "name": ":generation_id",
+              "item": [
+                {
+                  "name": "V1 stt :generation id",
+                  "id": "d78bde4f-b986-4db7-be3b-1ec6c6e8d858",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"#g1_nova-2-voicemail\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/stt/:generation_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "stt",
+                        ":generation_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7a0d0d18-ea8c-4a72-b594-94bec5bcf519",
+                          "key": "generation_id"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5c27e4c8-3a54-4d3d-b40d-a89ea846f264",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"#g1_nova-2-voicemail\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/stt/:generation_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "stt",
+                            ":generation_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "generation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"generating\",\n  \"output\": {\n    \"metadata\": {\n      \"transaction_key\": \"<string>\",\n      \"request_id\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"duration\": \"<number>\",\n      \"channels\": \"<number>\",\n      \"models\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model_info\": {\n        \"ex_ddf\": {\n          \"name\": \"<string>\",\n          \"version\": \"<string>\",\n          \"arch\": \"<string>\"\n        }\n      }\n    },\n    \"results\": null\n  },\n  \"error\": null\n}",
+                      "createdAt": "2026-10-21T21:01:15.000Z",
+                      "updatedAt": "2026-10-21T21:01:15.000Z",
+                      "uid": "35240-5c27e4c8-3a54-4d3d-b40d-a89ea846f264"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:01:15.000Z",
+                  "updatedAt": "2026-10-21T21:01:15.000Z",
+                  "uid": "35240-d78bde4f-b986-4db7-be3b-1ec6c6e8d858"
+                }
+              ],
+              "id": "241d8f9f-9827-4de1-8280-d881e26caba3",
+              "createdAt": "2026-10-21T21:01:15.000Z",
+              "updatedAt": "2026-10-21T21:01:15.000Z",
+              "uid": "35240-241d8f9f-9827-4de1-8280-d881e26caba3"
+            }
+          ],
+          "id": "8b646f0a-b21c-4a8f-b77b-cba99600c1df",
+          "createdAt": "2026-10-21T21:01:15.000Z",
+          "updatedAt": "2026-10-21T21:01:15.000Z",
+          "uid": "35240-8b646f0a-b21c-4a8f-b77b-cba99600c1df"
+        }
+      ],
+      "id": "b0b9d27b-b0bc-477c-9095-4aa145ca4041",
+      "createdAt": "2026-10-21T21:01:15.000Z",
+      "updatedAt": "2026-10-21T21:01:15.000Z",
+      "uid": "35240-b0b9d27b-b0bc-477c-9095-4aa145ca4041"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

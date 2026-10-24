@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "b605fd9a-5cb6-477c-8cee-2bedf50ad6b2",
+    "name": "AIML Embeddings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:32.000Z",
+    "updatedAt": "2026-10-21T21:00:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b605fd9a-5cb6-477c-8cee-2bedf50ad6b2"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "embeddings",
+          "item": [
+            {
+              "name": "V1 embeddings",
+              "id": "da55da83-d844-47d0-a01c-1eb4318048e1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"openai/text-embedding-3-large\",\n  \"input\": \"<string>\",\n  \"encoding_format\": \"float\",\n  \"dimensions\": \"<number,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/embeddings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "embeddings"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ad30e46f-806d-4cb3-88f6-604ddb74157a",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"openai/text-embedding-3-large\",\n  \"input\": \"<string>\",\n  \"encoding_format\": \"float\",\n  \"dimensions\": \"<number,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeddings",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeddings"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"object\",\n  \"data\": [\n    {\n      \"object\": \"embedding\",\n      \"index\": \"<number>\",\n      \"embedding\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    {\n      \"object\": \"embedding\",\n      \"index\": \"<number>\",\n      \"embedding\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  ],\n  \"model\": \"<string>\",\n  \"usage\": {\n    \"total_tokens\": \"<number,null>\"\n  },\n  \"meta\": {\n    \"usage\": null\n  }\n}",
+                  "createdAt": "2026-10-21T21:00:33.000Z",
+                  "updatedAt": "2026-10-21T21:00:33.000Z",
+                  "uid": "35240-ad30e46f-806d-4cb3-88f6-604ddb74157a"
+                }
+              ],
+              "createdAt": "2026-10-21T21:00:33.000Z",
+              "updatedAt": "2026-10-21T21:00:33.000Z",
+              "uid": "35240-da55da83-d844-47d0-a01c-1eb4318048e1"
+            }
+          ],
+          "id": "39a618f6-a574-4191-8623-ed59112fe435",
+          "createdAt": "2026-10-21T21:00:33.000Z",
+          "updatedAt": "2026-10-21T21:00:33.000Z",
+          "uid": "35240-39a618f6-a574-4191-8623-ed59112fe435"
+        }
+      ],
+      "id": "cd4e988b-31e3-4cdf-8831-179fc266e58e",
+      "createdAt": "2026-10-21T21:00:33.000Z",
+      "updatedAt": "2026-10-21T21:00:33.000Z",
+      "uid": "35240-cd4e988b-31e3-4cdf-8831-179fc266e58e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

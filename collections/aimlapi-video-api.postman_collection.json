@@ -1,0 +1,244 @@
+{
+  "info": {
+    "_postman_id": "9da9bf42-6622-486d-bd49-dced284d40ad",
+    "name": "AIML Video API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:31.000Z",
+    "updatedAt": "2026-10-21T21:01:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9da9bf42-6622-486d-bd49-dced284d40ad"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "video",
+          "item": [
+            {
+              "name": "generations",
+              "item": [
+                {
+                  "name": "V2 video generations",
+                  "id": "c266c68f-b9fb-43c4-b1db-f8ccf150873a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"sora-2-t2v\",\n  \"prompt\": \"<string>\",\n  \"resolution\": \"720p\",\n  \"aspect_ratio\": \"16:9\",\n  \"duration\": \"4\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/video/generations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "video",
+                        "generations"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "81d01dc5-144f-4643-8ad0-60e4c6df703f",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"sora-2-t2v\",\n  \"prompt\": \"<string>\",\n  \"resolution\": \"720p\",\n  \"aspect_ratio\": \"16:9\",\n  \"duration\": \"4\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/video/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "video",
+                            "generations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"completed\",\n  \"video\": {\n    \"url\": \"<uri>\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"meta\": null\n}",
+                      "createdAt": "2026-10-21T21:01:31.000Z",
+                      "updatedAt": "2026-10-21T21:01:31.000Z",
+                      "uid": "35240-81d01dc5-144f-4643-8ad0-60e4c6df703f"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:01:31.000Z",
+                  "updatedAt": "2026-10-21T21:01:31.000Z",
+                  "uid": "35240-c266c68f-b9fb-43c4-b1db-f8ccf150873a"
+                },
+                {
+                  "name": "V2 video generations",
+                  "id": "b63cdc46-9d01-48c7-b2d1-c8d7ca84eb75",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"ltxv-2\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/video/generations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "video",
+                        "generations"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "67cd0fce-d504-46e5-b2ae-3c9d9c256383",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"ltxv-2\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/video/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "video",
+                            "generations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"completed\",\n  \"video\": {\n    \"url\": \"<uri>\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"meta\": null\n}",
+                      "createdAt": "2026-10-21T21:01:31.000Z",
+                      "updatedAt": "2026-10-21T21:01:31.000Z",
+                      "uid": "35240-67cd0fce-d504-46e5-b2ae-3c9d9c256383"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:01:31.000Z",
+                  "updatedAt": "2026-10-21T21:01:31.000Z",
+                  "uid": "35240-b63cdc46-9d01-48c7-b2d1-c8d7ca84eb75"
+                }
+              ],
+              "id": "461b23a3-77c2-40e7-8e90-e4bcfcc10a80",
+              "createdAt": "2026-10-21T21:01:31.000Z",
+              "updatedAt": "2026-10-21T21:01:31.000Z",
+              "uid": "35240-461b23a3-77c2-40e7-8e90-e4bcfcc10a80"
+            }
+          ],
+          "id": "8843129d-7e2a-440d-8923-83f669d91598",
+          "createdAt": "2026-10-21T21:01:31.000Z",
+          "updatedAt": "2026-10-21T21:01:31.000Z",
+          "uid": "35240-8843129d-7e2a-440d-8923-83f669d91598"
+        }
+      ],
+      "id": "51528c97-bded-4cf6-9e68-73b73edaae04",
+      "createdAt": "2026-10-21T21:01:31.000Z",
+      "updatedAt": "2026-10-21T21:01:31.000Z",
+      "uid": "35240-51528c97-bded-4cf6-9e68-73b73edaae04"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

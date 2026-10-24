@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "fb2b0405-407f-49e8-b7b1-f9bee9b7c456",
+    "name": "Aimlapi Chat API",
+    "description": "Operations tagged Chat across 2 of this provider's published API definitions: aimlapi-inference-openapi.yml, aimlapi-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:46.000Z",
+    "updatedAt": "2026-10-21T21:01:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fb2b0405-407f-49e8-b7b1-f9bee9b7c456"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "chat",
+          "item": [
+            {
+              "name": "completions",
+              "item": [
+                {
+                  "name": "V1 chat completions",
+                  "id": "c8651ca6-3b21-417f-9db1-1069057d0e25",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"openai/gpt-3.5-turbo\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"provider\": \"<string>\",\n  \"max_completion_tokens\": \"<integer>\",\n  \"max_tokens\": \"<number>\",\n  \"stream\": false,\n  \"stream_options\": {\n    \"include_usage\": \"<boolean>\"\n  },\n  \"tools\": [\n    {\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"nostrudda\": {\n            \"description\": \"The parameters the functions accepts, described as a JSON Schema object.\"\n          }\n        },\n        \"strict\": \"<boolean,null>\"\n      },\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"5m\"\n      }\n    },\n    {\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"aute_c9\": {\n            \"description\": \"The parameters the functions accepts, described as a JSON Schema object.\"\n          }\n        },\n        \"strict\": \"<boolean,null>\"\n      },\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"5m\"\n      }\n    }\n  ],\n  \"tool_choice\": \"required\",\n  \"normalize_tool_schemas\": \"<boolean>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"n\": \"<integer,null>\",\n  \"stop\": \"<string>\",\n  \"logprobs\": \"<boolean,null>\",\n  \"top_logprobs\": \"<number,null>\",\n  \"logit_bias\": \"<object,null>\",\n  \"frequency_penalty\": \"<number,null>\",\n  \"presence_penalty\": \"<number,null>\",\n  \"seed\": \"<integer>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"text\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/chat/completions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "chat",
+                        "completions"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "caca8eaf-2969-4436-abe0-2982548e1a92",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"openai/gpt-3.5-turbo\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"provider\": \"<string>\",\n  \"max_completion_tokens\": \"<integer>\",\n  \"max_tokens\": \"<number>\",\n  \"stream\": false,\n  \"stream_options\": {\n    \"include_usage\": \"<boolean>\"\n  },\n  \"tools\": [\n    {\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"nostrudda\": {\n            \"description\": \"The parameters the functions accepts, described as a JSON Schema object.\"\n          }\n        },\n        \"strict\": \"<boolean,null>\"\n      },\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"5m\"\n      }\n    },\n    {\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"aute_c9\": {\n            \"description\": \"The parameters the functions accepts, described as a JSON Schema object.\"\n          }\n        },\n        \"strict\": \"<boolean,null>\"\n      },\n      \"cache_control\": {\n        \"type\": \"ephemeral\",\n        \"ttl\": \"5m\"\n      }\n    }\n  ],\n  \"tool_choice\": \"required\",\n  \"normalize_tool_schemas\": \"<boolean>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"n\": \"<integer,null>\",\n  \"stop\": \"<string>\",\n  \"logprobs\": \"<boolean,null>\",\n  \"top_logprobs\": \"<number,null>\",\n  \"logit_bias\": \"<object,null>\",\n  \"frequency_penalty\": \"<number,null>\",\n  \"presence_penalty\": \"<number,null>\",\n  \"seed\": \"<integer>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"text\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/chat/completions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "chat",
+                            "completions"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"object\": \"chat.completion\",\n  \"created\": \"<number>\",\n  \"choices\": [\n    {\n      \"index\": \"<number>\",\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"refusal\": \"<string,null>\",\n        \"annotations\": \"<array,null>\",\n        \"audio\": {\n          \"id\": \"<string>\",\n          \"data\": \"<string>\",\n          \"transcript\": \"<string>\",\n          \"expires_at\": \"<integer>\"\n        },\n        \"tool_calls\": \"<array,null>\"\n      },\n      \"finish_reason\": \"content_filter\",\n      \"logprobs\": null\n    },\n    {\n      \"index\": \"<number>\",\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"refusal\": \"<string,null>\",\n        \"annotations\": \"<array,null>\",\n        \"audio\": {\n          \"id\": \"<string>\",\n          \"data\": \"<string>\",\n          \"transcript\": \"<string>\",\n          \"expires_at\": \"<integer>\"\n        },\n        \"tool_calls\": \"<array,null>\"\n      },\n      \"finish_reason\": \"content_filter\",\n      \"logprobs\": {\n        \"content\": [\n          {\n            \"bytes\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"logprob\": \"<number>\",\n            \"token\": \"<string>\",\n            \"top_logprobs\": \"<array,null>\"\n          },\n          {\n            \"bytes\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"logprob\": \"<number>\",\n            \"token\": \"<string>\",\n            \"top_logprobs\": \"<array,null>\"\n          }\n        ],\n        \"refusal\": [\n          {\n            \"bytes\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"logprob\": \"<number>\",\n            \"token\": \"<string>\",\n            \"top_logprobs\": \"<array,null>\"\n          },\n          {\n            \"bytes\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"logprob\": \"<number>\",\n            \"token\": \"<string>\",\n            \"top_logprobs\": \"<array,null>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"model\": \"<string>\",\n  \"usage\": {\n    \"prompt_tokens\": \"<number>\",\n    \"completion_tokens\": \"<number>\",\n    \"total_tokens\": \"<number>\",\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": \"<integer,null>\",\n      \"audio_tokens\": \"<integer,null>\",\n      \"reasoning_tokens\": \"<integer,null>\",\n      \"rejected_prediction_tokens\": \"<integer,null>\"\n    },\n    \"prompt_tokens_details\": null\n  },\n  \"meta\": {\n    \"usage\": null\n  }\n}",
+                      "createdAt": "2026-10-21T21:01:47.000Z",
+                      "updatedAt": "2026-10-21T21:01:47.000Z",
+                      "uid": "35240-caca8eaf-2969-4436-abe0-2982548e1a92"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:01:47.000Z",
+                  "updatedAt": "2026-10-21T21:01:47.000Z",
+                  "uid": "35240-c8651ca6-3b21-417f-9db1-1069057d0e25"
+                }
+              ],
+              "id": "86833d94-8a4a-42f0-a376-a9ff7c325957",
+              "createdAt": "2026-10-21T21:01:47.000Z",
+              "updatedAt": "2026-10-21T21:01:47.000Z",
+              "uid": "35240-86833d94-8a4a-42f0-a376-a9ff7c325957"
+            }
+          ],
+          "id": "31514f8d-b26a-43fd-8695-83097d9411bf",
+          "createdAt": "2026-10-21T21:01:47.000Z",
+          "updatedAt": "2026-10-21T21:01:47.000Z",
+          "uid": "35240-31514f8d-b26a-43fd-8695-83097d9411bf"
+        }
+      ],
+      "id": "dfab0e2e-419a-444b-9a7c-dcdd73a1efc4",
+      "createdAt": "2026-10-21T21:01:47.000Z",
+      "updatedAt": "2026-10-21T21:01:47.000Z",
+      "uid": "35240-dfab0e2e-419a-444b-9a7c-dcdd73a1efc4"
+    },
+    {
+      "name": "chat",
+      "item": [
+        {
+          "name": "completions",
+          "item": [
+            {
+              "name": "AIMLAPI Create Chat Message Completion",
+              "id": "ce1755c5-08da-4ef5-8da0-e640cc41bd57",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/chat/completions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chat",
+                    "completions"
+                  ]
+                },
+                "description": "You can read about parameters here."
+              },
+              "response": [
+                {
+                  "id": "c3cc8987-2a1c-47ce-9936-40fc3f0c22bf",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chat/completions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chat",
+                        "completions"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Etag",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Powered-By",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T21:01:47.000Z",
+                  "updatedAt": "2026-10-21T21:01:47.000Z",
+                  "uid": "35240-c3cc8987-2a1c-47ce-9936-40fc3f0c22bf"
+                }
+              ],
+              "createdAt": "2026-10-21T21:01:47.000Z",
+              "updatedAt": "2026-10-21T21:01:47.000Z",
+              "uid": "35240-ce1755c5-08da-4ef5-8da0-e640cc41bd57"
+            }
+          ],
+          "id": "3046f0e9-d56c-4074-85e9-527e719e9871",
+          "createdAt": "2026-10-21T21:01:47.000Z",
+          "updatedAt": "2026-10-21T21:01:47.000Z",
+          "uid": "35240-3046f0e9-d56c-4074-85e9-527e719e9871"
+        }
+      ],
+      "id": "ca14ca5e-24c3-45a7-86c7-4f15e049dc9f",
+      "createdAt": "2026-10-21T21:01:47.000Z",
+      "updatedAt": "2026-10-21T21:01:47.000Z",
+      "uid": "35240-ca14ca5e-24c3-45a7-86c7-4f15e049dc9f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

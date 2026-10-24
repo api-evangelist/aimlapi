@@ -1,0 +1,354 @@
+{
+  "info": {
+    "_postman_id": "b43315af-bba7-46cd-8dbe-39cc7bd57ed7",
+    "name": "AIML Generate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:39.000Z",
+    "updatedAt": "2026-10-21T21:00:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b43315af-bba7-46cd-8dbe-39cc7bd57ed7"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "generate",
+          "item": [
+            {
+              "name": "audio",
+              "item": [
+                {
+                  "name": "preprocess",
+                  "item": [
+                    {
+                      "name": "V2 generate audio preprocess",
+                      "id": "49399462-9eca-4df0-912e-b228664fcae0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"minimax/music-cover\",\n  \"reference_audio_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/generate/audio/preprocess",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "generate",
+                            "audio",
+                            "preprocess"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "28382810-5707-475d-889c-a5087cb58bc5",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"minimax/music-cover\",\n  \"reference_audio_url\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/generate/audio/preprocess",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "generate",
+                                "audio",
+                                "preprocess"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"cover_feature_id\": \"<string>\",\n  \"formatted_lyrics\": \"<string>\",\n  \"structure_result\": \"<string>\",\n  \"audio_duration\": \"<number>\"\n}",
+                          "createdAt": "2026-10-21T21:00:39.000Z",
+                          "updatedAt": "2026-10-21T21:00:39.000Z",
+                          "uid": "35240-28382810-5707-475d-889c-a5087cb58bc5"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:39.000Z",
+                      "updatedAt": "2026-10-21T21:00:39.000Z",
+                      "uid": "35240-49399462-9eca-4df0-912e-b228664fcae0"
+                    }
+                  ],
+                  "id": "a610c94f-2324-418c-a206-07fec03a14fa",
+                  "createdAt": "2026-10-21T21:00:39.000Z",
+                  "updatedAt": "2026-10-21T21:00:39.000Z",
+                  "uid": "35240-a610c94f-2324-418c-a206-07fec03a14fa"
+                },
+                {
+                  "name": "V2 generate audio",
+                  "id": "0be5bd58-8aea-4b22-a633-621c3a68dcbe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"elevenlabs/eleven_music\",\n  \"prompt\": \"<string>\",\n  \"music_length_ms\": 10000\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/generate/audio",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "generate",
+                        "audio"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "edb5feb9-92df-4fbb-a0ac-beda4e802b4c",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"elevenlabs/eleven_music\",\n  \"prompt\": \"<string>\",\n  \"music_length_ms\": 10000\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/generate/audio",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "generate",
+                            "audio"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"error\",\n  \"audio_file\": null,\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"meta\": null\n}",
+                      "createdAt": "2026-10-21T21:00:39.000Z",
+                      "updatedAt": "2026-10-21T21:00:39.000Z",
+                      "uid": "35240-edb5feb9-92df-4fbb-a0ac-beda4e802b4c"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:00:39.000Z",
+                  "updatedAt": "2026-10-21T21:00:39.000Z",
+                  "uid": "35240-0be5bd58-8aea-4b22-a633-621c3a68dcbe"
+                },
+                {
+                  "name": "V2 generate audio",
+                  "id": "2114abc9-c221-47a8-8e60-c2df9204bbbf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"lyria2\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/generate/audio",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "generate",
+                        "audio"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ee0dadb8-7f81-4c30-a4ba-d18ba3892544",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"lyria2\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/generate/audio",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "generate",
+                            "audio"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"error\",\n  \"audio_file\": null,\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"meta\": null\n}",
+                      "createdAt": "2026-10-21T21:00:39.000Z",
+                      "updatedAt": "2026-10-21T21:00:39.000Z",
+                      "uid": "35240-ee0dadb8-7f81-4c30-a4ba-d18ba3892544"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:00:39.000Z",
+                  "updatedAt": "2026-10-21T21:00:39.000Z",
+                  "uid": "35240-2114abc9-c221-47a8-8e60-c2df9204bbbf"
+                }
+              ],
+              "id": "600c4729-9c42-4369-8d92-163775254a0a",
+              "createdAt": "2026-10-21T21:00:39.000Z",
+              "updatedAt": "2026-10-21T21:00:39.000Z",
+              "uid": "35240-600c4729-9c42-4369-8d92-163775254a0a"
+            }
+          ],
+          "id": "5622c41a-6aa4-4551-a91b-0b39e4604c31",
+          "createdAt": "2026-10-21T21:00:39.000Z",
+          "updatedAt": "2026-10-21T21:00:39.000Z",
+          "uid": "35240-5622c41a-6aa4-4551-a91b-0b39e4604c31"
+        }
+      ],
+      "id": "9bd60d4d-9fdc-42cc-ae43-1fab28c1636b",
+      "createdAt": "2026-10-21T21:00:39.000Z",
+      "updatedAt": "2026-10-21T21:00:39.000Z",
+      "uid": "35240-9bd60d4d-9fdc-42cc-ae43-1fab28c1636b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

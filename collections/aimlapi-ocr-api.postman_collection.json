@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "be061c86-b050-4f76-bbd0-70394589ea63",
+    "name": "AIML Ocr API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:53.000Z",
+    "updatedAt": "2026-10-21T21:00:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-be061c86-b050-4f76-bbd0-70394589ea63"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "ocr",
+          "item": [
+            {
+              "name": "V1 ocr",
+              "id": "39c849f5-bb5a-4026-8919-e00118b63192",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gc-document-ai\",\n  \"document\": \"<uri>\",\n  \"mimeType\": \"image/png\",\n  \"pages\": {\n    \"type\": \"start\",\n    \"start\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ocr",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ocr"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2e225775-27cf-4360-b369-7d98a68c2c0e",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"gc-document-ai\",\n  \"document\": \"<uri>\",\n  \"mimeType\": \"image/png\",\n  \"pages\": {\n    \"type\": \"start\",\n    \"start\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ocr",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ocr"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"pages\": [\n    {\n      \"index\": \"<integer>\",\n      \"markdown\": \"<string>\",\n      \"images\": [\n        {\n          \"id\": \"<string>\",\n          \"top_left_x\": \"<integer,null>\",\n          \"top_left_y\": \"<integer,null>\",\n          \"bottom_right_x\": \"<integer,null>\",\n          \"bottom_right_y\": \"<integer,null>\",\n          \"image_base64\": \"<string,null-uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"top_left_x\": \"<integer,null>\",\n          \"top_left_y\": \"<integer,null>\",\n          \"bottom_right_x\": \"<integer,null>\",\n          \"bottom_right_y\": \"<integer,null>\",\n          \"image_base64\": \"<string,null-uri>\"\n        }\n      ],\n      \"dimensions\": null\n    },\n    {\n      \"index\": \"<integer>\",\n      \"markdown\": \"<string>\",\n      \"images\": [\n        {\n          \"id\": \"<string>\",\n          \"top_left_x\": \"<integer,null>\",\n          \"top_left_y\": \"<integer,null>\",\n          \"bottom_right_x\": \"<integer,null>\",\n          \"bottom_right_y\": \"<integer,null>\",\n          \"image_base64\": \"<string,null-uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"top_left_x\": \"<integer,null>\",\n          \"top_left_y\": \"<integer,null>\",\n          \"bottom_right_x\": \"<integer,null>\",\n          \"bottom_right_y\": \"<integer,null>\",\n          \"image_base64\": \"<string,null-uri>\"\n        }\n      ],\n      \"dimensions\": null\n    }\n  ],\n  \"model\": \"<string>\",\n  \"usage_info\": {\n    \"pages_processed\": \"<integer>\",\n    \"doc_size_bytes\": \"<integer,null>\"\n  },\n  \"document_annotation\": \"<string,null>\",\n  \"meta\": null\n}",
+                  "createdAt": "2026-10-21T21:00:54.000Z",
+                  "updatedAt": "2026-10-21T21:00:54.000Z",
+                  "uid": "35240-2e225775-27cf-4360-b369-7d98a68c2c0e"
+                }
+              ],
+              "createdAt": "2026-10-21T21:00:54.000Z",
+              "updatedAt": "2026-10-21T21:00:54.000Z",
+              "uid": "35240-39c849f5-bb5a-4026-8919-e00118b63192"
+            }
+          ],
+          "id": "960d1c3a-1d0c-49d3-aa67-b7a4abf55d01",
+          "createdAt": "2026-10-21T21:00:54.000Z",
+          "updatedAt": "2026-10-21T21:00:54.000Z",
+          "uid": "35240-960d1c3a-1d0c-49d3-aa67-b7a4abf55d01"
+        }
+      ],
+      "id": "267d0b91-6b2c-4098-94fd-c519a13263b4",
+      "createdAt": "2026-10-21T21:00:54.000Z",
+      "updatedAt": "2026-10-21T21:00:54.000Z",
+      "uid": "35240-267d0b91-6b2c-4098-94fd-c519a13263b4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

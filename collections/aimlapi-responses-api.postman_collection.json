@@ -1,0 +1,253 @@
+{
+  "info": {
+    "_postman_id": "54252151-9649-4369-94c3-089d53b4ddae",
+    "name": "AIML Responses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:07.000Z",
+    "updatedAt": "2026-10-21T21:01:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54252151-9649-4369-94c3-089d53b4ddae"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "responses",
+          "item": [
+            {
+              "name": ":response_id",
+              "item": [
+                {
+                  "name": "V1 responses :response id",
+                  "id": "e639d8f5-6bac-41a6-a034-3de5f2f534bc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"openai/gpt-5-4-pro\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/responses/:response_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "responses",
+                        ":response_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0a76a6d2-1bf2-4c14-be06-071021a7f0bd",
+                          "key": "response_id"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b90398f9-988a-479b-92a8-fbd4a428fe19",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"openai/gpt-5-4-pro\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/responses/:response_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "responses",
+                            ":response_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "response_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"created_at\": \"<number>\",\n  \"id\": \"<string>\",\n  \"model\": \"<string>\",\n  \"object\": \"response\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"background\": \"<boolean,null>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"incomplete_details\": null,\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer,null>\",\n  \"metadata\": \"<object,null>\",\n  \"output\": \"<array,null>\",\n  \"output_text\": \"<string,null>\",\n  \"previous_response_id\": \"<string,null>\",\n  \"prompt\": null,\n  \"reasoning\": null,\n  \"service_tier\": \"<string,null>\",\n  \"status\": \"incomplete\",\n  \"temperature\": \"<number,null>\",\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    }\n  },\n  \"tool_choice\": \"none\",\n  \"tools\": \"<array,null>\",\n  \"top_p\": \"<number,null>\",\n  \"truncation\": \"auto\",\n  \"usage\": {\n    \"input_tokens\": \"<integer>\",\n    \"output_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\",\n    \"input_tokens_details\": null,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": \"<integer>\"\n    }\n  },\n  \"citations\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"server_side_tool_usage\": {\n    \"enim_e\": \"<integer>\"\n  },\n  \"meta\": {\n    \"usage\": null\n  }\n}",
+                      "createdAt": "2026-10-21T21:01:07.000Z",
+                      "updatedAt": "2026-10-21T21:01:07.000Z",
+                      "uid": "35240-b90398f9-988a-479b-92a8-fbd4a428fe19"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:01:07.000Z",
+                  "updatedAt": "2026-10-21T21:01:07.000Z",
+                  "uid": "35240-e639d8f5-6bac-41a6-a034-3de5f2f534bc"
+                }
+              ],
+              "id": "4b3101a3-4ab1-43c6-8264-8bb50884399e",
+              "createdAt": "2026-10-21T21:01:07.000Z",
+              "updatedAt": "2026-10-21T21:01:07.000Z",
+              "uid": "35240-4b3101a3-4ab1-43c6-8264-8bb50884399e"
+            },
+            {
+              "name": "V1 responses",
+              "id": "fa6a88ef-a330-44c5-a4ea-79a8300b02e6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"openai/gpt-3.5-turbo\",\n  \"input\": \"<string>\",\n  \"background\": false,\n  \"instructions\": \"<string,null>\",\n  \"include\": \"<array,null>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"previous_response_id\": \"<string,null>\",\n  \"prompt\": null,\n  \"store\": false,\n  \"stream\": false,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    }\n  },\n  \"truncation\": \"disabled\",\n  \"tools\": [\n    {\n      \"name\": \"<string>\",\n      \"parameters\": {\n        \"do_e\": {},\n        \"laborumdd\": {},\n        \"aliqua_8e\": {}\n      },\n      \"type\": \"function\",\n      \"strict\": \"<boolean>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"parameters\": {\n        \"consequat_6f\": {},\n        \"quice6\": {},\n        \"consectetur_e\": {}\n      },\n      \"type\": \"function\",\n      \"strict\": \"<boolean>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"tool_choice\": \"none\",\n  \"parallel_tool_calls\": \"<boolean,null>\",\n  \"temperature\": \"<number,null>\",\n  \"top_p\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/responses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "responses"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6f23b433-ff37-40d5-ab38-46b046a5b9ee",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"openai/gpt-3.5-turbo\",\n  \"input\": \"<string>\",\n  \"background\": false,\n  \"instructions\": \"<string,null>\",\n  \"include\": \"<array,null>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"previous_response_id\": \"<string,null>\",\n  \"prompt\": null,\n  \"store\": false,\n  \"stream\": false,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    }\n  },\n  \"truncation\": \"disabled\",\n  \"tools\": [\n    {\n      \"name\": \"<string>\",\n      \"parameters\": {\n        \"do_e\": {},\n        \"laborumdd\": {},\n        \"aliqua_8e\": {}\n      },\n      \"type\": \"function\",\n      \"strict\": \"<boolean>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"parameters\": {\n        \"consequat_6f\": {},\n        \"quice6\": {},\n        \"consectetur_e\": {}\n      },\n      \"type\": \"function\",\n      \"strict\": \"<boolean>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"tool_choice\": \"none\",\n  \"parallel_tool_calls\": \"<boolean,null>\",\n  \"temperature\": \"<number,null>\",\n  \"top_p\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/responses",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "responses"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"created_at\": \"<number>\",\n  \"id\": \"<string>\",\n  \"model\": \"<string>\",\n  \"object\": \"response\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"background\": \"<boolean,null>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"incomplete_details\": null,\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer,null>\",\n  \"metadata\": \"<object,null>\",\n  \"output\": \"<array,null>\",\n  \"output_text\": \"<string,null>\",\n  \"previous_response_id\": \"<string,null>\",\n  \"prompt\": null,\n  \"reasoning\": null,\n  \"service_tier\": \"<string,null>\",\n  \"status\": \"incomplete\",\n  \"temperature\": \"<number,null>\",\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    }\n  },\n  \"tool_choice\": \"none\",\n  \"tools\": \"<array,null>\",\n  \"top_p\": \"<number,null>\",\n  \"truncation\": \"auto\",\n  \"usage\": {\n    \"input_tokens\": \"<integer>\",\n    \"output_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\",\n    \"input_tokens_details\": null,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": \"<integer>\"\n    }\n  },\n  \"citations\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"server_side_tool_usage\": {\n    \"enim_e\": \"<integer>\"\n  },\n  \"meta\": {\n    \"usage\": null\n  }\n}",
+                  "createdAt": "2026-10-21T21:01:07.000Z",
+                  "updatedAt": "2026-10-21T21:01:07.000Z",
+                  "uid": "35240-6f23b433-ff37-40d5-ab38-46b046a5b9ee"
+                }
+              ],
+              "createdAt": "2026-10-21T21:01:07.000Z",
+              "updatedAt": "2026-10-21T21:01:07.000Z",
+              "uid": "35240-fa6a88ef-a330-44c5-a4ea-79a8300b02e6"
+            }
+          ],
+          "id": "5569fdbf-0f31-4478-bf57-ba529674459e",
+          "createdAt": "2026-10-21T21:01:07.000Z",
+          "updatedAt": "2026-10-21T21:01:07.000Z",
+          "uid": "35240-5569fdbf-0f31-4478-bf57-ba529674459e"
+        }
+      ],
+      "id": "76befa77-2f38-4edf-8f26-473c08bd5abc",
+      "createdAt": "2026-10-21T21:01:07.000Z",
+      "updatedAt": "2026-10-21T21:01:07.000Z",
+      "uid": "35240-76befa77-2f38-4edf-8f26-473c08bd5abc"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

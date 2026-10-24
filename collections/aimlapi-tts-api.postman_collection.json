@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "999025e9-12da-4e0c-976a-871307d0ae87",
+    "name": "AIML Tts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:20.000Z",
+    "updatedAt": "2026-10-21T21:01:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-999025e9-12da-4e0c-976a-871307d0ae87"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "tts",
+          "item": [
+            {
+              "name": "V1 tts",
+              "id": "d1b7dd52-6f44-4722-b5f5-aff2c76bad48",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"openai/tts-1\",\n  \"text\": \"<string>\",\n  \"voice\": \"alloy\",\n  \"style\": \"<string>\",\n  \"response_format\": \"mp3\",\n  \"speed\": 1,\n  \"stream\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/tts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tts"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "20e89d24-a8db-473a-ac1b-2e0dcc27ad4d",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"openai/tts-1\",\n  \"text\": \"<string>\",\n  \"voice\": \"alloy\",\n  \"style\": \"<string>\",\n  \"response_format\": \"mp3\",\n  \"speed\": 1,\n  \"stream\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/tts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "tts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"audio\": \"<uri>\",\n  \"meta\": null\n}",
+                  "createdAt": "2026-10-21T21:01:20.000Z",
+                  "updatedAt": "2026-10-21T21:01:20.000Z",
+                  "uid": "35240-20e89d24-a8db-473a-ac1b-2e0dcc27ad4d"
+                }
+              ],
+              "createdAt": "2026-10-21T21:01:20.000Z",
+              "updatedAt": "2026-10-21T21:01:20.000Z",
+              "uid": "35240-d1b7dd52-6f44-4722-b5f5-aff2c76bad48"
+            }
+          ],
+          "id": "944640ec-abfc-4c9a-a71b-17bb3dd320b2",
+          "createdAt": "2026-10-21T21:01:20.000Z",
+          "updatedAt": "2026-10-21T21:01:20.000Z",
+          "uid": "35240-944640ec-abfc-4c9a-a71b-17bb3dd320b2"
+        }
+      ],
+      "id": "0d39e79a-8d0e-4794-9294-22753f37b642",
+      "createdAt": "2026-10-21T21:01:20.000Z",
+      "updatedAt": "2026-10-21T21:01:20.000Z",
+      "uid": "35240-0d39e79a-8d0e-4794-9294-22753f37b642"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
+    }
+  ]
+}

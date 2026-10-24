@@ -1,235 +1,228 @@
 {
+  "info": {
+    "_postman_id": "46da10ba-672f-447d-8382-c1bb33b5e7aa",
+    "name": "AIMLAPI AI/ML API Documentation API Key Management API",
+    "description": "=K Welcome to the AI/ML API docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n\n- **API Key Management**: Securely manage your API keys for controlled access.\n\n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n\nSee Quickstart",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:59:33.000Z",
+    "updatedAt": "2026-10-21T20:59:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-46da10ba-672f-447d-8382-c1bb33b5e7aa"
+  },
   "item": [
     {
-      "id": "2e4cd3fe-671a-46da-b164-b49f073f7f07",
-      "name": "API Key Management",
-      "description": {
-        "content": "## **Creating an API Key**\n\nTo create a new API key Sign-ip to [app.aimlapi.com](https://app.aimlapi.com), navigate to Key Management page and create an API Key\n\nNote that your Keys only work with an Active Subscription\n\n## **Disabling an API Key**\n\nIf you need to revoke access temporarily, disable an API key by:\n\n- Sending a PUT request to `/service/api-keys/{id}/disable`, replacing `{id}` with the key's unique identifier.\n    \n- This will change the key's status to inactive.\n    \n\n## **Enabling an API Key**\n\nTo restore access using a previously disabled API key:\n\n- Send a PUT request to `/service/api-keys/{id}/enable`, replacing `{id}` with the key's unique identifier.\n    \n- The key's status will be updated to active.\n    \n\n## **Best Practices**\n\n- Regularly review and manage your API keys to ensure optimal security.\n    \n- Use separate keys for different services or environments to limit the scope of access.\n    \n- Rotate your API keys periodically to reduce the risk of unauthorized use.\n    \n\nBy effectively managing your API keys, you maintain control over who can access your AI/ML API services and safeguard your resources.",
-        "type": "text/plain"
-      },
+      "name": "api-keys",
       "item": [
         {
-          "id": "b9994823-c7cc-490a-be30-dcffd32f41de",
-          "name": "AIMLAPI Disable API Key",
-          "request": {
-            "name": "AIMLAPI Disable API Key",
-            "description": {},
-            "url": {
-              "path": [
-                "api-keys",
-                ":id",
-                "disable"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) (Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": ""
-              },
-              {
-                "key": "Accept",
-                "value": "text/plain"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            }
-          },
-          "response": [
+          "name": "{id}",
+          "item": [
             {
-              "id": "bcaa9000-7fa6-47c6-980d-e5ecd51450a1",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api-keys",
-                    ":id",
-                    "disable"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) (Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/plain"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "disable",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "AIMLAPI Disable API Key",
+                  "id": "ced74373-3415-438c-ae0a-d7a2d702991a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api-keys/:id/disable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api-keys",
+                        ":id",
+                        "disable"
+                      ],
+                      "variable": [
+                        {
+                          "id": "448f92b3-6337-425f-a749-9774a1c4d24e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) (Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "10d126f0-d8dd-4152-bb2c-7f5de26d1863",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api-keys/:id/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api-keys",
+                            ":id",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-21T20:59:34.000Z",
+                      "updatedAt": "2026-10-21T20:59:34.000Z",
+                      "uid": "35240-10d126f0-d8dd-4152-bb2c-7f5de26d1863"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:59:34.000Z",
+                  "updatedAt": "2026-10-21T20:59:34.000Z",
+                  "uid": "35240-ced74373-3415-438c-ae0a-d7a2d702991a"
                 }
               ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "4a1df71b-a82e-47d7-ab83-159291a2acd0",
+              "createdAt": "2026-10-21T20:59:33.000Z",
+              "updatedAt": "2026-10-21T20:59:33.000Z",
+              "uid": "35240-4a1df71b-a82e-47d7-ab83-159291a2acd0"
+            },
+            {
+              "name": "enable",
+              "item": [
+                {
+                  "name": "AIMLAPI Enable API Key",
+                  "id": "2fdf633a-1598-4ee6-946a-6424a4b3bc60",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api-keys/:id/enable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api-keys",
+                        ":id",
+                        "enable"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6ab97e5f-c4dd-47ab-a4df-10824a32af04",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) (Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "273e4426-1018-4c8a-af76-cef33dbd48aa",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api-keys/:id/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api-keys",
+                            ":id",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-21T20:59:34.000Z",
+                      "updatedAt": "2026-10-21T20:59:34.000Z",
+                      "uid": "35240-273e4426-1018-4c8a-af76-cef33dbd48aa"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:59:34.000Z",
+                  "updatedAt": "2026-10-21T20:59:34.000Z",
+                  "uid": "35240-2fdf633a-1598-4ee6-946a-6424a4b3bc60"
+                }
+              ],
+              "id": "b6b42d84-90cc-4394-89ee-d96f8d58eacc",
+              "createdAt": "2026-10-21T20:59:33.000Z",
+              "updatedAt": "2026-10-21T20:59:33.000Z",
+              "uid": "35240-b6b42d84-90cc-4394-89ee-d96f8d58eacc"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "388666cb-222f-4a52-a684-1f0a2bb5f187",
-          "name": "AIMLAPI Enable API Key",
-          "request": {
-            "name": "AIMLAPI Enable API Key",
-            "description": {},
-            "url": {
-              "path": [
-                "api-keys",
-                ":id",
-                "enable"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) (Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": ""
-              },
-              {
-                "key": "Accept",
-                "value": "text/plain"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            }
-          },
-          "response": [
-            {
-              "id": "c5ce0c22-735e-47a2-a8db-a84beefe040e",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api-keys",
-                    ":id",
-                    "enable"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) (Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/plain"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "39fcd191-3e1a-4255-99a2-ebc1d99f99f2",
+          "createdAt": "2026-10-21T20:59:33.000Z",
+          "updatedAt": "2026-10-21T20:59:33.000Z",
+          "uid": "35240-39fcd191-3e1a-4255-99a2-ebc1d99f99f2"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://{{baseurl}}",
-      "key": "baseUrl"
+      "id": "e48f2968-b045-4dd9-a51e-85c040a4c086",
+      "createdAt": "2026-10-21T20:59:33.000Z",
+      "updatedAt": "2026-10-21T20:59:33.000Z",
+      "uid": "35240-e48f2968-b045-4dd9-a51e-85c040a4c086"
     }
   ],
   "auth": {
@@ -237,17 +230,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e80aaf4f-6de9-4170-a218-f0699f7deba0",
-    "name": "AIMLAPI AI/ML API Documentation API Key Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "=K Welcome to the [AI/ML API](https://aimlapi.com/) docs! AI/ML API makes integrating state-of-the-art AI models into your applications effortless, offering seamless compatibility with OpenAI-like interfaces.\n\n**Features Include:**\n\n- **Inference**: Easily evaluate models for text, images, and more using our API.\n    \n- **API Key Management**: Securely manage your API keys for controlled access.\n    \n- **Broad Model Selection**: Access a diverse range of models for various AI tasks.\n    \n\nSee Quickstart",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.aimlapi.com"
     }
-  }
+  ]
 }
