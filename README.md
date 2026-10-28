@@ -1,4 +1,4 @@
-# AIMLAPI (aimlapi)
+# AIMLAPI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,85 +66,233 @@
 
 AIMLAPI is a unified AI model API gateway providing access to 400+ state-of-the-art AI models from OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, Stability AI, and 40+ other providers through a single OpenAI-compatible API. Supported modalities include text/chat LLMs, image generation, video generation, music generation, speech-to-text, text-to-speech, vision/OCR, embeddings, and 3D generation.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/aimlapi/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Machine Learning · AI Models · LLM · Image Generation · Video Generation · Speech · Embeddings · API Gateway · Developer Tools
 
-## Scope
+## AIMLAPI on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for AIMLAPI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/aimlapi/](https://apis.io/providers/aimlapi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (20)
 
-- Artificial Intelligence
-- Machine Learning
-- AI Models
-- LLM
-- Image Generation
-- Video Generation
-- Speech
-- Embeddings
-- API Gateway
-- Developer Tools
+- [AIMLAPI API Key Management API](https://apis.io/apis/aimlapi/aimlapi-api-key-management-api/) — ## **Creating an API Key** To create a new API key Sign-ip to [app.aimlapi.com](https://app.aimlapi.com), navigate to Key Management page and create an API…
+- [AIMLAPI Assistants API](https://apis.io/apis/aimlapi/aimlapi-assistants-api/) — The Assistants API from AIMLAPI — 2 operation(s) for assistants.
+- [AIMLAPI Images API](https://apis.io/apis/aimlapi/aimlapi-images-api/) — Given a prompt and/or an input image, the model will generate a new image.
+- [AIMLAPI Models API](https://apis.io/apis/aimlapi/aimlapi-models-api/) — List and describe the various models available in the API. You can refer to the [Models](https://aimlapi.com/models) documentation to understand what models…
+- [AIMLAPI Threads API](https://apis.io/apis/aimlapi/aimlapi-threads-api/) — The Threads API from AIMLAPI — 1 operation(s) for threads.
+- [AIMLAPI Threads > Messages API](https://apis.io/apis/aimlapi/aimlapi-threads-messages-api/) — The Threads > Messages API from AIMLAPI — 2 operation(s) for threads > messages.
+- [AIMLAPI Threads > Runs API](https://apis.io/apis/aimlapi/aimlapi-threads-runs-api/) — The Threads > Runs API from AIMLAPI — 2 operation(s) for threads > runs.
+- [AIMLAPI Voice API](https://apis.io/apis/aimlapi/aimlapi-voice-api/) — The Voice API from AIMLAPI — 2 operation(s) for voice.
+- [AIMLAPI [WIP] Completions API](https://apis.io/apis/aimlapi/aimlapi-wip-completions-api/) — The [WIP] Completions API from AIMLAPI — 1 operation(s) for [wip] completions.
+- [AIMLAPI MCP Server](https://apis.io/apis/aimlapi/aimlapi-mcp-server/) — AI/ML API's first-party remote Model Context Protocol server at https://mcp.aimlapi.com/mcp — Streamable HTTP with OAuth 2.1, PKCE and dynamic client…
+- [AIMLAPI Batches API](https://apis.io/apis/aimlapi/aimlapi-batches-api/) — The Batches API from AIMLAPI — 2 operation(s) for batches.
+- [AIMLAPI Embeddings API](https://apis.io/apis/aimlapi/aimlapi-embeddings-api/) — The Embeddings API from AIMLAPI — 1 operation(s) for embeddings.
+- [AIMLAPI Generate API](https://apis.io/apis/aimlapi/aimlapi-generate-api/) — The Generate API from AIMLAPI — 2 operation(s) for generate.
+- [AIMLAPI Messages API](https://apis.io/apis/aimlapi/aimlapi-messages-api/) — The Messages API from AIMLAPI — 1 operation(s) for messages.
+- [AIMLAPI Ocr API](https://apis.io/apis/aimlapi/aimlapi-ocr-api/) — The Ocr API from AIMLAPI — 1 operation(s) for ocr.
+- [AIMLAPI Responses API](https://apis.io/apis/aimlapi/aimlapi-responses-api/) — The Responses API from AIMLAPI — 2 operation(s) for responses.
+- [AIMLAPI Stt API](https://apis.io/apis/aimlapi/aimlapi-stt-api/) — The Stt API from AIMLAPI — 2 operation(s) for stt.
+- [AIMLAPI Tts API](https://apis.io/apis/aimlapi/aimlapi-tts-api/) — The Tts API from AIMLAPI — 1 operation(s) for tts.
+- [AIMLAPI Video API](https://apis.io/apis/aimlapi/aimlapi-video-api/) — The Video API from AIMLAPI — 1 operation(s) for video.
+- [AIMLAPI Chat Completions API](https://apis.io/apis/aimlapi/aimlapi-chat-completions-api/) — The Chat Completions API from AIMLAPI — 2 operation(s) for chat completions.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-07
-- **Modified:** 2026-04-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### AIMLAPI
+GraphQL schemas.
 
-Access 400+ AI models from 40+ providers via a single OpenAI-compatible REST API. Supports chat completions, image generation, video generation, speech models, embeddings, music generation, and vision tasks with streaming support and function calling.
+- [Moved to /providers/aimlapi/](https://apis.io/graphqls/aimlapi/aimlapi-graphql/)
 
-- **Human URL:** [https://aimlapi.com/](https://aimlapi.com/)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- LLM
-- Chat Completions
-- Image Generation
-- Video Generation
-- Speech
-- Embeddings
-- Vision
-- Music
-- OpenAI Compatible
-- API Gateway
+- [aimlapi-mcp.yml](https://apis.io/servers/aimlapi/aimlapi-mcp-yml/)
 
-#### Properties
+#### Agentic access (1)
 
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Aimlapi Agentic Access](https://apis.io/agentic-access/aimlapi/aimlapi-agentic-access/)
+
+#### JSON Schema (7)
+
+The data models the API reads and writes.
+
+- [ApiKey](https://apis.io/schemas/aimlapi/aimlapi-api-key/)
+- [ChatCompletionRequest](https://apis.io/schemas/aimlapi/aimlapi-chat-completion-request/)
+- [ChatCompletionResponse](https://apis.io/schemas/aimlapi/aimlapi-chat-completion-response/)
+- [EmbeddingRequest](https://apis.io/schemas/aimlapi/aimlapi-embedding-request/)
+- [ImageGenerationRequest](https://apis.io/schemas/aimlapi/aimlapi-image-generation-request/)
+- [Message](https://apis.io/schemas/aimlapi/aimlapi-message/)
+- [ModelInfo](https://apis.io/schemas/aimlapi/aimlapi-model-info/)
+
+#### JSON Structure (7)
+
+Data models expressed in JSON Structure.
+
+- [Aimlapi Api Key Structure](https://apis.io/json-structure/aimlapi/aimlapi-api-key-structure/)
+- [Aimlapi Chat Completion Request Structure](https://apis.io/json-structure/aimlapi/aimlapi-chat-completion-request-structure/)
+- [Aimlapi Chat Completion Response Structure](https://apis.io/json-structure/aimlapi/aimlapi-chat-completion-response-structure/)
+- [Aimlapi Embedding Request Structure](https://apis.io/json-structure/aimlapi/aimlapi-embedding-request-structure/)
+- [Aimlapi Image Generation Request Structure](https://apis.io/json-structure/aimlapi/aimlapi-image-generation-request-structure/)
+- [Aimlapi Message Structure](https://apis.io/json-structure/aimlapi/aimlapi-message-structure/)
+- [Aimlapi Model Info Structure](https://apis.io/json-structure/aimlapi/aimlapi-model-info-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Aimlapi Context](https://apis.io/jsonld/aimlapi/aimlapi-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Aimlapi Vocabulary](https://apis.io/vocabularies/aimlapi/aimlapi-vocabulary/)
+
+#### Examples (7)
+
+Example requests and responses.
+
+- [Aimlapi Api Key Example](https://apis.io/examples/aimlapi/aimlapi-api-key-example/)
+- [Aimlapi Chat Completion Request Example](https://apis.io/examples/aimlapi/aimlapi-chat-completion-request-example/)
+- [Aimlapi Chat Completion Response Example](https://apis.io/examples/aimlapi/aimlapi-chat-completion-response-example/)
+- [Aimlapi Embedding Request Example](https://apis.io/examples/aimlapi/aimlapi-embedding-request-example/)
+- [Aimlapi Image Generation Request Example](https://apis.io/examples/aimlapi/aimlapi-image-generation-request-example/)
+- [Aimlapi Message Example](https://apis.io/examples/aimlapi/aimlapi-message-example/)
+- [Aimlapi Model Info Example](https://apis.io/examples/aimlapi/aimlapi-model-info-example/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [AIMLAPI AI/ML API Documentation](https://apis.io/collections/aimlapi/open-aimlapi/)
+- [AIMLAPI AI/ML API Documentation API Key Management API](https://apis.io/collections/aimlapi/open-aimlapi-api-key-management-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Assistants API](https://apis.io/collections/aimlapi/open-aimlapi-assistants-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Chat API](https://apis.io/collections/aimlapi/open-aimlapi-chat-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Images API](https://apis.io/collections/aimlapi/open-aimlapi-images-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Models API](https://apis.io/collections/aimlapi/open-aimlapi-models-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Threads API](https://apis.io/collections/aimlapi/open-aimlapi-threads-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Threads > Messages API](https://apis.io/collections/aimlapi/open-aimlapi-threads-messages-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Threads > Runs API](https://apis.io/collections/aimlapi/open-aimlapi-threads-runs-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management Voice API](https://apis.io/collections/aimlapi/open-aimlapi-voice-api/)
+- [AIMLAPI AI/ML API Documentation API Key Management [WIP] Completions API](https://apis.io/collections/aimlapi/open-aimlapi-wip-completions-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Aimlapi Inference Overlay](https://apis.io/overlays/aimlapi/aimlapi-inference-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [AIMLAPI — jsonschema rules](https://apis.io/rules/aimlapi/aimlapi-jsonschema-spectral-rules/)
+- [AIMLAPI API Rules](https://apis.io/rules/aimlapi/aimlapi-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Aimlapi Authentication](https://apis.io/security/aimlapi/aimlapi-authentication/)
+- [Aimlapi Domain Security](https://apis.io/security/aimlapi/aimlapi-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Aimlapi Scopes](https://apis.io/scopes/aimlapi/aimlapi-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Aimlapi Plans Pricing](https://apis.io/plans/aimlapi/aimlapi-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Aimlapi Rate Limits](https://apis.io/rate-limits/aimlapi/aimlapi-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Aimlapi Finops](https://apis.io/finops/aimlapi/aimlapi-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://aimlapi.com/)
 - [Documentation](https://docs.aimlapi.com/)
-- [API Reference](https://docs.aimlapi.com/api-references/text-models)
-- [API Reference](https://docs.aimlapi.com/api-references/image-models)
-- [OpenAPI](openapi/aimlapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/aimlapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/aimlapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Quickstart](https://docs.aimlapi.com/quickstart)
-- [Sign Up](https://aimlapi.com/app/sign-up/)
-- [F A Q](https://docs.aimlapi.com/faq)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/aimlapi)
-- [GitHub Organization](https://github.com/aimlapi)
-- [Blog](https://aimlapi.com/blog)
+- [Getting started](https://docs.aimlapi.com/quickstart/simple-model)
+- [API reference](https://api.aimlapi.com/docs)
 - [Pricing](https://aimlapi.com/ai-ml-api-pricing)
-- [Documentation](https://docs.aimlapi.com/)
-- [F A Q](https://docs.aimlapi.com/faq/can-i-use-api-in-python)
+- [Support](https://help.aimlapi.com/)
 - [Changelog](https://aimlapi.com/changelog)
-- [Sign Up](https://aimlapi.com/app/sign-up/)
-- [Affiliate](https://aimlapi.com/affiliate)
-- [Privacy Policy](https://aimlapi.com/privacy-policy)
-- [Terms of Service](https://aimlapi.com/terms-and-conditions)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Spectral Rules](rules/aimlapi-spectral-rules.yml)
-- [Vocabulary](vocabulary/aimlapi-vocabulary.yaml)
-- [L L Ms Txt](https://aimlapi.com/llms.txt)
+- [Blog](https://aimlapi.com/blog)
+- [Terms of service](https://aimlapi.com/terms-and-conditions)
+- [Privacy policy](https://aimlapi.com/privacy-policy)
+- [GitHub](https://github.com/aimlapi)
+- [Status](https://status.aimlapi.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 63.3** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 49.7 |
+| Contract governance | 45.5 |
+| Operational transparency | 65.8 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 76.3 |
+
+**Agent readiness 54.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 31.8** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/aimlapi/](https://apis.io/providers/aimlapi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for AIMLAPI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/aimlapi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
